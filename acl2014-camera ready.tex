@@ -37,7 +37,7 @@
 % in the camera-ready version and ask you to change it back.
 
 
-\title{Two Heads are Better than One: Crowdsourcing Translation via\\ a Two-Step Non-Professional Collaboration towards Professionals}
+\title{Two Heads are Better than One: Crowdsourcing Translation\\ via a Two-Step Collaboration Between Non-Professionals}
 %Aiming at Professional Translation Quality via \\ based on a }
 
 \author{Rui Yan \ \ \ \ \  \ \ \ \ \  Ellie Pavlick \ \ \ \ \  \ \ \ \ \  Chris Callison-Burch \\
@@ -50,7 +50,7 @@ University of Pennsylvania
 \begin{document}
 \maketitle
 \begin{abstract}
-  Crowdsourcing is a viable mechanism for creating training data for machine translation.  It provides a low cost, fast turn-around way of processing large volumes of data. However, when compared professional translation, naive collection of translations from non-professionals yields low-quality results. Careful quality control is a necessity for crowdsourcing to work well. In this paper, we use a two-step collaboration process with translation and post-editing by non-professionals.  We develop a graph-based ranking models that automatically select the best output from multiple redundant versions of translations and edits, and improves translation quality closer to professionals. With appropriate quality control, we are able to distinguish acceptable translation from bad ones.  We demonstrate our model on the  Mechanical Turk translations of the NIST 2009 Urdu-to-English evaluation set, and show that our models are able to achieve better quality than previously published methods. %The total cost is more than an order of magnitude lower than professional translation.
+  Crowdsourcing is a viable mechanism for creating training data for machine translation.  It provides a low cost, fast turn-around way of processing large volumes of data. However, when compared professional translation, naive collection of translations from non-professionals yields low-quality results. Careful quality control is a necessity for crowdsourcing to work well. In this paper, we use a two-step collaboration process with translation and post-editing by non-professionals.  We develop a graph-based ranking models that automatically select the best output from multiple redundant versions of translations and edits, and improves translation quality closer to professionals. With appropriate quality control, we are able to distinguish acceptable translation from bad ones.  We demonstrate our model on the  Mechanical Turk translations of the NIST 2009 Urdu-to-English evaluation set, and show that our models are able to achieve better quality than previously published methods. 
 \end{abstract}
 
 \section{Introduction}
@@ -359,6 +359,8 @@ Resnik et al. \shortcite{a9} explore a very interesting way of creating translat
 We have proposed a two-step non-professional collaboration based co-ranking model to select the best crowdsourced translation on the heterogeneous HIT-Turker graph, and we have demonstrated that compared with a series of MT methods, it is possible to obtain improved performance near professional quality and even less costs from non-professional collaborations.
 
 We believe that crowdsourcing can play a pivotal role in future efforts to create parallel translation datasets. Beyond the cost and scalability, crowdsourcing provides access to languages that currently fall outside the scope of statistical machine translation research. There are possible ways to further improve the crowdsourcing translation and reduce costs by: 1) build ground truth against good Turkers only, instead of professionals, once they have been identified and 2) predict when it is unnecessary to solicit more translations after a certain threshold.
+
+\section*{Acknowledgements}This material is based on research sponsored by a DARPA Computer Science Study Panel phase 3 award entitled ``Crowdsourcing Translation'' (contract D12PC00368). The views and conclusions contained in this publication are those of the authors and should not be interpreted as representing official policies or endorsements by DARPA or the U.S. Government. This research was supported by the Johns Hopkins University Human Language Technology Center of Excellence and through gifts from Microsoft, Google and Facebook.
 
 \bibliographystyle{acl2014}
 \bibliography{acltranslation}
