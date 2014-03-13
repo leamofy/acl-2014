@@ -14,3 +14,7 @@ acl2014-camera ready.pdf
 *.log
 
 acl2014-camera ready.synctex.gz
+
+*.svn*
+
+*~

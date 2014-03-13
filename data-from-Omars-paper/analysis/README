@@ -1,0 +1,30 @@
+This directory contains the systems that were submitted to the NIST 2009 Urdu-English translation task.  NIST anonymized the systems and removed a few of the documents to avoid people being able to easily use the Bleu scores to tell which system is which.
+
+The Batch file is the results of the Urdu translation HIT (with images shown instead of text).  Each of the source sentences in the NIST-09 test set was translated 3 times.
+
+------
+The ref-set v ref-set-full files differ because the ref-set is a subsampled portion of the output of all the systems.  NIST subsampled to keep the systems a little more anonymous. 
+
+
+------
+
+
+The calibration-set-size directory contains curves for different sizes of calibration set sizes (10% -- 100% at 10% intervals, because it is easy to break things down in that way given that we're having Turkers translate 10 sentences at a time) for 1--4 references.
+
+cd calibration-set-size
+
+# calculate the Turkers TER scores based on different calibration set sizes
+perl calculate-per-turker-ter-x-in-10.perl ../mturk-results/turkers ../mturk-results/turkers.ter_segment_scores 1 > per-turker-ter-scores.1-in-10_4-ref_calibration
+...
+perl calculate-per-turker-ter-x-in-10.perl ../mturk-results/turkers ../mturk-results/turkers.ter_segment_scores 10 > per-turker-ter-scores.10-in-10_4-ref_calibration
+
+# extract the translations based on these scores
+perl ../mturk-results/select-translations-by-turker-score.perl per-turker-ter-scores.1-in-10_4-ref_calibration ../mturk-results/translations  ../mturk-results/turkers > translations.selected-by-1-in-10_4-ref_calibration
+...
+perl ../mturk-results/select-translations-by-turker-score.perl per-turker-ter-scores.10-in-10_4-ref_calibration ../mturk-results/translations  ../mturk-results/turkers > translations.selected-by-10-in-10_4-ref_calibration
+
+# wrap them in XML
+perl ../bin/wrap-xml.perl ../mturk-full/turker-translations.1.xml en < translations.selected-by-1-in-10_4-ref_calibration > translations.selected-by-1-in-10_4-ref_calibration.xml
+...
+perl ../bin/wrap-xml.perl ../mturk-full/turker-translations.1.xml en < translations.selected-by-10-in-10_4-ref_calibration > translations.selected-by-10-in-10_4-ref_calibration.xml
+

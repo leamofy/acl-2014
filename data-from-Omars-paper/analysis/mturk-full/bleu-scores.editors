@@ -1,0 +1,59 @@
+editor.3
+0.3239
+0.3284
+0.3314
+0.3358
+editor.4
+
+not well-formed (invalid token) at line 1462, column 116, byte 153067 at /opt/local/lib/perl5/vendor_perl/5.8.9/darwin-2level/XML/Parser.pm line 187
+ at ../bin/mteval-v13a.pl line 396
+ at ../bin/mteval-v13a.pl line 396
+
+not well-formed (invalid token) at line 1462, column 116, byte 153067 at /opt/local/lib/perl5/vendor_perl/5.8.9/darwin-2level/XML/Parser.pm line 187
+ at ../bin/mteval-v13a.pl line 396
+ at ../bin/mteval-v13a.pl line 396
+
+not well-formed (invalid token) at line 1462, column 116, byte 153067 at /opt/local/lib/perl5/vendor_perl/5.8.9/darwin-2level/XML/Parser.pm line 187
+ at ../bin/mteval-v13a.pl line 396
+ at ../bin/mteval-v13a.pl line 396
+
+not well-formed (invalid token) at line 1462, column 116, byte 153067 at /opt/local/lib/perl5/vendor_perl/5.8.9/darwin-2level/XML/Parser.pm line 187
+ at ../bin/mteval-v13a.pl line 396
+ at ../bin/mteval-v13a.pl line 396
+editor.5
+
+not well-formed (invalid token) at line 1462, column 119, byte 154138 at /opt/local/lib/perl5/vendor_perl/5.8.9/darwin-2level/XML/Parser.pm line 187
+ at ../bin/mteval-v13a.pl line 396
+ at ../bin/mteval-v13a.pl line 396
+
+not well-formed (invalid token) at line 1462, column 119, byte 154138 at /opt/local/lib/perl5/vendor_perl/5.8.9/darwin-2level/XML/Parser.pm line 187
+ at ../bin/mteval-v13a.pl line 396
+ at ../bin/mteval-v13a.pl line 396
+
+not well-formed (invalid token) at line 1462, column 119, byte 154138 at /opt/local/lib/perl5/vendor_perl/5.8.9/darwin-2level/XML/Parser.pm line 187
+ at ../bin/mteval-v13a.pl line 396
+ at ../bin/mteval-v13a.pl line 396
+
+not well-formed (invalid token) at line 1462, column 119, byte 154138 at /opt/local/lib/perl5/vendor_perl/5.8.9/darwin-2level/XML/Parser.pm line 187
+ at ../bin/mteval-v13a.pl line 396
+ at ../bin/mteval-v13a.pl line 396
+editor.6
+0.3227
+0.3224
+0.3249
+0.3302
+editor.7
+0.3141
+0.3170
+0.3188
+0.3210
+editor.8
+0.3138
+0.3155
+0.3192
+0.3204
+editor.9
+0.3144
+0.3174
+0.3208
+0.3213

@@ -1,0 +1,23 @@
+
+echo "editor.4"
+
+perl ../bin/mteval-v13a.pl -s ../ref-sets-full/mt09_urdu_evalset_current_src.xml -t editor.4.xml -r ../ref-sets-full/mt09_urdu_evalset_current_v3-ref.minus-1.xml | perl ../bin/get-bleu-score.perl 
+
+perl ../bin/mteval-v13a.pl -s ../ref-sets-full/mt09_urdu_evalset_current_src.xml -t editor.4.xml  -r ../ref-sets-full/mt09_urdu_evalset_current_v3-ref.minus-2.xml | perl ../bin/get-bleu-score.perl 
+
+perl ../bin/mteval-v13a.pl -s ../ref-sets-full/mt09_urdu_evalset_current_src.xml -t editor.4.xml  -r ../ref-sets-full/mt09_urdu_evalset_current_v3-ref.minus-3.xml | perl ../bin/get-bleu-score.perl 
+
+perl ../bin/mteval-v13a.pl -s ../ref-sets-full/mt09_urdu_evalset_current_src.xml -t editor.4.xml  -r ../ref-sets-full/mt09_urdu_evalset_current_v3-ref.minus-4.xml | perl ../bin/get-bleu-score.perl 
+
+
+echo "editor.5"
+
+perl ../bin/mteval-v13a.pl -s ../ref-sets-full/mt09_urdu_evalset_current_src.xml -t editor.5.xml -r ../ref-sets-full/mt09_urdu_evalset_current_v3-ref.minus-1.xml | perl ../bin/get-bleu-score.perl 
+
+perl ../bin/mteval-v13a.pl -s ../ref-sets-full/mt09_urdu_evalset_current_src.xml -t editor.5.xml  -r ../ref-sets-full/mt09_urdu_evalset_current_v3-ref.minus-2.xml | perl ../bin/get-bleu-score.perl 
+
+perl ../bin/mteval-v13a.pl -s ../ref-sets-full/mt09_urdu_evalset_current_src.xml -t editor.5.xml  -r ../ref-sets-full/mt09_urdu_evalset_current_v3-ref.minus-3.xml | perl ../bin/get-bleu-score.perl 
+
+perl ../bin/mteval-v13a.pl -s ../ref-sets-full/mt09_urdu_evalset_current_src.xml -t editor.5.xml  -r ../ref-sets-full/mt09_urdu_evalset_current_v3-ref.minus-4.xml | perl ../bin/get-bleu-score.perl 
+
+

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mteval SYSTEM "ftp://jaguar.ncsl.nist.gov/mt/resources/mteval-xml-v1.3.dtd">
+<mteval>
+<tstset setid="mt09_urdu_evalset_current_v0" srclang="Urdu" trglang="English" sysid="site24_u2e_single_un_primary_HA">
+<doc docid="BBC_URD_20090106.0030" genre="nw">
+<hl>
+<seg id="1">Bakhtawar has dedicated a musical tribute to Benazir. </seg>
+</hl>
+<seg id="2">Bakhtawar has recorded a rap song in the modern music genre that is now posted on You Tube. </seg>
+<seg id="3">The song is five minutes long and portrays Benazir's life in pictures and clips. </seg>
+<seg id="4">The singer is an eighteen year old student from Edinburgh University. </seg>
+<seg id="5">She has a deep interest in singing and poetry. </seg>
+<seg id="6">It is believed that she started singing after being encouraged by her mother, and started doing so only as a hobby. </seg>
+<seg id="7">She paid tribute to her mother, who she called both intelligent and beautiful, and described as always doing everything in her own way. </seg>
+<seg id="8">Talking about the incident of December 27th, she said that her mother was shot at the temple. She died at the age of 54 and left 3 children behind. </seg>
+<seg id="9">The whole nation is seeking direction without her, and she is present in everyone's heart. </seg>
+<seg id="10">Miss Bakhtawar is the second child of Benazir Bhutto after her 20 year old brother, Bilawal Bhutto. </seg>
+<seg id="11">She has taken a keen interest in music from the start. </seg>
+<seg id="12">Its believed that before her mother's return to Pakistan, she tried to have a meeting arranged with Grammy Award winning music producer and rapper Sean ""P.Diddy"" Combs through a journalist friend, but this meeting never took place. </seg>
+<seg id="13">Miss Bakhtawar's poetry has been translated and published in some Sindhi newspapers, but this is the first time that her voice can be heard via YouTube. </seg>
+<seg id="14">The workers and followers of Benazir Bhutto have started recording CDs of her song. </seg>
+<seg id="15">Mr. Farhatullah Babar, spokesman of Pakistan Peoples Party, has confirmed that both the song’s poetry and vocals on YouTube are performed by Bakhtawar. </seg>
+<seg id="16">He was speaking on the phone from Islamabad and said that it is a tribute of a grief-stricken daughter to her courageous mother and has been aired by Pakistan Television, the national television network of Pakistan. </seg>
+<seg id="17">He further stated that the Peoples Party has not made any plans to distribute the music CDs by Miss Bakhtawar as of yet. </seg>
+<seg id="18">He said that a few months back, a fake account of the young Bilawal Bhutto Zardari, the chairman of Pakistan Peoples Party, was made on the website of Facebook, but it was later closed down. </seg>
+</doc>
+<doc docid="BBC_URD_20090108.0018" genre="nw">
+<hl>
+<seg id="1">Rocket Fire from Lebanon too, and bombing in response. </seg>
+</hl>
+<seg id="2">Israeli Army and Police officials have informed the press that four rockets were launched from Lebanon on to Israeli land, one of which hit the Northern part of Israel in Naharia, which injured two people. </seg>
+<seg id="3">In response to the rockets launched from Lebanon, Israeli tanks bombed Lebanon. </seg>
+<seg id="4">It's not certain that this attack was Hezbollah related or if aggravated Palestinian terrorists are behind this. </seg>
+<seg id="5">The Lebanese government has said that they are also trying to investigate who is behind these rocket attacks. </seg>
+<seg id="6">The reporters of BBC have declared this an entirely volatile and dangerous situation. </seg>
+<seg id="7">According to the Head of the Middle East sector of BBC, Jeremy Button, these rocket attacks have increased the chances of spreading the war. </seg>
+<seg id="8">In the past few days, it is feared that the Investigation in Gaza might extend to the Northern part of Lebanon and also  to the Israeli border. </seg>
+<seg id="9">Israeli forces have executed around 60 aerial attacks on the Gaza strip, between Wednesday and Thursday nights. </seg>
+<seg id="10">According to the Israeli army, they targeted the Hamas Police offices, tunnels, weapon stores, rocket launching areas and armed individuals, in these attacks. </seg>
+<seg id="11">Apart from aerial attacks, Gaza was also bombed throughout night, from the Israeli and Bahria tank bases. </seg>
+<seg id="12">Palestinian sources say that a mosque was destroyed in the aerial attacks on Gaza. </seg>
+<seg id="13">According to some unconfirmed sources, Israeli tanks are closing in on the area of Khan Younis, with aerial help from helicopters. </seg>
+<seg id="14">In the last twelve days, around 700 Palestinians have been killed, a majority of them being women and children. </seg>
+<seg id="15">On the other hand, 11 Israeli soldiers have also lost their lives. </seg>
+<seg id="16">Israeli Security Forces have confirmed that a high ranked officer, Amos Gailad, has left for Cairo to discuss about the conditions for a ceasefire. </seg>
+<seg id="17">A member of Hamas is also leaving for Cairo, to have talks with the Egyptian Ambassador. </seg>
+<seg id="18">Also, a member of the Palestinian authority, Mahmood Abbas, will be arriving in Cairo on Friday. </seg>
+</doc>
+<doc docid="BBC_URD_20090110.0010" genre="nw">
+<hl>
+<seg id="1">140 year old, 9 kilo lobster Freed. </seg>
+</hl>
+<seg id="2">""George the Giant Lobster"" was caught in the sea two weeks earlier. </seg>
+<seg id="3">A seafood company of the city had bought him for 100 dollars. </seg>
+<seg id="4">They immediately starting using the lobster as means of advertisement. </seg>
+<seg id="5">But a group for animal rights, ""PETA"", demanded the lobster's release; now he is in the sea again. </seg>
+<seg id="6">George was caught in a sea in Canada, after which he spent ten days in the tank of ""City Crab and Seafood Company."" </seg>
+<seg id="7">The age of a lobster can usually be determined by its weight. </seg>
+<seg id="8">According to the restaurant manager, Keith Wallanty, the lobster was not meant to be harmed, and was put into the tank only to arouse curiosity with their customers. </seg>
+<seg id="9">According to a member of PETA, Ingrid Newkirk, the decision of the restaurant is admirable and serves as an example to those who only want to keep the animal in a tank or boil them and eat them. </seg>
+</doc>
+<doc docid="BBC_URD_20090125.0005" genre="nw">
+<hl>
+<seg id="1">Dera Bugti: Explosion on gas pipe line </seg>
+</hl>
+<seg id="2">According to police officials, the explosion has destroyed a  pipeline of an 18 inch diameter on the Loti Gas Field to Pir Koh. </seg>
+<seg id="3">This pipeline was directed towards Sui Plant. </seg>
+<seg id="4">Moreover, the spokesman form the banned 'Baloch Republican Army' has accepted the responsibility for the explosion on behalf of his organization on phone. </seg>
+<seg id="5">Fourth pipeline has been blown up in four days. </seg>
+<seg id="6">An 18"" pipeline was destroyed in Dera Allah Yar on Friday. Its mending was continued until Sunday morning. </seg>
+<seg id="7">General Manager of Sui Southern Gas Company, Mushtaq Siddiqui, told in Quetta that the supply line will restart in the afternoon. </seg>
+<seg id="8">This pipeline arrives to Quetta via Sibbi. </seg>
+<seg id="9">For three days, there have been severe gas shortages in Quetta, Ziarat and their suburbs.  Snowfall is continuing and temperatures have dropped below the freezing point, and stoves and heaters are not working. </seg>
+<seg id="10">Also, in the city of Dera Bugti, a motorbike exploded in the animal market, but police report no casulaties. </seg>
+</doc>
+<doc docid="BBC_URD_20090130.0002" genre="nw">
+<hl>
+<seg id="1">The President of Israel has summarize the prime minister of Turkey. </seg>
+</hl>
+<seg id="2">Rajab Argan almost shouted at the Israeli president in the Gaza Strip. He said that blood of Muslims have been shed in Gaza and after seeing this they felt sorry on behalf of the people of the Israeli army. </seg>
+<seg id="3">Mr. Argan said, ""I feel that the guilt you may be resolved to such words for a higher and they voice to the people, but you were killed in the children and I am to remember the beach near the killing."" </seg>
+<seg id="4">Shaimoon papers said that Israel is not the tragedy Gaza HAMAS, which has been set up there dangerous dictator. </seg>
+<seg id="5">Davies BBC correspondent says in the World Economic Forum in the first ever see the scene. </seg>
+<seg id="6">However, the erdgan made after the president said that he respects Israel, and also the of which they will yell, on his saying they were far away from truth </seg>
+<seg id="7">Turkey allowing them to visit Muslim countries and has established diplomatic relations with Israel, but tensions have grown in the last few years. </seg>
+</doc>
+<doc docid="DEW_URD_20090108.0002" genre="nw">
+<hl>
+<seg id="1">Financial crisis: German millionaire industrialist commits suicide. </seg>
+</hl>
+<seg id="2">Adolf Marclay, a resident of Swabia in south Germany has left behind a huge industrial company. </seg>
+<seg id="3">But he was not well known to German public until recently. </seg>
+<seg id="4">When he had to negotiate with 30 banks for weeks regarding his debts towards industrial companies, he became big news, and could see the dark future for the Marckay Group. </seg>
+<seg id="5">Marclay Group had to bear the loss of hundreds of millions of euros after it bought the shares from the known industry, Folks Wigan. </seg>
+<seg id="6">The financial institutes rejected to provide the much needed one billion euros to this group and this exerted severe pressure on Marclay. </seg>
+<seg id="7">Recently the same banks accepted to provide a loan to Marclay group on urgent basis. Adolf Marclay who started as a small industrialist, has industrial group's annual income reached 30 billion euros, couldn't bear the the loss in his financial strength. </seg>
+<seg id="8">After the death of his father, Adolf Marclay took the responsibility of the business. He used modern methods to make his business more successful. </seg>
+<seg id="9">He named his company Ratiopharm which is now Germany's most successful and biggest pharmaceutical company. </seg>
+<seg id="10">Until recent times this pharmaceutical company had a budget of around 5 to 6 billion euros and is now earning around 8 billion euros annually. After the great success of Rasue farm the Marclay Group bought many big industries such as Hi-Del Barag Cement, a manufacturer of construction equipment as well as Kassbohrer, a good car maker. </seg>
+<seg id="11">Marclay Group has a employee number of around 100 thousand around the world and among its industries, Rasue Farm has always been given special importance. </seg>
+<seg id="12">Adolf Marclay has said this many times in his life. """"We have been in pharma business since four generations"""". </seg>
+<seg id="13">Now the industry is handled by his children and I hope that it continues to progress for a few hundred years by our family. </seg>
+<seg id="14">After the suicide of Adolf Marclay,the banks have given approval of temporary loan of 400 million euro for his group VEM, but on the condition that VEM has to be sold to Rasio Farm in order to improve the financial position of this group. </seg>
+<seg id="15">After the death of Adolf Marclay, the Marclay Group will not remain the same as it was before. </seg>
+</doc>
+<doc docid="DEW_URD_20090120.0008" genre="nw">
+<hl>
+<seg id="1">American President Obama is trying to take charge. </seg>
+</hl>
+<seg id="2">On the whole, Americans are different from most other people in the world. </seg>
+<seg id="3">Obama, becoming the President of United States of America, received messages of congratulations and is now in the range of expectation. </seg>
+<seg id="4">The German Chancellor, Angela Merkel , expressed his confidence on the new American president. </seg>
+<seg id="5">I believe that the relationship with the United States and the Federal Republic of Germany and Persia would solve many problems. </seg>
+<seg id="6">Russian Prime minister Mir Putin said that this serious and open heart is a good thing. </seg>
+<seg id="7">The policies of the former American president, George W. Bush faced criticism. </seg>
+<seg id="8">The Administration of the international level China praised the constructive role on the movement since, and the American President said that the two countries have to strengthen the military relations to work together. </seg>
+<seg id="9">Yak says that the German expert is active in city politics. </seg>
+<seg id="10">With this, I believe that the coming weeks and months will have strong pressure from the economic team to encourage the government of China to have better rate of exchange. </seg>
+<seg id="11">The relationship of India and Former US administration will be better. </seg>
+<seg id="12">The American studies professor in New Delhi, Raj, said that we are in a strategic partnership as long as one night does not bring a change. </seg>
+<seg id="13">Pope Benedict also gave a message in the name of peace to the world in the atmosphere of cooperation and stressed on  developing. </seg>
+</doc>
+<doc docid="VOA_URD_20090109.0007" genre="nw">
+<hl>
+<seg id="1">U.S. Vice President Joe Biden arrived in Pakistan. </seg>
+</hl>
+<seg id="2">The foreign minister welcomed the U.S. Vice President. </seg>
+<seg id="3">The United States sent Vice President Joe Biden on a visit to Pakistan. On Friday the delegation arrived in Islamabad. </seg>
+<seg id="4">External Affairs Minister, Shah Mahmood Qureshi, and the American embassy officials welcomed him. </seg>
+<seg id="5">American Senator Lindsey Graham is also accompanying Biden. </seg>
+<seg id="6">Lew Fenter, Press Officer of the American Embassy, told Voice of America that the newly elected President will be discussing several regional affairs with the Pakistani Leadership during his tour, however, he refused to disclose any further details. </seg>
+<seg id="7">According to the Foreign Affairs Ministry, Joseph Biden will also be meeting with Army Chief General Ashfaq Pervez Kiani along with other high officials from the government. </seg>
+<seg id="8">It is hoped that in these meetings, other important bilateral and international affairs will be discussed as well as the war against terrorism. </seg>
+<seg id="9">Joseph Biden has been awarded the Hilal e Pakistan medal. </seg>
+<seg id="10">After arriving to Islamabad, Joseph Biden met with President Asif Ali Zardari. </seg>
+<seg id="11">During that meeting, the President awarded him the Hilal e Pakistan medal for his role in the establishment of closer ties between America and Pakistan. </seg>
+<seg id="12">It should be noted that Joseph Biden as Chairman of Foreign Affairs Committee of the American Senate along with Senator Richard Lugar presented a bill which proposed a three times increase in civilian aid for next five years to Pakistan, taking it to 5.7 billion dollars. </seg>
+</doc>
+<doc docid="VOA_URD_20090114.0020" genre="nw">
+<hl>
+<seg id="1">Quetta, DSP, including four police personnel were killed </seg>
+</hl>
+<seg id="2">The file photo </seg>
+<seg id="3">The Quetta saryab road, highway in firing by unknown persons DSP 'a deputy Superintendent including the police force police personnel. </seg>
+<seg id="4">On Wednesday morning in a jeep two DSP, a Sub-inspector and two constable of police training center was going on saryab road, near degree College on a motorcycle rider unknown attackers jeep police opened fire, sub-Inspector Mehdi and constable, were killed on the spot while one DSP Hasan Ali died after reaching the hospital died of severe injuries. </seg>
+<seg id="5">Hospital sources say that the severe injuries DSP Ghulam Mahmud critical condition and they also head bullets in his neck and began. </seg>
+<seg id="6">After the incident, police surrounded area so far in the responsibility of the incident will not accept any. </seg>
+</doc>
+<doc docid="VOA_URD_20090118.0002" genre="nw">
+<hl>
+<seg id="1">Political and security issues were discussed at the meeting in Raiwind between the Sharif brothers and the Federal Minister for Interior. </seg>
+</hl>
+<seg id="2">The meeting between the largest centrist opposition party  and the ruling party in Punjab was held in Raiwind on Sunday.  In attendance were Pakistan Muslim League leader Nawaz Sharif; Federal Minister for Interior Rehman Malik; and Chief Minister of Punjab Shahbaz Sharif. </seg>
+<seg id="3">Local media states Rehman Malik delivered a message from the leadership of Pakistan People's Party. </seg>
+<seg id="4">However, talking to journalists after the meeting, Rehman Malik did not mention any details about this matter, stating only that he came to talk about building consensus on political issues and to brief the PML(N)’s leadership on the aftermath of the Mumbai attacks. </seg>
+<seg id="5">Malik stated “I informed them about the steps which have been taken thus far."" </seg>
+<seg id="6">“Don’t forget that the major crackdown was done in Punjab by the Punjab government, and the team that I have formed now will also require help from the Punjab government."" </seg>
+<seg id="7">Rehman Malik said that the media is not briefed every day; however, messages are exchanged with PML(N)’s leadership on daily basis. Spokesman for the Pakistan Muslim League, Pervaiz Rasheed, also refrained from talking about any of the political issues, stating only that Rehman Malik had stated everything of importance. </seg>
+<seg id="8">It should be noted that the Interior Minister met with the Pakistan Muslim League’s leadership at the same time when twenty Nazims belonging to PML(Q), the opposition party in Punjab, held a press conference with Governor Salman Taseer. PML(N), while dismissing the objections of the Nazims against steps taken by the provincial government, objected to the involvement in this matter of the Punjab governor, a member of Pakistan Peoples Party. </seg>
+</doc>
+
+<doc docid="urd-NG-102-174502-11516103-post18" genre="wb">
+<p>
+<seg id="1">After the formation of Pakistan, the South was under Wali South, which had a single rule. </seg>
+<seg id="2">Pakistan ruled the south for a while. </seg>
+<seg id="3">But tragically our government like a stepmother toward the South. </seg>
+<seg id="4">In the south, after the end of Wali South rule, no more schools were built. </seg>
+<seg id="5">They also showed no interest in their development. </seg>
+<seg id="6">Presently, fewer girls sought an education. </seg>
+</p>
+</doc>
+<doc docid="urd-NG-102-174502-11516107-post27" genre="wb">
+<p>
+<seg id="1">The Taliban should be given a chance. </seg>
+<seg id="2">Basit, Peshawar </seg>
+<seg id="3">Be aware if the taliban started the real jihad then who will slaughter the innocent people? </seg>
+<seg id="4">Who will put girls' schools to torch? </seg>
+<seg id="5">And who will hang people by accusing them as American spy after having no ransom from their kidnapping? </seg>
+<seg id="6">No nation or religion has damaged Islam as much as the taliban. </seg>
+<seg id="7">The Persian era. </seg>
+<seg id="8">Kohat, Pakistan </seg>
+</p>
+</doc>
+<doc docid="urd-NG-102-174502-11516120-post215" genre="wb">
+<p>
+<seg id="1">Although medicine for the wounded is being provided, as well as shrouds and monetary compensation for the dead, the Arab rulers had to be asked to provide them. </seg>
+<seg id="2">What should be done about the Israeli attacks? </seg>
+<seg id="3">The problem is that the heads of state of all the Muslim countries, including Saudi Arabia, are in a deep slumber.  They have neither an army nor any defensive strategy.  They believe that by giving simple aid, they have fulfilled their obligation. </seg>
+<seg id="4">They should immediately take practical steps against Israeli aggression, such as placing an oil embargo on European and American countries. </seg>
+<seg id="5">Like placing an embargo on the oil to European countries and America but alas they ...... </seg>
+</p>
+</doc>
+<doc docid="urd-NG-102-174502-11516146-post73" genre="wb">
+<p>
+<seg id="1">For the success of Operation Sherdil and across the border the success of Operation Lion Heart depends on the favor of people. </seg>
+<seg id="2">Peer Sahib is a victim of conspiracy carried out by American and Pakistani agencies. </seg>
+<seg id="3">In this forum all reviews will be against Taliban, Agencies have been successfully indulged in Taliban and are applying the policies which might change public opinion. </seg>
+</p>
+</doc>
+<doc docid="urd-NG-102-174502-11516161-post15" genre="wb">
+<p>
+<seg id="1">Hearts are breaking into pieces over this news. </seg>
+<seg id="2">What kind of world is this where one cannot survive as an important part of Allah's religion Islam. </seg>
+<seg id="3">Non Muslims can kill Muslims, but if a Muslim even tries to take revenge, along with the whole non Muslim world, our hypocrite leaders  treat those with true and sincere religion just like they are treating our great leader Hafiz Saeed now a days. </seg>
+</p>
+</doc>
+<doc docid="urd-NG-102-174502-11516161-post64" genre="wb">
+<p>
+<seg id="1">Pakistan is now in it's last stages. </seg>
+<seg id="2">Kamran Hassan: Abu Dhabi </seg>
+<seg id="3">Your words touch the heart, and the situation seems so. </seg>
+<seg id="4">Now in American publications, the new map of Pakistan is being printed, and all these restrictions are now apparent in the series of events. </seg>
+<seg id="5">The Americans are not slowly but quickly strengthening their control over Pakistan. </seg>
+<seg id="6">In this situation, if we do not stand together and show our unity, then remember, if Bangladesh can be made, then anything can happen. </seg>
+</p>
+</doc>
+<doc docid="urd-NG-102-174502-11516169-post149" genre="wb">
+<p>
+<seg id="1">From your perspective, what is the reason for ill-fated peace? </seg>
+<seg id="2">(BBC) </seg>
+<seg id="3">Keeping in front of painful mumbai attack of India searching reason for bad peace in Karachi is not necessary but it is straight this only happened because the shed of 'blood' </seg>
+<seg id="4">It's no secret that that if conflict exists with ones father, the son will likely be hard to control. </seg>
+</p>
+</doc>
+<doc docid="urd-WL-77-174260-11358596-post4" genre="wb">
+<p>
+<seg id="1">Resolution about Iraq passed in a few hours, sending UN peace force to Darfur is not a problem. </seg>
+<seg id="2">Immediate condemning Mumbai battacks and restricting suspected groups can be done in few hours. </seg>
+<seg id="3">In recent years the number of chemical and herbal health supplements has greatly increased in popularity. One of the most popular is human growth hormone, commonly known as HGH. </seg>
+<seg id="4">In recent years the number of chemical and herbal health supplements has greatly increased in popularity. One of the most popular is human growth hormone, commonly known as HGH. </seg>
+<seg id="5">In recent years the number of chemical and herbal health supplements has greatly increased in popularity, a major one of which is human growth hormone, commonly known as HGH. </seg>
+<seg id="6">In recent years the number of chemical and herbal health supplements has greatly increased in popularity, a major one of which is human growth hormone, commonly known as HGH. </seg>
+<seg id="7">In recent years the number of chemical and herbal health supplements has greatly increased in popularity, a major one of which is human growth hormone, commonly known as HGH. </seg>
+<seg id="8">In recent years the number of chemical and herbal health supplements has greatly increased in popularity, a major one of which is human growth hormone, commonly known as HGH. </seg>
+<seg id="9">In recent years the number of chemical and herbal health supplements has greatly increased in popularity, a major one of which is human growth hormone, commonly known as HGH. </seg>
+</p>
+</doc>
+<doc docid="urd-WL-84-174269-11325244-post5" genre="wb">
+<p>
+<seg id="1">In his book ""Main hoon Taymoor,"" Amir Taymoori writes, ""I realized in my life a secret that if the military commander of the military is in first row then that military would never loose."" </seg>
+<seg id="2">However, our situations here is different. </seg>
+<seg id="3">Their belief was that people are present only to die for us, and that dying thusly is pious. </seg>
+<seg id="4">However, if people die in this manner, then they have been murdered. </seg>
+</p>
+</doc>
+<doc docid="urd-WL-86-174276-11370265-post1" genre="wb">
+<p>
+<seg id="1">Panel of the People's Council stated that five terrorists have been named, including Jamate Alqaidas, Sayeed, and three Pakistani civilians. </seg>
+<seg id="2">Security council of Al-Qaida and Taliban committees have allowed the inclusion of these Pakistanis in the list of terrorists in this list: Jamaate Alkaidas, Amir Hafiz, Mohammed Sayeed, Adham Tanzim, Lashkare Tayibas, Chief Zaki Rhman Laqvi, Shohaib Waliyats, and  master Haji Mohammed Ashraf are listed. </seg>
+<seg id="3">Apart from this, a Saudi civilian, Mahmood Ahmed Basik, is also listed in the terrorists' list. </seg>
+<seg id="4">The organizations Jamate Alqaida, Pashebaan Kashmir, and Al Rasheed Trust International are included. </seg>
+<seg id="5">By law all these organizations' and people property have been confiscated, they have been arrested, and they were banned from traveling. </seg>
+<seg id="6">They have to face the court's judgment. </seg>
+<seg id="7">Were these restrictions part of Indian propoganda? </seg>
+<seg id="8">Why is India blaming these organizations for attacks on Mumbai without any evidence? </seg>
+<seg id="9">Are there no terrorist organizations in India? </seg>
+<seg id="10">How the minorities are treated in India is not news to the world. </seg>
+<seg id="11">Tell us about your opinion </seg>
+</p>
+</doc>
+</tstset>
+</mteval>

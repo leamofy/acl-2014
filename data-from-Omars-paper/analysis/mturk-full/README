@@ -1,0 +1,1 @@
+perl ../bin/mteval-v13a.pl -s ../ref-sets-full/mt09_urdu_evalset_current_src.xml -t turker-translations.1-4.min-ter-oracle.xml  -r ../ref-sets-full/mt09_urdu_evalset_current_v3-ref.minus-1.xml | perl ../bin/get-bleu-score.perl 

@@ -1,0 +1,83 @@
+test2[70] [~/papers/active-learning-for-smt/mturk-paper/workingFiles/eval/]$ draft.pl /home/hltcoe/mbloodgood/papers/active-learning-for-smt/mturk-paper/workingFiles/eval/isiNist1
+Num Docs: 238
+AVG: 0.1387
+10%:0.0095
+20%:0.0494
+30%:0.0752
+40%:0.1028
+50%:0.1268
+60%:0.1563
+70%:0.1800
+80%:0.2107
+90%:0.2527
+100%:0.3182
+
+test2[72] [~/papers/active-learning-for-smt/mturk-paper/workingFiles/eval/]$ draft.pl /home/hltcoe/mbloodgood/papers/active-learning-for-smt/mturk-paper/workingFiles/eval/isiNist2
+Num Docs: 238
+AVG: 0.145059663865546
+10%:0.0092
+20%:0.0469
+30%:0.0780
+40%:0.1055
+50%:0.1402
+60%:0.1673
+70%:0.1951
+80%:0.2285
+90%:0.2648
+100%:0.3108
+
+test2[73] [~/papers/active-learning-for-smt/mturk-paper/workingFiles/eval/]$ draft.pl /home/hltcoe/mbloodgood/papers/active-learning-for-smt/mturk-paper/workingFiles/eval/isiNist3
+Num Docs: 238
+AVG: 0.135581092436975
+10%:0.0101
+20%:0.0561
+30%:0.0760
+40%:0.1023
+50%:0.1299
+60%:0.1526
+70%:0.1876
+80%:0.2097
+90%:0.2375
+100%:0.2800
+
+test2[74] [~/papers/active-learning-for-smt/mturk-paper/workingFiles/eval/]$ draft.pl /home/hltcoe/mbloodgood/papers/active-learning-for-smt/mturk-paper/workingFiles/eval/isiNist4
+Num Docs: 238
+AVG: 0.10816512605042
+10%:0.0092
+20%:0.0408
+30%:0.0561
+40%:0.0751
+50%:0.0988
+60%:0.1240
+70%:0.1404
+80%:0.1641
+90%:0.1929
+100%:0.2628
+
+test2[75] [~/papers/active-learning-for-smt/mturk-paper/workingFiles/eval/]$ draft.pl /home/hltcoe/mbloodgood/papers/active-learning-for-smt/mturk-paper/workingFiles/eval/isiNoEditing 
+Num Docs: 238
+AVG: 0.113597058823529
+10%:0.0352
+20%:0.0485
+30%:0.0683
+40%:0.0804
+50%:0.0945
+60%:0.1139
+70%:0.1397
+80%:0.1720
+90%:0.2022
+100%:0.2553
+
+test2[76] [~/papers/active-learning-for-smt/mturk-paper/workingFiles/eval/]$ draft.pl /home/hltcoe/mbloodgood/papers/active-learning-for-smt/mturk-paper/workingFiles/eval/isiEdited 
+Num Docs: 238
+AVG: 0.113795798319328
+10%:0.0359
+20%:0.0473
+30%:0.0650
+40%:0.0803
+50%:0.0964
+60%:0.1160
+70%:0.1416
+80%:0.1667
+90%:0.2000
+100%:0.2624

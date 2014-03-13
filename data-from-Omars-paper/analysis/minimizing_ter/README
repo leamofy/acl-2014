@@ -1,0 +1,8 @@
+This directory contains a bunch of working files that I am using to a combination of the 4 Turkers (or 5 Tukers if you count edited versions as seperate) that minimize TER.  TER can be reliably calcualted at the sentence level (unlike Bleu), so I'm using it as a proxy for minimizing Bleu.  This is an oracle that shows what the best Turker output would be, if we could choose among them perfectly.  Obviously we wouldn't have the LDC translations if we were using Turk to replace LDC.
+
+turker.1 turker.2 turker.3 are randomly selected turkers from the second pass at translating the nist test set
+turker.4 is the unedited first pass translations
+turker.5 is the edited first pastt translations
+
+
+perl ../bin/select_minimum.perl turker.1-4.min_scores editor.1-3.4-6.7-9.turker.5.min-ter > editor.1-3.4-6.7-9.turker.5.min-ter.output.selected-by-turker.1-4.min_scorespaste pairwise_ter.turker1-turker* pairwise_ter.turker?-turker1* | perl average.perl > pairwise_ter.turker1-other-turkers.avg_ter

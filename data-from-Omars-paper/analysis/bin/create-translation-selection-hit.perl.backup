@@ -1,0 +1,57 @@
+#!/usr/bin/perl
+
+# This script formats the MTurk translations along with their WorkerIDs and seg_ids 
+# for a HIT that lets a second set of Turkers vote on the best translation from 
+# the multiple translations. 
+
+# Usage: perl create-translation-selection-hit.perl mturk-results/translations mturk-results/turkers mturk-results/seg_ids
+
+open(TRANSLATIONS, $ARGV[0]);
+open(TURKERS, $ARGV[1]);
+open(SEGIDS, $ARGV[2]);
+$num_segs_per_hit = 5;
+$counter = 0;
+
+$header = "num_segs,";
+for($i = 1; $i <= $num_segs_per_hit; $i++) {
+    $header = $header . "seg_id_$i,translator${i}_1,translator${i}_2,translator${i}_3,translator${i}_4,translation${i}_1,translation${i}_2,translation${i}_3,translation${i}_4,";
+}
+chop $header;
+print $header . "\n";
+
+$output_csv_line = $num_segs_per_hit . ",";
+while($segID = <SEGIDS>) {
+    chomp $segID;
+
+    $translations = <TRANSLATIONS>;
+    chomp $translations;
+
+    # escape characters for MTurk
+    $translations =~ s/&/&amp;/g;
+    $translations =~ s/,/&#44;/g;
+    $translations =~ s/^\s+//g;
+    $translations =~ s/\s+$//g;
+    $translations =~ s/\>/&gt;/g;
+    $translations =~ s/\</&lt;/g;
+    $translations =~ s/"/&quot;/g;
+    $translations =~ s/'/&#39;/g;
+    # replace tabs with comma
+    $translations =~ s/\t/,/g;
+    
+    $turkers = <TURKERS>;
+    chomp $turkers;
+    $turkers =~ s/\t/,/g;
+
+    $output_csv_line = $output_csv_line . "$segID,$turkers,$translations,";
+    $counter++;
+    if($counter % $num_segs_per_hit == 0) {
+	chop $output_csv_line;
+	print $output_csv_line . "\n";
+	$output_csv_line = $num_segs_per_hit . ",";
+	$counter = 0;
+    }
+}
+
+close(SEGIDS);
+close(TURKERS);
+close(TRANSLATIONS);

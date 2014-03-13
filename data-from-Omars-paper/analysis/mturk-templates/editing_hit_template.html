@@ -1,0 +1,167 @@
+<script type="text/javascript">
+<!--
+String.prototype.endsWith = function(str)
+{
+    var lastIndex = this.lastIndexOf(str);
+    return (lastIndex != -1) && (lastIndex + str.length == this.length);
+}
+
+function countKeystrokes(counterfield) {
+     counterfield.value = parseInt(counterfield.value) + 1;
+} 
+//-->
+</script>
+<h1>Edit these sentences</h1>
+<p>Your task is to improve sentences that were written by people whose native language is not English. You should:</p>
+<ul>
+    <li>Correct the grammar and&nbsp;awkward word choices</li>
+    <li>Make the sentences more easy to understand</li>
+    <li>Fix spelling errors</li>
+    <li>Fix punctuation errors</li>
+    <li>Fix capitalization</li>
+    <li>If the word HEADLINE is above a sentence, then  you can phrase that sentence like a newspaper headline</li>
+</ul>
+<p>If you have trouble understanding one of the sentences, the others might help to make it clearer, since they are all from the same article.</p>
+<p>If a sentence is incomprehensible please check the box next to it. &nbsp;&nbsp;</p>
+<table>
+    <tbody>
+        <tr>
+            <td><b>Sentence</b></td>
+            <td><b>Incomprehensible?</b></td>
+        </tr>
+        <tr>
+            <td><script type="text/javascript">
+		<!--
+		var line="${seg_id1}";
+		if(line.endsWith("_1") && line.indexOf("post") == -1) {
+			document.write("<b>HEADLINE:</b><br>");
+		}
+		//-->
+		</script> 		 	 		<textarea onKeyDown="countKeystrokes(document.mturk_form.keystrokes1);" name="edited1" cols="60" rows="4">${translation1}</textarea> 	        <input type="hidden" value="0" name="keystrokes1" /></td>
+            <td><input type="checkbox" name="incomprehensible1" value="sentence1" /></td>
+        </tr>
+        <tr>
+            <td><script type="text/javascript">
+		<!--
+		var line="${seg_id2}";
+		if(line.endsWith("_1") && line.indexOf("post") == -1) {
+			document.write("<b>HEADLINE:</b><br>");
+		}
+		//-->
+		</script> 		 	 		<textarea onKeyDown="countKeystrokes(document.mturk_form.keystrokes2);" name="edited2" cols="60" rows="4">${translation2}</textarea> 	        <input type="hidden" value="0" name="keystrokes2" /></td>
+            <td><input type="checkbox" name="incomprehensible2" value="sentence2" /></td>
+        </tr>
+        <tr>
+            <td><script type="text/javascript">
+		<!--
+		var line="${seg_id3}";
+		if(line.endsWith("_1") && line.indexOf("post") == -1) {
+			document.write("<b>HEADLINE:</b><br>");
+		}
+		//-->
+		</script> 		 	 	  	<textarea onKeyDown="countKeystrokes(document.mturk_form.keystrokes3);" name="edited3" cols="60" rows="4">${translation3}</textarea> 	        <input type="hidden" value="0" name="keystrokes3" /></td>
+            <td><input type="checkbox" name="incomprehensible3" value="sentence3" /></td>
+        </tr>
+        <tr>
+            <td><script type="text/javascript">
+		<!--
+		var line="${seg_id4}";
+		if(line.endsWith("_1") && line.indexOf("post") == -1) {
+			document.write("<b>HEADLINE:</b><br>");
+		}
+		//-->
+		</script> 		 	 		<textarea onKeyDown="countKeystrokes(document.mturk_form.keystrokes4);" name="edited4" cols="60" rows="4">${translation4}</textarea> 	        <input type="hidden" value="0" name="keystrokes4" /></td>
+            <td><input type="checkbox" name="incomprehensible4" value="sentence4" /></td>
+        </tr>
+        <tr>
+            <td><script type="text/javascript">
+		<!--
+		var line="${seg_id5}";
+		if(line.endsWith("_1") && line.indexOf("post") == -1) {
+			document.write("<b>HEADLINE:</b><br>");
+		}
+		//-->
+		</script> 		 	 		<textarea onKeyDown="countKeystrokes(document.mturk_form.keystrokes5);" name="edited5" cols="60" rows="4">${translation5}</textarea> 	        <input type="hidden" value="0" name="keystrokes5" /></td>
+            <td><input type="checkbox" name="incomprehensible5" value="sentence5" /></td>
+        </tr>
+        <tr>
+            <td><script type="text/javascript">
+		<!--
+		var line="${seg_id6}";
+		if(line.endsWith("_1") && line.indexOf("post") == -1) {
+			document.write("<b>HEADLINE:</b><br>");
+		}
+		//-->
+		</script> 		 	 		<textarea onKeyDown="countKeystrokes(document.mturk_form.keystrokes6);" name="edited6" cols="60" rows="4">${translation6}</textarea> 	        <input type="hidden" value="0" name="keystrokes6" /></td>
+            <td><input type="checkbox" name="incomprehensible6" value="sentence6" /></td>
+        </tr>
+        <tr>
+            <td><script type="text/javascript">
+		<!--
+		var line="${seg_id7}";
+		if(line.endsWith("_1") && line.indexOf("post") == -1) {
+			document.write("<b>HEADLINE:</b><br>");
+		}
+		//-->
+		</script> 		 	 		<textarea onKeyDown="countKeystrokes(document.mturk_form.keystrokes7);" name="edited7" cols="60" rows="4">${translation7}</textarea> 	        <input type="hidden" value="0" name="keystrokes7" /></td>
+            <td><input type="checkbox" name="incomprehensible7" value="sentence7" /></td>
+        </tr>
+        <tr>
+            <td><script type="text/javascript">
+		<!--
+		var line="${seg_id8}";
+		if(line.endsWith("_1") && line.indexOf("post") == -1) {
+			document.write("<b>HEADLINE:</b><br>");
+		}
+		//-->
+		</script> 		 	 		<textarea onKeyDown="countKeystrokes(document.mturk_form.keystrokes8);" name="edited8" cols="60" rows="4">${translation8}</textarea> 	        <input type="hidden" value="0" name="keystrokes8" /></td>
+            <td><input type="checkbox" name="incomprehensible8" value="sentence8" /></td>
+        </tr>
+        <tr>
+            <td><script type="text/javascript">
+		<!--
+		var line="${seg_id9}";
+		if(line.endsWith("_1") && line.indexOf("post") == -1) {
+			document.write("<b>HEADLINE:</b><br>");
+		}
+		//-->
+		</script> 		 	 		<textarea onKeyDown="countKeystrokes(document.mturk_form.keystrokes9);" name="edited9" cols="60" rows="4">${translation9}</textarea> 	        <input type="hidden" value="0" name="keystrokes9" /></td>
+            <td><input type="checkbox" name="incomprehensible9" value="sentence9" /></td>
+        </tr>
+        <tr>
+            <td><script type="text/javascript">
+		<!--
+		var line="${seg_id10}";
+		if(line.endsWith("_1") && line.indexOf("post") == -1) {
+			document.write("<b>HEADLINE:</b><br>");
+		}
+		//-->
+		</script> 		 	 		<textarea onKeyDown="countKeystrokes(document.mturk_form.keystrokes10);" name="edited10" cols="60" rows="4">${translation10}</textarea> 	        <input type="hidden" value="0" name="keystrokes10" /></td>
+            <td><input type="checkbox" name="incomprehensible10" value="sentence10" /></td>
+        </tr>
+    </tbody>
+</table>
+<p>Please provide any comments that you have about this HIT. We appreciate your input!</p>
+<p><textarea name="comment" cols="80" rows="2"></textarea></p>
+<p><input type="hidden" name="userDisplayLanguage" /> <input type="hidden" name="browserInfo" /> <input type="hidden" name="ipAddress" /> <input type="hidden" name="country" /> <input type="hidden" name="city" /> <input type="hidden" name="region" /></p>
+<script language="Javascript" src="http://gd.geobytes.com/gd?after=-1&variables=GeobytesCountry,GeobytesCity,GeobytesRegion,GeobytesIpAddress">
+</script> <script language="Javascript">
+<!--
+function getUserInfo() {
+	var userDisplayLanguage = navigator.language ? navigator.language : navigator.userDisplayLanguage;
+	var browserInfo = navigator.userAgent;
+	var country = sGeobytesCountry;
+	var city = sGeobytesCity;
+	var region = sGeobytesRegion;
+
+	document.mturk_form.userDisplayLanguage.value = userDisplayLanguage;
+	document.mturk_form.browserInfo.value = browserInfo;
+	document.mturk_form.country.value = country;
+	document.mturk_form.city.value = city;
+	document.mturk_form.region.value = region;
+}
+
+getUserInfo();
+
+// -->
+</script>
