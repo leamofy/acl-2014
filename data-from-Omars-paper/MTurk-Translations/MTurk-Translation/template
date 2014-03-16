@@ -1,0 +1,127 @@
+<h1>Translate these sentences</h1>
+<p>Your task is to translate the Urdu sentences into English.  Please make sure that your English translation:</p>
+<ul>
+    <li>Is faithful to the original in both meaning and style</li>
+    <li>Is grammatical, fluent, and natural-sounding English</li>
+    <li>Does not add or delete information from the original text</li>
+    <li>Does not contain any spelling errors</li>
+</ul>
+<p>When creating your translation, please follow these guidelines:</p>
+<ul>
+    <li><b>Do not use any machine translation systems (like&nbsp;translation.babylon.com)</b></li>
+    <li><b>You may</b> look up a word on <a href="http://www.urduword.com/">an online dictionary</a> if you do not know its translation</li>
+</ul>
+<p>Afterwards, we'll ask you a few quick questions about your language abilities.&nbsp;</p>
+<table>
+    <tbody>
+        <tr>
+            <td><textarea lang="ur" dir="rtl" rows="4" cols="60" name="seg1">${seg1}</textarea></td>
+            <td><textarea rows="4" cols="60" name="translation1">Translation of the first sentence goes here.</textarea></td>
+        </tr>
+        <tr>
+            <td><textarea lang="ur" dir="rtl" rows="4" cols="60" name="seg2">${seg2}</textarea></td>
+            <td><textarea rows="4" cols="60" name="translation2">Translation of the second sentence goes here.</textarea></td>
+        </tr>
+        <tr>
+            <td><textarea lang="ur" dir="rtl" rows="4" cols="60" name="seg3">${seg3}</textarea></td>
+            <td><textarea rows="4" cols="60" name="translation3"></textarea></td>
+        </tr>
+        <tr>
+            <td><textarea lang="ur" dir="rtl" rows="4" cols="60" name="seg4">${seg4}</textarea></td>
+            <td><textarea rows="4" cols="60" name="translation4"></textarea></td>
+        </tr>
+        <tr>
+            <td><textarea lang="ur" dir="rtl" rows="4" cols="60" name="seg5">${seg5}</textarea></td>
+            <td><textarea rows="4" cols="60" name="translation5"></textarea></td>
+        </tr>
+        <tr>
+            <td><textarea lang="ur" dir="rtl" rows="4" cols="60" name="seg6">${seg6}</textarea></td>
+            <td><textarea rows="4" cols="60" name="translation6"></textarea></td>
+        </tr>
+        <tr>
+            <td><textarea lang="ur" dir="rtl" rows="4" cols="60" name="seg7">${seg7}</textarea></td>
+            <td><textarea rows="4" cols="60" name="translation7"></textarea></td>
+        </tr>
+        <tr>
+            <td><textarea lang="ur" dir="rtl" rows="4" cols="60" name="seg8">${seg8}</textarea></td>
+            <td><textarea rows="4" cols="60" name="translation8"></textarea></td>
+        </tr>
+        <tr>
+            <td><textarea lang="ur" dir="rtl" rows="4" cols="60" name="seg9">${seg9}</textarea></td>
+            <td><textarea rows="4" cols="60" name="translation9"></textarea></td>
+        </tr>
+        <tr>
+            <td><textarea lang="ur" dir="rtl" rows="4" cols="60" name="seg10">${seg10}</textarea></td>
+            <td><textarea rows="4" cols="60" name="translation10"></textarea></td>
+        </tr>
+        <tr>
+            <td><textarea lang="ur" dir="rtl" rows="4" cols="60" name="seg11">${seg11}</textarea></td>
+            <td><textarea rows="4" cols="60" name="translation11"></textarea></td>
+        </tr>
+        <tr>
+            <td><textarea lang="ur" dir="rtl" rows="4" cols="60" name="seg12">${seg12}</textarea></td>
+            <td><textarea rows="4" cols="60" name="translation12"></textarea></td>
+        </tr>
+        <tr>
+            <td><textarea lang="ur" dir="rtl" rows="4" cols="60" name="seg13">${seg13}</textarea></td>
+            <td><textarea rows="4" cols="60" name="translation13"></textarea></td>
+        </tr>
+        <tr>
+            <td><textarea lang="ur" dir="rtl" rows="4" cols="60" name="seg14">${seg14}</textarea></td>
+            <td><textarea rows="4" cols="60" name="translation14"></textarea></td>
+        </tr>
+        <tr>
+            <td><textarea lang="ur" dir="rtl" rows="4" cols="60" name="seg15">${seg15}</textarea></td>
+            <td><textarea rows="4" cols="60" name="translation15"></textarea></td>
+        </tr>
+        <tr>
+            <td><textarea lang="ur" dir="rtl" rows="4" cols="60" name="seg16">${seg16}</textarea></td>
+            <td><textarea rows="4" cols="60" name="translation16"></textarea></td>
+        </tr>
+        <tr>
+            <td><textarea lang="ur" dir="rtl" rows="4" cols="60" name="seg17">${seg17}</textarea></td>
+            <td><textarea rows="4" cols="60" name="translation17"></textarea></td>
+        </tr>
+        <tr>
+            <td><textarea lang="ur" dir="rtl" rows="4" cols="60" name="seg18">${seg18}</textarea></td>
+            <td><textarea rows="4" cols="60" name="translation18"></textarea></td>
+        </tr>
+        <tr>
+            <td><textarea lang="ur" dir="rtl" rows="4" cols="60" name="seg19">${seg19}</textarea></td>
+            <td><textarea rows="4" cols="60" name="translation19"></textarea></td>
+        </tr>
+        <tr>
+            <td><textarea lang="ur" dir="rtl" rows="4" cols="60" name="seg20">${seg20}</textarea></td>
+            <td><textarea rows="4" cols="60" name="translation20"></textarea></td>
+        </tr>
+
+    </tbody>
+</table>
+
+
+<p>Did you use an online machine translation system to produce this translation?</p>
+<table cellspacing="4" cellpadding="0" border="0">
+    <tbody>
+        <tr>
+            <td valign="center"><input type="radio" value="yes" name="usedMT" /><span class="answertext">Yes             </span></td>
+	<td valign="center"><input type="radio" value="no" name="usedMT" /><span class="answertext">No<br />
+            </span></td>
+        </tr>
+    </tbody>
+</table>
+
+
+<p>Now, please answer a few quick questions about yourself:</p>
+<p>What is your native language? <input type="text" size="20" name="native_language" /></p>
+<p>Where did you learn Urdu? <input type="text" size="20" name="where_learned" /></p>
+<p>How long have you spoken Urdu? <input type="text" size="20" name="how_long" /></p>
+<p>Where do you live? <input type="text" size="20" name="where_live" /></p>
+<p>If English is not your native language, how long have you spoken it? <input type="text" size="20" name="how_long_English" /></p>
+<p>If you used something to help you translate, what did you use? <input type="text" size="20" name="what_aid" /></p>
+<p>&nbsp;</p>
+
+
+<p>Please provide any comments that you have about this HIT. We appreciate your input!</p>
+<p><textarea rows="4" cols="80" name="comment"> </textarea></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
