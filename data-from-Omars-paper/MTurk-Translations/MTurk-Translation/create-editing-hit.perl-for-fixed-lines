@@ -1,0 +1,38 @@
+binmode(STDIN, ":utf8");
+binmode(STDOUT, ":utf8");
+
+$numSegments = 10;
+$lineNum = 1;
+
+print "lineNum1,sentence1";
+for($i = 2; $i <= $numSegments; $i++) {
+    print ",lineNum$i,sentence$i";
+}
+print "\n";
+
+
+while(1 == 1) {
+    print STDOUT "$lineNum";
+
+    for($i = 0; $i < $numSegments; $i++) {
+	$linePlusNum = <STDIN>;
+	($lineNum, $line) = split(/\t/, $linePlusNum);
+	chomp $line;
+# formatting for MTurk
+	$line =~ s/&/&amp;/g;
+	$line =~ s/,/&#44;/g;
+	$line =~ s/^\s+//g;
+	$line =~ s/\s+$//g;
+	$line =~ s/\s+/ /g;
+	$line =~ s/\>/&gt;/g;
+	$line =~ s/\</&lt;/g;
+	$line =~ s/"/&quot;/g;
+	$line =~ s/'/&#39;/g;
+	print STDOUT "$lineNum,$line";
+	if($i < $numSegments-1) {
+	      print ",";
+	}	
+    }
+    print STDOUT "\n";
+}
+

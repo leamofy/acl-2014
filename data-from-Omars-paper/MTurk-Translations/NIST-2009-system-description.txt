@@ -1,0 +1,97 @@
+;; 2009 NIST Open Machine Translation (MT09)
+;; System Description
+;; 
+;; Participants are to, as accurately as possible, fill in the sections 
+;; below and return to NIST by the submission deadline stated in the 
+;; evaluation plan.
+;;
+;; System descriptions must be in one of the following formats: 
+;; * ASCII TEXT
+;; * Microsoft Word
+;; * PDF
+;;
+;; System descriptions must be submitted separately for each source 
+;; language and follow this naming convention:
+;; <site>_<languagepair>_sysdesc.<txt|doc|pdf>
+;; where SITE identifies your affiliation and language identifies the 
+;; language pair processed, e.g. NIST_a2e_sysdesc.txt.
+;;
+
+-------------------------------------------------------------------------
+           NIST OPEN MACHINE TRANSLATION 2009 EVALUATION
+           PARTICIPANT SYSTEM DESCRIPTION
+-------------------------------------------------------------------------
+
+1.0  SITE AFFILIATION
+
+Johns Hopkins University
+
+2.0  CONTACT INFORMATION
+
+Chris Callison-Burch <ccb@cs.jhu.edu>
+
+3.0  SUBMISSIONS:
+
+JHU_a2e_cn_primary
+
+JHU_u2e_cn_primary
+JHU_u2e_cn_contrast1
+JHU_u2e_cn_contrast2
+
+JHU_u2e_un_primary
+JHU_u2e_un_contrast1
+JHU_u2e_un_contrast2
+
+
+4.0  PRIMARY SYSTEM SPECS:
+
+4.1  SINGLE SYSTEM VS. SYSTEM COMBINATION
+
+Single system.
+
+4.2  CORE MT ENGINE ALGORITHMIC APPROACH
+
+For Arabic-English and Urdu-English constrained submission, we used the Joshua decoder. Joshua is an open source toolkit for statistical machine translation developed at primarily at Johns Hopkins University. The toolkit implements all of the algorithms required for synchronous context free grammars (SCFGs): chart-parsing, n-gram language model integration, beam- and cube-pruning, and k-best extraction. The toolkit also implements sufﬁx-array grammar extraction and minimum error training.
+
+For the Urdu-Engish unconstrained submission, we collected translations using Mechanical Turk.  We paid $0.10 per sentence for Turkers to translate from Urdu into English.  We re-posted all submissions that were obviously machine translated.  After all translations were competed, we posted the English text back to Mechanical Turk to be edited to correct disfluencies  and spelling errors. We paid $0.025 per sentence for editing.   Our Urdu-Engish unconstrained submission should not be construed as a machine translation system.  It is instead an experiment intended to evaluate the quality of low-cost, crowd-sourced internet translations.   
+
+
+4.3  CRITICAL ADDITIONAL FEATURES AND TOOLS USED
+
+None.
+
+4.4  SIGNIFICANT DATA PRE/POST-PROCESSING
+
+Relied on IBM for preprocessing of Arabic training and test data.
+
+Relied on AFRL / MIT-LL for preprocessing of Urdu.
+
+4.5  OTHER DATA USED (OUTSIDE THE PRESCRIBED LDC TRAINING DATA)
+
+None.
+
+5.0  KEY DIFFERENCE IN CONTRASTIVE SYSTEMS
+
+JHU/u2e/JHU_u2e_cn_primary.xml - Joshua, LM trained on English GigaWord, minus UN data
+JHU/u2e/JHU_u2e_cn_contrast1.xml - Joshua, LM trained on English side of parallel corpus
+JHU/u2e/JHU_u2e_cn_contrast2.xml - Joshua, LM trained on English GigaWord, minus UN data, MERT on smaller LM
+
+JHU/u2e/JHU_u2e_un_primary.xml - mturk translations, with editing
+JHU/u2e/JHU_u2e_un_contrast1.xml - mturk translations, no editing
+JHU/u2e/JHU_u2e_un_contrast2.xml - mturk translations, no editing, some rejected translations
+
+
+6.0  REFERENCES (if applicable):
+
+@InProceedings{Joshua-Decoder,
+  author    = {Zhifei Li and Chris Callison-Burch and Chris Dyer  and Sanjeev Khudanpur
+              and Lane Schwartz  and Wren Thornton and Jonathan Weese and Omar Zaidan},
+  title     = {Joshua: An Open Source Toolkit for Parsing-Based Machine Translation},
+  booktitle = {Proceedings of the Fourth Workshop on Statistical Machine Translation},
+  month     = {March},
+  year      = {2009},
+  address   = {Athens, Greece},
+  publisher = {Association for Computational Linguistics},
+  pages     = {135--139},
+  url       = {http://www.aclweb.org/anthology/W/W09/W09-0x24}
+}

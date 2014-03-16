@@ -68,15 +68,15 @@ According to an objective and quantitative comparison with the professionally-pr
 
 
 We start by introducing the crowdsourcing platform and data collection. In Section 3 we formulate a reinforced ranking model combined with random walk, and then describe experimental results in Section 4. We review related work in Section 5 and draw conclusions in Section 6.
-
-
-\section{Crowdsourcing Platform and Data Collection}
-To collect crowdsourced translations, we deploy our platform based on Amazon's Mechanical Turk, an online market-place designed to pay people small sums of money to complete \textit{Human Intelligence Tasks} (or HIT) – tasks that are difficult for computers but easy for people. Example HIT ranges from labeling images or annotating texts and semantics to providing feedback on relevance of results for search queries \cite{a15}. Anyone with an Amazon account can either submit HIT or work on HIT that were submitted by others. Workers are referred to as ``Turkers'', and designers of HIT as ``Requesters''. A Requester specifies the reward to be paid for each completed item. The relationship between Turkers and Requesters is designed to be a mutual selection: Turkers are free to select whichever HIT interests them, and requesters can choose not to pay for unsatisfied results.
-
-The advantages of Mechanical Turk are obvious: zero overhead for hiring workers with a large, low-cost labor force and the task can be completed in a naturally parallel pattern by vast individuals so that the turnaround time is short. For Natural Language Processing, it is easier to access to foreign markets with native speakers of many rare languages. On the other hands, the Turkers are completely anonymous without any personal profile other than a Turker ID (eg., A143AWKU99STC9). Hence it is difficult to determine if a non-professional is qualified to fulfill the task before the Turker submits HIT.
-
-In this sense, soliciting translations from anonymous non-professionals carries a significant risk of poor translation quality, but it is not very difficult to find bad translations provided by Turkers using simple linear regression methods \cite{a15}. To improve the accuracy of noisy translations from non-experts, a natural quality control solution would be employing a graph-based ranking model to quantitatively measure multiple outputs based on ``votes'' or ``recommendations'' between each other, namely the wisdom of crowds.
-
+%
+%
+%\section{Crowdsourcing Platform and Data Collection}
+%To collect crowdsourced translations, we deploy our platform based on Amazon's Mechanical Turk, an online market-place designed to pay people small sums of money to complete \textit{Human Intelligence Tasks} (or HIT) – tasks that are difficult for computers but easy for people. Example HIT ranges from labeling images or annotating texts and semantics to providing feedback on relevance of results for search queries \cite{zaidan-callisonburch:2011:ACL-HLT2011a}. Anyone with an Amazon account can either submit HIT or work on HIT that were submitted by others. Workers are referred to as ``Turkers'', and designers of HIT as ``Requesters''. A Requester specifies the reward to be paid for each completed item. The relationship between Turkers and Requesters is designed to be a mutual selection: Turkers are free to select whichever HIT interests them, and requesters can choose not to pay for unsatisfied results.
+%
+%The advantages of Mechanical Turk are obvious: zero overhead for hiring workers with a large, low-cost labor force and the task can be completed in a naturally parallel pattern by vast individuals so that the turnaround time is short. For Natural Language Processing, it is easier to access to foreign markets with native speakers of many rare languages. On the other hands, the Turkers are completely anonymous without any personal profile other than a Turker ID (eg., A143AWKU99STC9). Hence it is difficult to determine if a non-professional is qualified to fulfill the task before the Turker submits HIT.
+%
+%In this sense, soliciting translations from anonymous non-professionals carries a significant risk of poor translation quality, but it is not very difficult to find bad translations provided by Turkers using simple linear regression methods \cite{zaidan-callisonburch:2011:ACL-HLT2011a}. To improve the accuracy of noisy translations from non-experts, a natural quality control solution would be employing a graph-based ranking model to quantitatively measure multiple outputs based on ``votes'' or ``recommendations'' between each other, namely the wisdom of crowds.
+%
 
 \section{Crowdsourcing Translation}
 Our HIT involves showing the worker a sequence of sentences in source language (i.e., \textit{Urdu} in this work), and asking them to provide an English translation for each one. The screen also included a brief set of instructions, and a short questionnaire section. The reward was set at \$0.10 per translation, or roughly \$0.005 per word. We solicit three translations per Urdu sentence (from three distinct translators). we instead split the data set into groups of 10 sentences per HIT. We keep some of the strategies used in other crowdsourcing systems in designing interfaces. For instance, we converted the Urdu sentences into images so that Turkers cannot cheat by copying-and-pasting the Urdu text into an online commercial MT system such as Google translation.
@@ -165,9 +165,9 @@ All affinity matrices will be defined in the next section. By fusing the above e
 \end{equation} where $\lambda$ specify the relative contributions to the saliency scores trade-off from the homogeneous affinity and the heterogeneous affinity. In order to guarantee the convergence of the iterative form, we must force the transition matrix to be stochastic and irreducible. To this end, we must make the \textbf{h} and \textbf{t} \textit{column stochastic} to force transition matrix stochastic \cite{a20}. \textbf{h} and \textbf{t} are therefore normalized after each iteration in Equation (3) and (4).
 
 \subsection{Intra-Graph Ranking}
-\textbf{Prior.} Before we move to the homogeneous intra-graph random walks, we propose to incorporate priors into standard random walks. The standard PageRank algorithm starts from any node, then randomly selects a link from that node to follow considering the weighted transition matrix, or jumps to a random node with equal probability. As the generated HIT could be pre-judged to be of different linguistics qualities \cite{a14,a15}, we can incorporate textual quality as the transitional prior and it is natural to assume an HIT with better quality will be more likely to be chosen.
+\textbf{Prior.} Before we move to the homogeneous intra-graph random walks, we propose to incorporate priors into standard random walks. The standard PageRank algorithm starts from any node, then randomly selects a link from that node to follow considering the weighted transition matrix, or jumps to a random node with equal probability. As the generated HIT could be pre-judged to be of different linguistics qualities \cite{a14,zaidan-callisonburch:2011:ACL-HLT2011a}, we can incorporate textual quality as the transitional prior and it is natural to assume an HIT with better quality will be more likely to be chosen.
 
-As linguistics quality is not the focus of this work, we apply the general textual quality judgement described in \cite{a15}. We use the following criteria as indicators of the quality of the generations:
+As linguistics quality is not the focus of this work, we apply the general textual quality judgement described in \cite{zaidan-callisonburch:2011:ACL-HLT2011a}. We use the following criteria as indicators of the quality of the generations:
 
 \textbf{Sentence-Level}. The first set of features attempt to discriminate good English sentences from bad ones before the graph ranking process.
 
@@ -187,7 +187,7 @@ $\bullet$ Activity features: we also investigate the total number of productions
 
 We could also use the features such as location information or language ability information. Since currently these information is not well certified, we temporarily leave it out of the Turker-Level feature now.
 
-After calculation of all features, we sort out an overall score to measure the linguistics and Turker quality based on regression when apply the linear combination measurement in \cite{a15}, the quality scores are denoted as $\textbf{h}_0$ for HIT and $\textbf{t}_0$ for Turker pairs.
+After calculation of all features, we sort out an overall score to measure the linguistics and Turker quality based on regression when apply the linear combination measurement in \cite{zaidan-callisonburch:2011:ACL-HLT2011a}, the quality scores are denoted as $\textbf{h}_0$ for HIT and $\textbf{t}_0$ for Turker pairs.
 
 In a simple random walk, it is assumed that all nodes in the transitional matrix are equi-probable before the walk starts. In contrast, we use the linguistics/Turker quality as a prior on the affinity M and N. Let Diag(.) denote a diagonal matrix whose eigenvalue is the pre-calculated score of $\textbf{h}_0$ and $\textbf{t}_0$. Then \textbf{h} and \textbf{t} becomes:
 \begin{equation}
@@ -234,7 +234,7 @@ Through $E_{TH}$ we define the weight matrices $\bar{W}_{ij}$ and $\hat{W}_{ji}]
 
 \section{Experiments and Evaluation}
 \subsection{Data}
-We translated the Urdu side of the Urdu–English test set of the 2009 NIST MT Evaluation Workshop, used in \cite{a15}. The set consists of 1,792 Urdu sentences from a variety of news and online sources. The set includes four different reference translations for each source sentence, produced by professional translation agencies. NIST contracted the LDC to oversee the translation process and perform quality control.
+We translated the Urdu side of the Urdu–English test set of the 2009 NIST MT Evaluation Workshop, used in \cite{zaidan-callisonburch:2011:ACL-HLT2011a}. The set consists of 1,792 Urdu sentences from a variety of news and online sources. The set includes four different reference translations for each source sentence, produced by professional translation agencies. NIST contracted the LDC to oversee the translation process and perform quality control.
 
 This particular dataset, with its multiple reference translations, is very useful because we can measure the quality range for professional translators, which gives us an idea of whether the crowdsourced translations could better approach to the quality of a professional translator.
 
@@ -258,7 +258,7 @@ For the second group, we apply the state-of-art machine translation system of Jo
 
 We also examine other two voting-inspired methods, since the majority vote usually works well in real world NLP problems. The first selects the translation with the minimum average TER \cite{a18} against the other translations, since that would be a ``consensus'' translation. The second method selects the translation generated by the Turkers who provide translations with the minimum average TER.
 
-The last group of methods are based on the utilization of both HIT and Turker information, either based on linear combination or on the graph based random walking. We report the results from the previous crowdsourcing translation system using raw translations and edited translation with all kinds of additional features \cite{a15}. Also, we include our proposed collaborative crowdsourcing translation method, based on the co-ranking of HIT and Turker collaboration pairs. For a full comparison, we also include variations of different ranking modelings based on raw translations and edited translations in further discussions.
+The last group of methods are based on the utilization of both HIT and Turker information, either based on linear combination or on the graph based random walking. We report the results from the previous crowdsourcing translation system using raw translations and edited translation with all kinds of additional features \cite{zaidan-callisonburch:2011:ACL-HLT2011a}. Also, we include our proposed collaborative crowdsourcing translation method, based on the co-ranking of HIT and Turker collaboration pairs. For a full comparison, we also include variations of different ranking modelings based on raw translations and edited translations in further discussions.
 
 \subsection{Results and Analysis}
 
@@ -345,18 +345,18 @@ Shared Turker   &38.59  &41.09  \\  \hline
 
 As shown in Table 3, we can see consistently incorporating priors to ranking paradigm yield better results than those without linguistic quality priors. An interesting observation is that when modeling the linkage between the collaboration pairs, we note that to establish linkage when the Turker pairs share the translator will achieve the best performance, while to establish linkage when they share the post-editor will lead to a worst result than without the collaborative linkage. It is intuitive to understand that post-editing based on a good raw translation will be more likely to a good selection: the saliency is propagated via the good translator.
 
-\section{Related Work}
-Extraneous data source could always be a supplement to improve MT models so that they are better suited to the low resource setting \cite{a21,a22}. Transfer learning based models, or designing models that are capable of learning translations from monolingual corpora \cite{a23,a24}.
-
-Dawid and Skene \shortcite{a1} investigated filtering annotations using the EM algorithm, estimating annotator-specific error rates in the context of patient medical records. Snow et al. \shortcite{a2} were among the first to use MTurk to obtain data for several NLP tasks, such as textual entailment and word sense disambiguation. Their approach, based on majority voting, had a component for annotator bias correction. They showed that for such tasks, a few non-expert labels usually suffice.
-
-Whitehill et al. \shortcite{a3} proposed a probabilistic model to filter labels from non-experts, in the context of an image labeling task. Their system generatively models image difficulty, as well as noisy, even adversarial, annotators. They apply their method to simulated labels rather than real-life labels.
-
-Callison-Burch \shortcite{a4} proposed several ways to evaluate MT output on MTurk. One such method was to collect reference translations to score MT output. It was only a pilot study (50 sentences in each of several languages), but it showed the possibility of obtaining high-quality translations from non-professionals. As a followup, Bloodgood and Callison-Burch \shortcite{a5} solicited a single translation of the NIST Urdu-to-English dataset we used. Their evaluation was similar to our correlation experiments, examining how well the collected translations agreed with the professional translations when evaluating three MT systems.
-
-That paper appeared in a NAACL 2010 workshop organized by Callison-Burch and Dredze \shortcite{a6}, focusing on MTurk as a source of data for speech and language tasks. Two relevant papers from that workshop were by Ambati and Vogel \shortcite{a7}, focusing on the design of the translation HIT, and by Irvine and Klementiev \shortcite{a8}, who created translation lexicons between English and 42 rare languages.
-
-Resnik et al. \shortcite{a9} explore a very interesting way of creating translations on MTurk, relying only on monolingual speakers. Speakers of the target language iteratively identified problems in machine translation output, and speakers of the source language paraphrased the corresponding source portion. The paraphrased source would then be retranslated to produce a different translation, hopefully more coherent than the original.
+%\section{Related Work}
+%Extraneous data source could always be a supplement to improve MT models so that they are better suited to the low resource setting \cite{a21,a22}. Transfer learning based models, or designing models that are capable of learning translations from monolingual corpora \cite{a23,a24}.
+%
+%Dawid and Skene \shortcite{a1} investigated filtering annotations using the EM algorithm, estimating annotator-specific error rates in the context of patient medical records. Snow et al. \shortcite{a2} were among the first to use MTurk to obtain data for several NLP tasks, such as textual entailment and word sense disambiguation. Their approach, based on majority voting, had a component for annotator bias correction. They showed that for such tasks, a few non-expert labels usually suffice.
+%
+%Whitehill et al. \shortcite{a3} proposed a probabilistic model to filter labels from non-experts, in the context of an image labeling task. Their system generatively models image difficulty, as well as noisy, even adversarial, annotators. They apply their method to simulated labels rather than real-life labels.
+%
+%Callison-Burch \shortcite{a4} proposed several ways to evaluate MT output on MTurk. One such method was to collect reference translations to score MT output. It was only a pilot study (50 sentences in each of several languages), but it showed the possibility of obtaining high-quality translations from non-professionals. As a followup, Bloodgood and Callison-Burch \shortcite{a5} solicited a single translation of the NIST Urdu-to-English dataset we used. Their evaluation was similar to our correlation experiments, examining how well the collected translations agreed with the professional translations when evaluating three MT systems.
+%
+%That paper appeared in a NAACL 2010 workshop organized by Callison-Burch and Dredze \shortcite{a6}, focusing on MTurk as a source of data for speech and language tasks. Two relevant papers from that workshop were by Ambati and Vogel \shortcite{a7}, focusing on the design of the translation HIT, and by Irvine and Klementiev \shortcite{a8}, who created translation lexicons between English and 42 rare languages.
+%
+%Resnik et al. \shortcite{a9} explore a very interesting way of creating translations on MTurk, relying only on monolingual speakers. Speakers of the target language iteratively identified problems in machine translation output, and speakers of the source language paraphrased the corresponding source portion. The paraphrased source would then be retranslated to produce a different translation, hopefully more coherent than the original.
 
 \section{Conclusion}
 We have proposed a two-step non-professional collaboration based co-ranking model to select the best crowdsourced translation on the heterogeneous HIT-Turker graph, and we have demonstrated that compared with a series of MT methods, it is possible to obtain improved performance near professional quality and even less costs from non-professional collaborations.
