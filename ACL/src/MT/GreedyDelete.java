@@ -296,25 +296,25 @@ public void Rank(int dataid,ArrayList<PrintWriter> outputlist,ArrayList<String> 
 
 	
 	public void Curve() throws IOException{
-		String filename = "F:/NLP/IDRANK/TERStandardIDrank.txt";
+		String filename = "F:/ACL/NLP/IDRANK/TERStandardIDrank.txt";
 		BufferedReader in = new BufferedReader(new FileReader(filename));
 		String ss = "";
 		boolean bscan; 
 		ArrayList<String> deletestring = new ArrayList<String>();
 		deletestring.add("NULL");
 		
-		String writefile = "F:/NLP/Evaluate/PlainText/CURVE/ontotalrank.txt";
+		String writefile = "F:/ACL/NLP/Evaluate/PlainText/CURVE/ontotalrank.txt";
 		 File file = new File(writefile);
 		 PrintWriter outwriter = new PrintWriter(file);
 		
 		 TotalRank(deletestring);
 			computeDocBleu bleu = new computeDocBleu(); 
-			String ref1 = "F:/NLP/Evaluate/PlainText/TEMP/Ref1.txt";
-			String ref2 = "F:/NLP/Evaluate/PlainText/TEMP/Ref2.txt";
-			String ref3 = "F:/NLP/Evaluate/PlainText/TEMP/Ref3.txt";
-			String ref4 = "F:/NLP/Evaluate/PlainText/TEMP/Ref4.txt";
-			String trans = "F:/NLP/Evaluate/PlainText/TEMP/Trans.txt";
-			String res = "F:/NLP/Evaluate/PlainText/TEMP/result.txt";
+			String ref1 = "F:/ACL/NLP/Evaluate/PlainText/TEMP/Ref1.txt";
+			String ref2 = "F:/ACL/NLP/Evaluate/PlainText/TEMP/Ref2.txt";
+			String ref3 = "F:/ACL/NLP/Evaluate/PlainText/TEMP/Ref3.txt";
+			String ref4 = "F:/ACL/NLP/Evaluate/PlainText/TEMP/Ref4.txt";
+			String trans = "F:/ACL/NLP/Evaluate/PlainText/TEMP/Trans.txt";
+			String res = "F:/ACL/NLP/Evaluate/PlainText/TEMP/result.txt";
 			System.out.println((deletestring.size()-1)+" "+bleu.computeBleu(ref1, ref2, ref3, ref4, trans,res));
 			outwriter.println((deletestring.size()-1)+" "+bleu.computeBleu(ref1, ref2, ref3, ref4, trans,res));
 		
@@ -327,12 +327,12 @@ public void Rank(int dataid,ArrayList<PrintWriter> outputlist,ArrayList<String> 
 			else{
 				TotalRank(deletestring);
 				//computeDocBleu bleu = new computeDocBleu(); 
-				 ref1 = "F:/NLP/Evaluate/PlainText/TEMP/Ref1.txt";
-				 ref2 = "F:/NLP/Evaluate/PlainText/TEMP/Ref2.txt";
-				 ref3 = "F:/NLP/Evaluate/PlainText/TEMP/Ref3.txt";
-				 ref4 = "F:/NLP/Evaluate/PlainText/TEMP/Ref4.txt";
-				 trans = "F:/NLP/Evaluate/PlainText/TEMP/Trans.txt";
-				 res = "F:/NLP/Evaluate/PlainText/TEMP/result.txt";
+				 ref1 = "F:/ACL/NLP/Evaluate/PlainText/TEMP/Ref1.txt";
+				 ref2 = "F:/ACL/NLP/Evaluate/PlainText/TEMP/Ref2.txt";
+				 ref3 = "F:/ACL/NLP/Evaluate/PlainText/TEMP/Ref3.txt";
+				 ref4 = "F:/ACL/NLP/Evaluate/PlainText/TEMP/Ref4.txt";
+				 trans = "F:/ACL/NLP/Evaluate/PlainText/TEMP/Trans.txt";
+				 res = "F:/ACL/NLP/Evaluate/PlainText/TEMP/result.txt";
 				System.out.println((deletestring.size()-1)+" "+bleu.computeBleu(ref1, ref2, ref3, ref4, trans,res));
 				outwriter.println((deletestring.size()-1)+" "+bleu.computeBleu(ref1, ref2, ref3, ref4, trans,res));
 			}

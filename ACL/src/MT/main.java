@@ -84,7 +84,7 @@ public class main extends pagerank{
 		/*
 		 * Get BLEU SCORE of Cosine pagerank
 		 */
-		PBaiscPageRank PBasicPR = new PBaiscPageRank(); 
+		/*PBaiscPageRank PBasicPR = new PBaiscPageRank(); 
 		PBasicPR.TotalRank();
 		
 		computeDocBleu bleu = new computeDocBleu(); 
@@ -95,8 +95,25 @@ public class main extends pagerank{
 		String trans = "F:/NLP/Evaluate/PlainText/COSREF/Trans.txt";
 		String res = "F:/NLP/Evaluate/PlainText/COSREF/result.txt";
 		System.out.println(bleu.computeBleu(ref1, ref2, ref3, ref4, trans,res));
-		
+		*/
+		/*MakePartition mp = new MakePartition(); 
+		int[] datarandom = new int[102];
+		datarandom = mp.make_xval_partition(102, 10);
+		for(int i = 0; i < 102;i++)
+			System.out.println(datarandom[i]);
+		*/
 		/*
+		 * Rank Partial
+		 */
+		//PPartialRefTERPageRank PPrank = new PPartialRefTERPageRank();
+		//PPrank.PartialRank();
+		/*
+		 * Rank Partial PEdit
+		 */
+		PPartialRefPEditTERPageRank PPErank = new PPartialRefPEditTERPageRank();
+		PPErank.PartialRank();
+		/*
+		 * 
 		 * Get the order of turkers, measured by cosine similarity
 		 */
 		/*GetIDOrder getorder = new GetIDOrder();
