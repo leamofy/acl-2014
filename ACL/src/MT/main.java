@@ -1,7 +1,9 @@
 package MT;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import BLEU.BLEU;
@@ -110,8 +112,22 @@ public class main extends pagerank{
 		/*
 		 * Rank Partial PEdit
 		 */
-		PPartialRefPEditTERPageRank PPErank = new PPartialRefPEditTERPageRank();
-		PPErank.PartialRank();
+		//PPartialRefPEditTERPageRank PPErank = new PPartialRefPEditTERPageRank();
+		//PPErank.PartialRank();
+		
+		GetPair GP = new GetPair();
+		GP.getpairlist();
+		String filename = "F:/ACL/NLP/CoLab/colabor.txt";
+		File file = new File(filename);
+		PrintWriter outwriter = new PrintWriter(file);
+		
+		for(int i = 0; i < GP.PairArray.size();i++){
+			outwriter.println(GP.PairArray.get(i).getTrans() + " " + GP.PairArray.get(i).getEdit()+" "+GP.PairArray.get(i).getTimes());
+		}
+		//System.out.println(GP.Count());
+		//System.out.println(GP.getSize());
+		outwriter.close();
+		GP.GetColabMatrix();
 		/*
 		 * 
 		 * Get the order of turkers, measured by cosine similarity
