@@ -330,6 +330,30 @@ public class GetPair {
 			outwriter.println();
 		}
 		outwriter.close();
+		filename = "F:/ACL/NLP/CoLab/nclabormatrix.txt";
+		file = new File(filename);
+		outwriter = new PrintWriter(file);
+		double[] sums = new double[PairArray.size()];
+		for(int i = 0; i < PairArray.size();i++)
+			sums[i] = 0.0;
+		for(int i = 0; i < PairArray.size();i++){
+			for(int j = 0; j < PairArray.size();j++){
+				sums[i] += CoLab[j][i];
+			}
+		}
+		for(int i = 0; i < PairArray.size();i++){
+			for(int j = 0; j < PairArray.size();j++)
+				if(sums[j] !=0){
+					CoLab[i][j] = CoLab[i][j]/sums[j]; 
+				}
+				
+		}
+		for(int i = 0; i < PairArray.size();i++){
+			for(int j = 0; j < PairArray.size();j++)
+			outwriter.print(CoLab[i][j] +" ");
+			outwriter.println();
+		}
+		outwriter.close();
     	return CoLab;
     }
    
