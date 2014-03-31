@@ -114,7 +114,7 @@ public class main extends pagerank{
 		 */
 		//PPartialRefPEditTERPageRank PPErank = new PPartialRefPEditTERPageRank();
 		//PPErank.PartialRank();
-		
+		//Get  Matrix
 		/*GetPair GP = new GetPair();
 		GP.getpairlist();
 		String filename = "F:/ACL/NLP/CoLab/colabor.txt";
@@ -134,6 +134,8 @@ public class main extends pagerank{
 		 */
 		PTLPagerank  ptlp = new PTLPagerank(); 
 		ptlp.Curve();
+		//PTLTERPagerank  ptlterp = new PTLTERPagerank(); 
+		//ptlterp.Curve();
 		/*
 		 * 
 		 * Get the order of turkers, measured by cosine similarity

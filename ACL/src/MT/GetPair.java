@@ -120,7 +120,7 @@ public class GetPair {
 		 in.close();
 		 
 		 int exists;
-		 for(int i = 4; i < 7;i++){
+		 for(int i = 1; i < 4;i++){
 			 exists = Find(IDs.get(0),IDs.get(i));
 			 if(exists == -1){
 				 Pair p = new Pair(IDs.get(0),IDs.get(i),1);
@@ -130,20 +130,20 @@ public class GetPair {
 				 PairArray.get(exists).SetTimes(PairArray.get(exists).getTimes()+1);
 			 }
 		 }
-		 for(int i = 7; i < 10;i++){
-			 exists = Find(IDs.get(1),IDs.get(i));
+		 for(int i = 5; i < 8;i++){
+			 exists = Find(IDs.get(4),IDs.get(i));
 			 if(exists == -1){
-				 Pair p = new Pair(IDs.get(1),IDs.get(i),1);
+				 Pair p = new Pair(IDs.get(4),IDs.get(i),1);
 				 PairArray.add(p);
 			 }
 			 else{
 				 PairArray.get(exists).SetTimes(PairArray.get(exists).getTimes()+1);
 			 }
 		 }
-		 for(int i = 10; i < 13;i++){
-			 exists = Find(IDs.get(2),IDs.get(i));
+		 for(int i = 9; i < 12;i++){
+			 exists = Find(IDs.get(8),IDs.get(i));
 			 if(exists == -1){
-				 Pair p = new Pair(IDs.get(2),IDs.get(i),1);
+				 Pair p = new Pair(IDs.get(8),IDs.get(i),1);
 				 PairArray.add(p);
 			 }
 			 else{
@@ -151,9 +151,9 @@ public class GetPair {
 			 }
 		 }
 		 for(int i = 13; i < 14;i++){
-			 exists = Find(IDs.get(3),IDs.get(i));
+			 exists = Find(IDs.get(12),IDs.get(i));
 			 if(exists == -1){
-				 Pair p = new Pair(IDs.get(3),IDs.get(i),1);
+				 Pair p = new Pair(IDs.get(12),IDs.get(i),1);
 				 PairArray.add(p);
 			 }
 			 else{
@@ -225,13 +225,13 @@ public class GetPair {
 		 ArrayList<String> IDtmp = new ArrayList<String>();
 		 ArrayList<String> IDuse = new ArrayList<String>();
 		 
-		 for(int i = 0; i < 4;i++){
+		 for(int i = 0; i < 13;i = i +4){
 			 String t = IDs.get(i);
 			 if(IDtmp.indexOf(t) == -1)
 				 IDtmp.add(t);
 			 
 		 }
-		 for(int i = 0; i < 4;i++){
+		 for(int i = 0; i < 13;i = i + 4){
 			String t = IDs.get(i);
 			IDuse.add(t);
 			 
@@ -257,26 +257,26 @@ public class GetPair {
 			 ArrayList<Pair> tmp = new ArrayList<Pair>();
 			 for(int pos : rows){
 				 if(pos == 0){
-					 for(int j = 4; j < 7;j++){
+					 for(int j = 1; j < 4;j++){
 						 Pair ptmp = new Pair(IDs.get(0),IDs.get(j),0);
 						 tmp.add(ptmp);
 					 }
 				 }
 				 if(pos == 1){
-					 for(int j = 7; j < 10;j++){
-						 Pair ptmp = new Pair(IDs.get(1),IDs.get(j),0);
+					 for(int j = 5; j < 8;j++){
+						 Pair ptmp = new Pair(IDs.get(4),IDs.get(j),0);
 						 tmp.add(ptmp);
 					 }
 				 }
 				 if(pos == 2){
-					 for(int j = 10; j < 13;j++){
-						 Pair ptmp = new Pair(IDs.get(2),IDs.get(j),0);
+					 for(int j = 9; j < 12;j++){
+						 Pair ptmp = new Pair(IDs.get(8),IDs.get(j),0);
 						 tmp.add(ptmp);
 					 }
 				 }
 				 if(pos == 3){
 					 //for(int j = 10; j < 13;j++){
-						 Pair ptmp = new Pair(IDs.get(3),IDs.get(13),0);
+						 Pair ptmp = new Pair(IDs.get(12),IDs.get(13),0);
 						 tmp.add(ptmp);
 					 //}
 				 }
