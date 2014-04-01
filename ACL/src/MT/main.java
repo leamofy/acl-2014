@@ -1,7 +1,9 @@
 package MT;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import BLEU.BLEU;
@@ -86,14 +88,14 @@ public class main extends pagerank{
 		 */
 		/*PBaiscPageRank PBasicPR = new PBaiscPageRank(); 
 		PBasicPR.TotalRank();
-		
-		computeDocBleu bleu = new computeDocBleu(); 
-		String ref1 = "F:/NLP/Evaluate/PlainText/COSREF/Ref1.txt";
-		String ref2 = "F:/NLP/Evaluate/PlainText/COSREF/Ref2.txt";
-		String ref3 = "F:/NLP/Evaluate/PlainText/COSREF/Ref3.txt";
-		String ref4 = "F:/NLP/Evaluate/PlainText/COSREF/Ref4.txt";
-		String trans = "F:/NLP/Evaluate/PlainText/COSREF/Trans.txt";
-		String res = "F:/NLP/Evaluate/PlainText/COSREF/result.txt";
+		*/
+		/*computeDocBleu bleu = new computeDocBleu(); 
+		String ref1 = "F:/ACL/NLP/Evaluate/PlainText/TwoLayer/Ref1.txt";
+		String ref2 = "F:/ACL/NLP/Evaluate/PlainText/TwoLayer/Ref2.txt";
+	    String ref3 = "F:/ACL/NLP/Evaluate/PlainText/TwoLayer/Ref3.txt";
+		String ref4 = "F:/ACL/NLP/Evaluate/PlainText/TwoLayer/Ref4.txt";
+		String trans = "F:/ACL/NLP/Evaluate/PlainText/TwoLayer/Trans.txt";
+		String res = "F:/ACL/NLP/Evaluate/PlainText/TwoLayer/result.txt";
 		System.out.println(bleu.computeBleu(ref1, ref2, ref3, ref4, trans,res));
 		*/
 		/*MakePartition mp = new MakePartition(); 
@@ -110,8 +112,30 @@ public class main extends pagerank{
 		/*
 		 * Rank Partial PEdit
 		 */
-		PPartialRefPEditTERPageRank PPErank = new PPartialRefPEditTERPageRank();
-		PPErank.PartialRank();
+		//PPartialRefPEditTERPageRank PPErank = new PPartialRefPEditTERPageRank();
+		//PPErank.PartialRank();
+		//Get  Matrix
+		/*GetPair GP = new GetPair();
+		GP.getpairlist();
+		String filename = "F:/ACL/NLP/CoLab/colabor.txt";
+		File file = new File(filename);
+		PrintWriter outwriter = new PrintWriter(file);
+		
+		for(int i = 0; i < GP.PairArray.size();i++){
+			outwriter.println(GP.PairArray.get(i).getTrans() + " " + GP.PairArray.get(i).getEdit()+" "+GP.PairArray.get(i).getTimes());
+		}
+		//System.out.println(GP.Count());
+		//System.out.println(GP.getSize());
+		outwriter.close();
+		GP.GetColabMatrix();
+		*/
+		/*
+		 * TwoLayer
+		 */
+		PTLPagerank  ptlp = new PTLPagerank(); 
+		ptlp.Curve();
+		//PTLTERPagerank  ptlterp = new PTLTERPagerank(); 
+		//ptlterp.Curve();
 		/*
 		 * 
 		 * Get the order of turkers, measured by cosine similarity
