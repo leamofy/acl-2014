@@ -37,12 +37,17 @@
 % in the camera-ready version and ask you to change it back.
 
 
+% Alternate titles.
+
 \title{Two Heads are Better than One: Crowdsourcing Translation\\ via a Two-Step Collaboration Between Non-Professionals}
 %Aiming at Professional Translation Quality via \\ based on a }
 
-\author{Rui Yan, Ellie Pavlick, and Chris Callison-Burch \\
-Computer and Information Science Department\\
-University of Pennsylvania
+\title{Are Two Heads are Better than One? Challenges for Crowdsourced Translation via a Two-Step Collaboration between Translators and Editors}
+
+\title{Are Two Heads are Better than One? Crowdsourced Translation via a Two-Step Collaboration between Translators and Editors}
+
+\author{Rui Yan, Mingkun Gao, Ellie Pavlick, and Chris Callison-Burch \\
+Computer and Information Science Department, University of Pennsylvania
   }
 
 \date{}
@@ -57,12 +62,17 @@ University of Pennsylvania
 
 Statistical machine translation (SMT) systems are trained using bilingual sentence-aligned parallel corpora.  Theoretically, SMT can be applied to any language pair, but in practice it produces the state-of-art results only for language pairs with ample training data, like English-Arabic, English-Chinese, French-English, etc.  SMT gets stuck in a severe bottleneck for many minority or `low resource' languages with insufficient data. 
 This drastically limits what languages SMT can be successfully applied to.
-Because of this, collecting parallel corpora for minor languages has become an interesting research challenge. There are various options for creating training data for new language pairs.  Past approaches have examined harvesting translated documents from the web \cite{a10,a13,smith-EtAl:2013:ACL}, or discovering parallel fragments from comparable corpora \cite{a11,abdulrauf-schwenk:2009:EACL,a12}.  Relatively little consideration has been given to creating parallel data from scratch by hiring professional translators.  The costs of professional translation are prohibitively high, even to create a relatively modestly sized parallel corpus, like  \newcite{a25}'s attempt to create a Tamil-English corpus at \$0.36/word.  
+Because of this, collecting parallel corpora for minor languages has become an interesting research challenge. There are various options for creating training data for new language pairs.  Past approaches have examined harvesting translated documents from the web \cite{a10,a13,smith-EtAl:2013:ACL}, or discovering parallel fragments from comparable corpora \cite{a11,abdulrauf-schwenk:2009:EACL,a12}.  
+Until relatively recently, relatively little consideration has been given to creating parallel data from scratch.  This is because the cost of hiring professional translators is prohibitively high.  For instance, \newcite{a25} hoped to hire professional translators to create a relatively modest sized 100,000 word Tamil-English parallel corpus, but were stymied by the costs and the difficulty of finding good translators for a short-term commitment.
+
+Recently, crowdsourcing has opened the possibility of translating large amounts of text at low cost using non-professional translators.  Facebook localized its web site into different languages using volunteers \cite{Facebook-Crowdsourced-Translation}.  \newcite{Callison-Burch2009} conducted a preliminary study that compared the quality of professional translators to non-professional translators hired on Amazon Mechanical Turk (MTurk) for translations from Spanish, German, French, Chinese into Urdu.  \newcite{zaidan-callisonburch:2011:ACL-HLT2011a}
+
+More recent efforts have used crowdsourcing to create 
 
 {\sc todo - cite past work on crowdsourcing translation \nocite{*}}
 
 
-A worthy effort would be seeking for higher quality translations at a lower cost. We notice that Amazon's Mechanical Turk (MTurk) provides a labor force platform at a cheap price for labor units, and hence we are able to hire a large group of translators, non-professional or even professional, at a similarly tempting low price. In the way of crowdsoucing, we could manage to create a large parallel corpus at a fraction of the cost of professional translators. With affordable human computation achieved, we aim at soliciting high quality translations out of the redundant, perhaps low-quality, disfluent generations. We have proposed a random walk of mutual reinforced ranking model based on a heterogenous graph consisting of translations and the workers on MTurk, named MTurkers. In particularly, we design a schema of collaborative crowdsourcing: translation followed by post-editing. We also include linguistic quality scoring as the ranking prior during the selection process. After these two steps, the collaboration of two non-professional generate a translated sentence. The model discriminates acceptable translations from those that are not (and analogously competent Turkers from those who are not).
+A worthy effort would be seeking for higher quality translations at a lower cost. We notice that Amazon's Mechanical Turk (MTurk) provides a labor force platform at a cheap price for labor units, and hence we are able to hire a large group of translators, non-professional or even professional, at a similarly tempting low price. In the way of crowdsourcing, we could manage to create a large parallel corpus at a fraction of the cost of professional translators. With affordable human computation achieved, we aim at soliciting high quality translations out of the redundant, perhaps low-quality, disfluent generations. We have proposed a random walk of mutual reinforced ranking model based on a heterogenous graph consisting of translations and the workers on MTurk, named MTurkers. In particularly, we design a schema of collaborative crowdsourcing: translation followed by post-editing. We also include linguistic quality scoring as the ranking prior during the selection process. After these two steps, the collaboration of two non-professional generate a translated sentence. The model discriminates acceptable translations from those that are not (and analogously competent Turkers from those who are not).
 
 According to an objective and quantitative comparison with the professionally-produced reference translations as a weights set, we examine the idea of enabling the 2-step of ``\textit{collaborations}'' between both roles of non-professional translators and post-editors, and using structural information from the collaboration relationships. We show that it is possible to get near professional high quality translations in aggregate by soliciting multiple translations to select the best of the bunch (and the cost can be even lower to identifying competent MTurkers). The overall performance is improved by the 2-step collaboration and the information hidden in the net structure: in other words, \textbf{TWO} heads are indeed better than \textbf{ONE}.
 
