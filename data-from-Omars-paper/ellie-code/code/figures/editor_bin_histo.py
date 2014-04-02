@@ -65,10 +65,11 @@ for i in range(5) :
 	nt = len(translators)/5
 	es = editors[i*ne:(i+1)*ne]
 	e_bins[i] = [e[0] for e in es]
-	e_bin_range[i] = '%.2f to %.2f'%(min([e[1] for e in es]), max([e[1] for e in es]))
+	e_bin_range[i] = r'%.2f $\endash$ %.2f'%(min([e[1] for e in es]), max([e[1] for e in es]))
 	ts = translators[i*nt:(i+1)*nt]
 	t_bins[i] = [t[0] for t in ts]
-	t_bin_range[i] = '%.2f to %.2f'%(min([t[1] for t in ts]), max([t[1] for t in ts]))
+#	t_bin_range[i] = r'%.2f $\endash$'%(min([t[1] for t in ts]))+'\n%.2f'%(max([t[1] for t in ts]))
+	t_bin_range[i] = r'%.1f $\endash$ %.1f'%(min([t[1] for t in ts]), max([t[1] for t in ts]))
 
 for i in range(5) : 
 	
@@ -104,14 +105,19 @@ for i in range(5) :
 	
 	#plt.ylim(-0.4,0.1)
 	l = [min(graph_data), (min(graph_data) + max(graph_data)) / 2, max(graph_data)]
-	plt.yticks(l)
+	plt.yticks(l,fontsize='large')
 	ax.yaxis.set_major_formatter(ticker.FormatStrFormatter('%0.2f'))
-	plt.ylabel(r'$\Delta$ TER')
+	plt.ylabel(r'$\Delta$ TER$_{gold}$', fontsize='large')
 	if i < 4 : plt.xticks([])
 
 	#plt.xlabel('Average TER between pre- and post-edit translation')
-	plt.title(r'Editor $\Delta$ TER %s'%(e_bin_range[i]), fontsize='medium')
-	if i == 4 : plt.xticks(np.arange(1,6)+0.5, ['Translator TER %s'%(t_bin_range[ii-1]) for ii in np.arange(1,6)]) #, ha='center') 
+#	if i == 0 : plt.title(r'Editor $\Delta$ TER'+'\n%s'%(e_bin_range[i]), fontsize='large')
+	plt.title(r'Editor $\Delta$ TER$_{gold}$ %s'%(e_bin_range[i]), fontsize='large')
+#	else : plt.title(r'%s'%(e_bin_range[i]), fontsize='large')
+	#if i == 4 : plt.xticks(np.arange(1,6)+0.5, ['Translator TER %s'%(t_bin_range[ii-1]) for ii in np.arange(1,6)], fontsize='large') #, ha='center') 
+	if i == 4 : plt.xticks(np.arange(1,6)+0.5, ['%s'%(t_bin_range[ii-1]) for ii in np.arange(1,6)], fontsize='large') #, ha='center') 
+	if i == 4 : plt.xlabel(r'Translation TER$_{gold}$', fontsize='large')
 	#plt.title("Translation/e11ditor pairs")
+	plt.xlim((1,6))
 
 plt.show()

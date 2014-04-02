@@ -26,18 +26,19 @@ for line in sys.stdin:
 	segments[sid][wt][we] = (wt,we,t,e,st,se)
 	sids[sid] += 1
 
-segments_order = [s[0] for s in sorted(sids.iteritems(), key=operator.itemgetter(1), reverse=True)[20:40]]
+segments_order = [s[0] for s in sorted(sids.iteritems(), key=operator.itemgetter(1), reverse=True)[10:11]]
 
 colors = ['b', 'r', 'g', 'k']
 
 for sid in segments_order : 
-	print sids[sid]
+	#print sids[sid]
 	graph_data_dict = segments[sid]
 
 	before = []
 	after = []
 	seen = set()
 	for kt in graph_data_dict : 
+		if len(graph_data_dict[kt]) == 1 : continue
 		for ke in graph_data_dict[kt] : 
 			wt, we, t, e, st, se = graph_data_dict[kt][ke]
 			if wt not in seen : before.append((t,wt)); seen.add(wt)
@@ -46,19 +47,24 @@ for sid in segments_order :
 	after_rank = [e[1] for e in sorted(after, key=operator.itemgetter(0))]
 
 	fig, ax = plt.subplots()
+	ax.spines['top'].set_color('white')
+	ax.spines['right'].set_color('white')
+	ax.spines['left'].set_color('white')
+	ax.spines['bottom'].set_color('white')
 	
 	for i,kt in enumerate(graph_data_dict.keys()) : 
 		plotted = False
+		if len(graph_data_dict[kt]) == 1 : continue
 		for ke in graph_data_dict[kt] : 
 			wt, we, t, e, st, se = graph_data_dict[kt][ke]
 			b = before_rank.index(wt)
 			a = after_rank.index((wt,we))
-			print b, a
+			b2 = b+(b*.5)+2
 			if not plotted : 
-				plt.annotate('\n'.join(textwrap.wrap(st,80)),xy=(-2,-b), xytext=(-3,-b),fontsize=10,ha='right',color=colors[i])
+				plt.annotate('\n'.join(textwrap.wrap(st,60)),xy=(-2,-b2), xytext=(-3,-b2),fontsize=14,ha='right',color=colors[i])
 				plotted = True
-			plt.annotate('\n'.join(textwrap.wrap(se,80)),xy=(3,-a), xytext=(4,-a),fontsize=10,ha='left', color=colors[i]) 
-			plt.plot([-2,3], [-b,-a], marker='o', color=colors[i])
+			plt.annotate('\n'.join(textwrap.wrap(se,60)),xy=(3,-a), xytext=(4,-a),fontsize=14,ha='left', color=colors[i]) 
+			plt.plot([-2,3], [-b2,-a], marker='o', color=colors[i])
 	plt.ylim([-10,1])
 	plt.xlim([-17,17])
 	plt.xticks([])
