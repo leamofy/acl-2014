@@ -107,7 +107,7 @@ public class PTLPagerank extends constructM{
 		    count++;
 		}
 		 in.close();
-		 filename = "F:/ACL/NLP/CoLab/colabor.txt";
+		 filename = "F:/ACL/NLP/CoLab/allcolabor.txt";
 		 in = new BufferedReader(new FileReader(filename));
 		 ss = "";
 		 ArrayList<Pair> PairArray = new ArrayList<Pair>();
@@ -119,7 +119,7 @@ public class PTLPagerank extends constructM{
 		 }
 		 in.close();
 		 
-		 filename = "F:/ACL/NLP/CoLab/nclabormatrix.txt";
+		 filename = "F:/ACL/NLP/CoLab/nallclabormatrix.txt";
 		 in = new BufferedReader(new FileReader(filename));
 		 ss = "";
 		 Matrix N = new Matrix(PairArray.size(),PairArray.size(),0);
@@ -245,7 +245,7 @@ public class PTLPagerank extends constructM{
     	 
     	 
     	 TwoLayerRank pr = new TwoLayerRank();
-    	 Matrix result = pr.getfirstpage(M,N,W_ba,W_hat,lambda, 0.001);
+    	 Matrix result = pr.getfirstpage(M,N,W_ba,W_hat,lambda, 0.01);
     	 //System.out.println("Rank");
     	//for(int i = 0; i < result.getRowDimension();i++){
 			// System.out.println(result.get(i, 0));
@@ -327,7 +327,7 @@ public class PTLPagerank extends constructM{
 	}
 	public void Curve() throws IOException{
 
-		String writefile = "F:/ACL/NLP/Evaluate/PlainText/CURVE/twolayerrank.txt";
+		String writefile = "F:/ACL/NLP/Evaluate/PlainText/CURVE/0.01twolayerrank.txt";
 		File file = new File(writefile);
 		PrintWriter outwriter = new PrintWriter(file);
 		double delta = 0.0;

@@ -288,6 +288,7 @@ public class GetPair {
 						 if(i != j){
 							 int l = findposition(tmp.get(i));
 							 int k = findposition(tmp.get(j));
+							 if(l != k)
 							 CLab[l][k]++;
 						 }
 					 }
@@ -295,7 +296,7 @@ public class GetPair {
 			 }
 			 
 		 }
-		 
+		
     	
     	
     }

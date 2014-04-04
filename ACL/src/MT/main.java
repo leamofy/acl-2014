@@ -114,7 +114,7 @@ public class main extends pagerank{
 		 */
 		//PPartialRefPEditTERPageRank PPErank = new PPartialRefPEditTERPageRank();
 		//PPErank.PartialRank();
-		//Get  Matrix
+		//Get  Matrix using translator
 		/*GetPair GP = new GetPair();
 		GP.getpairlist();
 		String filename = "F:/ACL/NLP/CoLab/colabor.txt";
@@ -129,11 +129,44 @@ public class main extends pagerank{
 		outwriter.close();
 		GP.GetColabMatrix();
 		*/
+		// Get  Matrix using translator and editor
+		/*GetPairEditor GPE = new GetPairEditor();
+		GPE.getpairlist();
+		String filename = "F:/ACL/NLP/CoLab/editorcolabor.txt";
+		File file = new File(filename);
+		PrintWriter outwriter = new PrintWriter(file);
+		
+		for(int i = 0; i < GPE.PairArray.size();i++){
+			outwriter.println(GPE.PairArray.get(i).getTrans() + " " + GPE.PairArray.get(i).getEdit()+" "+GPE.PairArray.get(i).getTimes());
+		}
+		//System.out.println(GP.Count());
+		//System.out.println(GP.getSize());
+		outwriter.close();
+		GPE.GetColabMatrix();
+		*/
+		// Get the Whole Colabor
+		/*GetPairAll GPA = new GetPairAll();
+		GPA.getpairlist();
+		String filename = "F:/ACL/NLP/CoLab/allcolabor.txt";
+		File file = new File(filename);
+		PrintWriter outwriter = new PrintWriter(file);
+		
+		for(int i = 0; i < GPA.PairArray.size();i++){
+			outwriter.println(GPA.PairArray.get(i).getTrans() + " " + GPA.PairArray.get(i).getEdit()+" "+GPA.PairArray.get(i).getTimes());
+		}
+		//System.out.println(GP.Count());
+		//System.out.println(GP.getSize());
+		outwriter.close();
+		GPA.GetColabMatrix();
+		*/
 		/*
 		 * TwoLayer
 		 */
-		PTLPagerank  ptlp = new PTLPagerank(); 
-		ptlp.Curve();
+		//PTLPagerank  ptlp = new PTLPagerank(); 
+		//ptlp.Curve();
+		
+		RevisedPTLPagerank  rptlp = new RevisedPTLPagerank(); 
+		rptlp.Curve();
 		//PTLTERPagerank  ptlterp = new PTLTERPagerank(); 
 		//ptlterp.Curve();
 		/*
