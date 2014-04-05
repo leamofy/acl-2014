@@ -51,14 +51,14 @@ public class PBaiscPageRank extends constructM{
 		}
 		 in.close();
 		 
-		 int lengthM = 8;
+		 int lengthM = 14;
     	 Matrix M = new Matrix(lengthM,lengthM,0);
     	 for(int l = 0; l < lengthM;l++){
     		 for(int j = 0; j < lengthM;j++){
     			 if(l==j)
     				 M.set(j, l, 0.0);
     			 else{
-    				 M.set(j, l, cosine(tfidfwordbag.get(l),tfidfwordbag.get(j)));
+    				 M.set(j, l, cosine(tfidfwordbag.get(l+4),tfidfwordbag.get(j+4)));
     				}
     		 }
     			 
@@ -72,16 +72,16 @@ public class PBaiscPageRank extends constructM{
     	 
     	 
     	 pagerank pr = new pagerank();
-    	 Matrix result = pr.getfirstpage(M, 0.85, 0.001);
+    	 Matrix result = pr.getfirstpage(M, 0.85, 0.01);
     	 int maxindex = 0;
     	 double max = 0.0;
-    	 for(int k = 4; k < lengthM;k++){
+    	 for(int k = 0; k < lengthM;k++){
     		 if(result.get(k, 0) > max){
     			 max = result.get(k, 0); 
     			 maxindex = k;
     		 }
     	 }
-    	 maxindex = maxindex;
+    	 maxindex = maxindex+4;
     	 double ref1 = cosine(tfidfwordbag.get(maxindex),tfidfwordbag.get(0));
     	 double ref2 = cosine(tfidfwordbag.get(maxindex),tfidfwordbag.get(1));
     	 double ref3 = cosine(tfidfwordbag.get(maxindex),tfidfwordbag.get(2));

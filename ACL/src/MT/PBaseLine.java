@@ -11,8 +11,13 @@ import Jama.*;
  * @version $LastChangedDate$
  */
 public class PBaseLine extends constructM{
+	private Random generator;
+	PBaseLine(){
+		generator = new Random(System.currentTimeMillis());
+	}
 	
-	public void Rank(int dataid,ArrayList<PrintWriter> outputlist) throws NumberFormatException, IOException{
+	
+	public void Rank(int dataid,ArrayList<PrintWriter> outputlist)  throws NumberFormatException, IOException{
 		
 		String filename = "F:/ACL/NLP/TFIDFDATA/text"+dataid+".txt";
 		BufferedReader in = new BufferedReader(new FileReader(filename));
@@ -52,17 +57,14 @@ public class PBaseLine extends constructM{
 		 in.close();
 		 
 		 
-		 Random random = new Random();
+		 
 		 
 
-		 int maxindex = random.nextInt(4) + 4;
-		 System.out.println(maxindex);
+		 int maxindex = generator.nextInt(4) + 4;
+		//System.out.println(maxindex);
 		
     	 
-    	 double ref1 = cosine(tfidfwordbag.get(maxindex),tfidfwordbag.get(0));
-    	 double ref2 = cosine(tfidfwordbag.get(maxindex),tfidfwordbag.get(1));
-    	 double ref3 = cosine(tfidfwordbag.get(maxindex),tfidfwordbag.get(2));
-    	 double ref4 = cosine(tfidfwordbag.get(maxindex),tfidfwordbag.get(3));
+    	 
     	 
     	 String Trans = sentences.get(maxindex);
     	 String Ref1 = sentences.get(0);
@@ -89,7 +91,8 @@ public class PBaseLine extends constructM{
 	
 	public void TotalRank() throws IOException{
 		int i = 1;
-		
+		//Random generator = new Random(System.currentTimeMillis());
+		//System.out.println(System.currentTimeMillis());
 		ArrayList<PrintWriter> outputlist = new ArrayList<PrintWriter> (); 
 		 String filename2 = "F:/ACL/NLP/Evaluate/PlainText/BaseLine/Ref1.txt";
 		 File file2 = new File(filename2);

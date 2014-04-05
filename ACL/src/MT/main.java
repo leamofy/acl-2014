@@ -88,14 +88,14 @@ public class main extends pagerank{
 		 */
 		/*PBaiscPageRank PBasicPR = new PBaiscPageRank(); 
 		PBasicPR.TotalRank();
-		*/
-		/*computeDocBleu bleu = new computeDocBleu(); 
-		String ref1 = "F:/ACL/NLP/Evaluate/PlainText/TwoLayer/Ref1.txt";
-		String ref2 = "F:/ACL/NLP/Evaluate/PlainText/TwoLayer/Ref2.txt";
-	    String ref3 = "F:/ACL/NLP/Evaluate/PlainText/TwoLayer/Ref3.txt";
-		String ref4 = "F:/ACL/NLP/Evaluate/PlainText/TwoLayer/Ref4.txt";
-		String trans = "F:/ACL/NLP/Evaluate/PlainText/TwoLayer/Trans.txt";
-		String res = "F:/ACL/NLP/Evaluate/PlainText/TwoLayer/result.txt";
+		
+		computeDocBleu bleu = new computeDocBleu(); 
+		String ref1 = "F:/ACL/NLP/Evaluate/PlainText/COSREF/Ref1.txt";
+		String ref2 = "F:/ACL/NLP/Evaluate/PlainText/COSREF/Ref2.txt";
+	    String ref3 = "F:/ACL/NLP/Evaluate/PlainText/COSREF/Ref3.txt";
+		String ref4 = "F:/ACL/NLP/Evaluate/PlainText/COSREF/Ref4.txt";
+		String trans = "F:/ACL/NLP/Evaluate/PlainText/COSREF/Trans.txt";
+		String res = "F:/ACL/NLP/Evaluate/PlainText/COSREF/result.txt";
 		System.out.println(bleu.computeBleu(ref1, ref2, ref3, ref4, trans,res));
 		*/
 		/*MakePartition mp = new MakePartition(); 
@@ -165,8 +165,8 @@ public class main extends pagerank{
 		//PTLPagerank  ptlp = new PTLPagerank(); 
 		//ptlp.Curve();
 		
-		RevisedPTLPagerank  rptlp = new RevisedPTLPagerank(); 
-		rptlp.Curve();
+		//RevisedPTLPagerank  rptlp = new RevisedPTLPagerank(); 
+		//rptlp.Curve();
 		//PTLTERPagerank  ptlterp = new PTLTERPagerank(); 
 		//ptlterp.Curve();
 		/*
@@ -259,6 +259,133 @@ public class main extends pagerank{
 		else
 		System.out.println("I am a Tab"+newS.indexOf('\t'));*/
 		
+		/**
+		 * 
+		 *  Get Oracle
+		 *  
+		 * 
+		 * 
+		 */
+		// Get Reference Score
+		//RefenceBlue RB = new RefenceBlue();
+		//RB.TotalRank();
+		
+		/*
+		 * Oracle Segment on Trans
+		 */
+		/*OracleSegmentTrans OST = new OracleSegmentTrans();
+		OST.TotalRank();
+		
+		computeDocBleu bleu = new computeDocBleu(); 
+		String ref1 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleSegTransEditor/Ref1.txt";
+		String ref2 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleSegTransEditor/Ref2.txt";
+	    String ref3 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleSegTransEditor/Ref3.txt";
+		String ref4 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleSegTransEditor/Ref4.txt";
+		String trans = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleSegTransEditor/Trans.txt";
+		String res = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleSegTransEditor/result.txt";
+		System.out.println(bleu.computeBleu(ref1, ref2, ref3, ref4, trans,res));
+		*/
+		/*GetTERStandardTranslatorIDOrder getterorder = new GetTERStandardTranslatorIDOrder();
+		getterorder.getTotalRank();
+		getterorder.Sort();
+		getterorder.PrintID();
+		System.out.print(getterorder.nodelist.size());
+		*/
+		/*//OracleTurkTrans OTT = new OracleTurkTrans();
+		//OTT.TotalRank();
+		computeDocBleu bleu = new computeDocBleu(); 
+		String ref1 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleRankTrans/Ref1.txt";
+		String ref2 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleRankTrans/Ref2.txt";
+	    String ref3 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleRankTrans/Ref3.txt";
+		String ref4 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleRankTrans/Ref4.txt";
+		String trans = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleRankTrans/Trans.txt";
+		String res = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleRankTrans/result.txt";
+		System.out.println(bleu.computeBleu(ref1, ref2, ref3, ref4, trans,res));*/
+		// Get Editor Rankings
+		/*GetTERStandardEditorIDOrder getterorder = new GetTERStandardEditorIDOrder();
+		getterorder.getTotalRank();
+		getterorder.Sort();
+		getterorder.PrintID();
+		System.out.print(getterorder.nodelist.size());
+		*/
+		/*
+		 * Get Oracle Turkers(Translators&Editors)
+		 */
+		/*OracleTurkTransEdit OTTE = new OracleTurkTransEdit();
+		OTTE.TotalRank();
+		computeDocBleu bleu = new computeDocBleu(); 
+		String ref1 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleRankTransEdit/Ref1.txt";
+		String ref2 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleRankTransEdit/Ref2.txt";
+	    String ref3 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleRankTransEdit/Ref3.txt";
+		String ref4 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleRankTransEdit/Ref4.txt";
+		String trans = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleRankTransEdit/Trans.txt";
+		String res = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleRankTransEdit/result.txt";
+		System.out.println(bleu.computeBleu(ref1, ref2, ref3, ref4, trans,res));
+		*/
+		/*
+		 * Get Raw Transation
+		 */
+		/*OracleRawTrans ORT = new OracleRawTrans();
+		ORT.TotalRank();
+		computeDocBleu bleu = new computeDocBleu(); 
+		String ref1 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleRawTrans/Ref1.txt";
+		String ref2 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleRawTrans/Ref2.txt";
+	    String ref3 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleRawTrans/Ref3.txt";
+		String ref4 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleRawTrans/Ref4.txt";
+		String trans = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleRawTrans/Trans.txt";
+		String res = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleRawTrans/result.txt";
+		System.out.println(bleu.computeBleu(ref1, ref2, ref3, ref4, trans,res));
+		*/
+		/*
+		 * Lowest TER
+		 */
+		/*OracleLowestTER OLTER = new OracleLowestTER();
+		OLTER.TotalRank();
+		computeDocBleu bleu = new computeDocBleu(); 
+		String ref1 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleLTERTrans/Ref1.txt";
+		String ref2 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleLTERTrans/Ref2.txt";
+	    String ref3 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleLTERTrans/Ref3.txt";
+		String ref4 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleLTERTrans/Ref4.txt";
+		String trans = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleLTERTrans/Trans.txt";
+		String res = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleLTERTrans/result.txt";
+		System.out.println(bleu.computeBleu(ref1, ref2, ref3, ref4, trans,res));
+		*/
+		/*
+		 * Get Random Baseline
+		 */
+		/*int i = 0;
+		double Bleu = 0.0;
+		while(i < 10){
+			PBaseLine PBL = new PBaseLine(); 
+		    PBL.TotalRank();
+			computeDocBleu bleu = new computeDocBleu(); 
+			String ref1 = "F:/ACL/NLP/Evaluate/PlainText/BaseLine/Ref1.txt";
+			String ref2 = "F:/ACL/NLP/Evaluate/PlainText/BaseLine/Ref2.txt";
+			String ref3 = "F:/ACL/NLP/Evaluate/PlainText/BaseLine/Ref3.txt";
+			String ref4 = "F:/ACL/NLP/Evaluate/PlainText/BaseLine/Ref4.txt";
+			String trans = "F:/ACL/NLP/Evaluate/PlainText/BaseLine/Trans.txt";
+			String res = "F:/ACL/NLP/Evaluate/PlainText/BaseLine/result.txt";
+			System.out.println(bleu.computeBleu(ref1, ref2, ref3, ref4, trans,res));
+			Bleu+=bleu.computeBleu(ref1, ref2, ref3, ref4, trans,res);
+			i++;
+		}
+		System.out.println("AVG BLEU "+Bleu/10);
+		*/
+		/*
+		 * Setence Graph Page Rank: Only Use Translators, pagerank thre:0.01
+		 */
+		/*PBaiscPageRank PBasicPR = new PBaiscPageRank(); 
+		PBasicPR.TotalRank();
+		
+		computeDocBleu bleu = new computeDocBleu(); 
+		String ref1 = "F:/ACL/NLP/Evaluate/PlainText/COSREF/Ref1.txt";
+		String ref2 = "F:/ACL/NLP/Evaluate/PlainText/COSREF/Ref2.txt";
+	    String ref3 = "F:/ACL/NLP/Evaluate/PlainText/COSREF/Ref3.txt";
+		String ref4 = "F:/ACL/NLP/Evaluate/PlainText/COSREF/Ref4.txt";
+		String trans = "F:/ACL/NLP/Evaluate/PlainText/COSREF/Trans.txt";
+		String res = "F:/ACL/NLP/Evaluate/PlainText/COSREF/result.txt";
+		System.out.println(bleu.computeBleu(ref1, ref2, ref3, ref4, trans,res));
+		*/
 	}
 
 }

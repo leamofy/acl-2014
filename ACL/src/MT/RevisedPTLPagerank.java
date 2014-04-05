@@ -118,7 +118,7 @@ public class RevisedPTLPagerank extends constructM{
 		    count++;
 		}
 		 in.close();
-		 filename = "F:/ACL/NLP/CoLab/colabor.txt";
+		 filename = "F:/ACL/NLP/CoLab/allcolabor.txt";
 		 in = new BufferedReader(new FileReader(filename));
 		 ss = "";
 		 ArrayList<Pair> PairArray = new ArrayList<Pair>();
@@ -130,7 +130,7 @@ public class RevisedPTLPagerank extends constructM{
 		 }
 		 in.close();
 		 
-		 filename = "F:/ACL/NLP/CoLab/nclabormatrix.txt";
+		 filename = "F:/ACL/NLP/CoLab/nallclabormatrix.txt";
 		 in = new BufferedReader(new FileReader(filename));
 		 ss = "";
 		 Matrix N = new Matrix(PairArray.size(),PairArray.size(),0);
@@ -197,6 +197,11 @@ public class RevisedPTLPagerank extends constructM{
     			 e = IDs.get(i);
     			 for(int j = 0; j < PairArray.size();j++){
     				 if(FindColab(t,e, PairArray,j) == true){
+    					 A[i][j] = 1;
+    				 }
+    			 }
+    			 for(int j = 0; j < PairArray.size();j++){
+    				 if(FindTranslator(t, PairArray,j) == true){
     					 A[i][j] = 1;
     				 }
     			 }
@@ -355,11 +360,11 @@ public class RevisedPTLPagerank extends constructM{
 	}
 	public void Curve() throws IOException{
 
-		String writefile = "F:/ACL/NLP/Evaluate/PlainText/CURVE/onlytransnew0.01twolayerrank.txt";
+		String writefile = "F:/ACL/NLP/Evaluate/PlainText/CURVE/neweditiontwolayerrank.txt";
 		File file = new File(writefile);
 		PrintWriter outwriter = new PrintWriter(file);
 		double delta = 0.0;
-		while(delta <= 0.1){
+		while(delta <= 1.0){
 		 TotalRank(delta);
 			computeDocBleu bleu = new computeDocBleu(); 
 			String ref1 = "F:/ACL/NLP/Evaluate/PlainText/TEMP/Ref1.txt";
@@ -370,7 +375,7 @@ public class RevisedPTLPagerank extends constructM{
 			String res = "F:/ACL/NLP/Evaluate/PlainText/TEMP/result.txt";
 			System.out.println(delta+" "+bleu.computeBleu(ref1, ref2, ref3, ref4, trans,res));
 			outwriter.println(delta+" "+bleu.computeBleu(ref1, ref2, ref3, ref4, trans,res));
-			delta += 0.01;
+			delta += 0.05;
 		 }
 		
 		outwriter.close();
