@@ -1,0 +1,6 @@
+0.01:
+Only Translator:0.38878749090678943
+Translator and Editor:0.40834710953817355
+0.001:
+Only Translator:0.3883489610748376
+Translator and Editor:0.4088915181551958
