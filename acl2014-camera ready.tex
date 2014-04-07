@@ -55,7 +55,8 @@ Computer and Information Science Department, University of Pennsylvania}
 \begin{document}
 \maketitle
 \begin{abstract}
-  Crowdsourcing is a viable mechanism for creating training data for machine translation.  It provides a low cost, fast turn-around way of processing large volumes of data. However, when compared professional translation, naive collection of translations from non-professionals yields low-quality results. Careful quality control is a necessity for crowdsourcing to work well. In this paper, we use a two-step collaboration process with translation and post-editing by non-professionals.  We develop graph-based ranking models that automatically select the best output from multiple redundant versions of translations and edits, and improves translation quality closer to professionals. With appropriate quality control, we are able to distinguish acceptable translations from bad ones.  We demonstrate our model on the  Mechanical Turk translations of the NIST 2009 Urdu-to-English evaluation set, and show that our models are able to achieve better quality than previously published methods. 
+  Crowdsourcing is a viable mechanism for creating training data for machine translation.  It provides a low cost, fast turn-around way of processing large volumes of data. However, when compared professional translation, naive collection of translations from non-professionals yields low-quality results. Careful quality control is necessary for crowdsourcing to work well. In this paper, we examine the challenges of a two-step collaboration process with translation and post-editing by non-professionals.  We develop graph-based ranking models that automatically select the best output from multiple redundant versions of translations and edits, and improves translation quality closer to professionals. 
+%  With appropriate quality control, we are able to distinguish acceptable translations from bad ones.  We demonstrate our model on the  Mechanical Turk translations of the NIST 2009 Urdu-to-English evaluation set, and show that our models are able to achieve better quality than previously published methods. 
 \end{abstract}
 
 \section{Introduction}
@@ -67,21 +68,28 @@ Until relatively recently, relatively little consideration has been given to cre
 
 Recently, crowdsourcing has opened the possibility of translating large amounts of text at low cost using non-professional translators.  Facebook localized its web site into different languages using volunteers \cite{Facebook-Crowdsourced-Translation}.  DuoLingo turns translation into an educational game, and translates web content using its language learners \cite{vonAhn:2013:DLL:2449396.2449398}.   
 %Crowdsourcing translation research in the NLP community has focused on hiring workers on the Amazon Mechanical Turk platform   \cite{Callison-Burch2009}, rather than relying on volunteers or gamification.  
-Rather than relying on volunteers or gamification, NLP research into crowdsourcing translation has focused on hiring workers on the Amazon Mechanical Turk platform   \cite{Callison-Burch2009}.  
+Rather than relying on volunteers or gamification, NLP research into crowdsourcing translation has focused on hiring workers on the Amazon Mechanical Turk  (MTurk) platform   \cite{Callison-Burch2009}.  This setup presents unique challenges, since it typically involves non-professional translators whose language skills are varied, and since it sometimes involves participants who try to cheat to get the small financial reward \cite{zaidan-callisonburch:2011:ACL-HLT2011a}.
+A natural approach for trying to shore up the skills of weak bilinguals is to pair them with a native speaker of the target language to edit their translations.   
+We review relevant research from NLP and human-computer interaction (HCI) on collaborative translation processes in Section \ref{related-work}. 
+To sort good translations from bad, researchers often solicit multiple, redundant translations and then build models to try to predict which translations are the best, or which translators tend to produce the highest quality translations. 
 
- conducted a preliminary study that compared the quality of professional translators to non-professional translators hired on Amazon Mechanical Turk (MTurk) for translations from Spanish, German, French, Chinese into Urdu.  \newcite{zaidan-callisonburch:2011:ACL-HLT2011a}
-
-More recent efforts have used crowdsourcing to create 
-
-{\sc todo - cite past work on crowdsourcing translation \nocite{*}}
-
-
-A worthy effort would be seeking for higher quality translations at a lower cost. We notice that Amazon's Mechanical Turk (MTurk) provides a labor force platform at a cheap price for labor units, and hence we are able to hire a large group of translators, non-professional or even professional, at a similarly tempting low price. In the way of crowdsourcing, we could manage to create a large parallel corpus at a fraction of the cost of professional translators. With affordable human computation achieved, we aim at soliciting high quality translations out of the redundant, perhaps low-quality, disfluent generations. We have proposed a random walk of mutual reinforced ranking model based on a heterogenous graph consisting of translations and the workers on MTurk, named MTurkers. In particularly, we design a schema of collaborative crowdsourcing: translation followed by post-editing. We also include linguistic quality scoring as the ranking prior during the selection process. After these two steps, the collaboration of two non-professional generate a translated sentence. The model discriminates acceptable translations from those that are not (and analogously competent Turkers from those who are not).
-
-According to an objective and quantitative comparison with the professionally-produced reference translations as a weights set, we examine the idea of enabling the 2-step of ``\textit{collaborations}'' between both roles of non-professional translators and post-editors, and using structural information from the collaboration relationships. We show that it is possible to get near professional high quality translations in aggregate by soliciting multiple translations to select the best of the bunch (and the cost can be even lower to identifying competent MTurkers). The overall performance is improved by the 2-step collaboration and the information hidden in the net structure: in other words, \textbf{TWO} heads are indeed better than \textbf{ONE}.
-
-
-We start by introducing the crowdsourcing platform and data collection. In Section 3 we formulate a reinforced ranking model combined with random walk, and then describe experimental results in Section 4. We review related work in Section 5 and draw conclusions in Section 6.
+The contributions of this paper are:
+\begin{itemize}
+\item An analysis of the difficulties posed by a two-step collaboration between editors and translators in Mechanical Turk-style crowdsourcing environments.  Editors vary in quality, and poor editing can be difficult to detect.
+\item A new graph-based algorithm for selecting the best translation among multiple translations of the same input.  This method takes into account the collaborative relationship between the translators and the editors.
+\end{itemize}
+%
+% conducted a preliminary study that compared the quality of professional translators to non-professional translators hired on Amazon Mechanical Turk (MTurk) for translations from Spanish, German, French, Chinese into Urdu.  \newcite{zaidan-callisonburch:2011:ACL-HLT2011a}
+%
+%More recent efforts have used crowdsourcing to create 
+%%
+%
+%A worthy effort would be seeking for higher quality translations at a lower cost. We notice that Amazon's Mechanical Turk (MTurk) provides a labor force platform at a cheap price for labor units, and hence we are able to hire a large group of translators, non-professional or even professional, at a similarly tempting low price. In the way of crowdsourcing, we could manage to create a large parallel corpus at a fraction of the cost of professional translators. With affordable human computation achieved, we aim at soliciting high quality translations out of the redundant, perhaps low-quality, disfluent generations. We have proposed a random walk of mutual reinforced ranking model based on a heterogenous graph consisting of translations and the workers on MTurk, named MTurkers. In particularly, we design a schema of collaborative crowdsourcing: translation followed by post-editing. We also include linguistic quality scoring as the ranking prior during the selection process. After these two steps, the collaboration of two non-professional generate a translated sentence. The model discriminates acceptable translations from those that are not (and analogously competent Turkers from those who are not).
+%
+%According to an objective and quantitative comparison with the professionally-produced reference translations as a weights set, we examine the idea of enabling the 2-step of ``\textit{collaborations}'' between both roles of non-professional translators and post-editors, and using structural information from the collaboration relationships. We show that it is possible to get near professional high quality translations in aggregate by soliciting multiple translations to select the best of the bunch (and the cost can be even lower to identifying competent MTurkers). The overall performance is improved by the 2-step collaboration and the information hidden in the net structure: in other words, \textbf{TWO} heads are indeed better than \textbf{ONE}.
+%
+%
+%We start by introducing the crowdsourcing platform and data collection. In Section 3 we formulate a reinforced ranking model combined with random walk, and then describe experimental results in Section 4. We review related work in Section 5 and draw conclusions in Section 6.
 %
 %
 %\section{Crowdsourcing Platform and Data Collection}
@@ -92,7 +100,50 @@ We start by introducing the crowdsourcing platform and data collection. In Secti
 %In this sense, soliciting translations from anonymous non-professionals carries a significant risk of poor translation quality, but it is not very difficult to find bad translations provided by Turkers using simple linear regression methods \cite{zaidan-callisonburch:2011:ACL-HLT2011a}. To improve the accuracy of noisy translations from non-experts, a natural quality control solution would be employing a graph-based ranking model to quantitatively measure multiple outputs based on ``votes'' or ``recommendations'' between each other, namely the wisdom of crowds.
 %
 
+\section{Related work}\label{related-work}
+
+In natural language processing, crowdsourcing translation has been examined to
+
+building parallel corpora for machine translation systems \cite{ambati:10}
+Arabic dialects \cite{Zbib-etal:2012:NAACL,zbib-EtAl:2013:NAACL-HLT}
+Indian languages \cite{post-callisonburch-osborne:2012:WMT}
+
+non-simulated active learning studies \cite{a7,AmbatiThesis,bloodgood-callisonburch:2010:ACL}
+
+MTurk crowdsourcing platform 
+seminal work by \newcite{Snow-et-al:EMNLP:2008}
+wide variety of other speech and language applications \cite{callisonburch-dredze:2010:MTURK}
+Language demographics \cite{Pavlick:2014}
+Building a persistent multilingual workforce on MTurk \cite{chen:2011}
+
+Professional quality translations from non-professionals \cite{zaidan-callisonburch:2011:ACL-HLT2011a}
+
+
+
+In the HCI community,
+several researchers have proposed protocols for collaborative translation efforts \cite{Morita:2009:PRIMA}.
+% between people to get higher quality translations.
+\cite{Morita:2009:IUI,Hu:2009,Hu:2010} Proposed an iterative collaboration between monolingual speakers of the two languages, facilitated with a machine translation system
+
+International Children's Digital Library \cite{hourcade2003international}
+
+\newcite{bernstein-et-al:2010} characterized the problems with hiring editors via MTurk for a word processing application.  Lazy workers or overly zealous editors, lead to find-fix-verify pattern.
+
+Efficacy of monolingual or bilingual individuals post-editing of machine translation output
+\newcite{callisonburch:2005:NIST,koehn:2010:NAACLHLT,Green:2013:EHP:2470654.2470718}
+
+Sometimes automatically post-editing
+\cite{Knight94automatedpostediting}
+
+
+%{\sc todo - cite past work on crowdsourcing translation \nocite{*}}
+\nocite{*}
+
+
 \section{Crowdsourcing Translation}
+We use the data collected by \newcite{zaidan-callisonburch:2011:ACL-HLT2011a}
+
+
 \subsection{Setup}
 Our HIT involves showing the worker a sequence of sentences in source language (i.e., \textit{Urdu} in this work), and asking them to provide an English translation for each one. The screen also included a brief set of instructions, and a short questionnaire section. The reward was set at \$0.10 per translation, or roughly \$0.005 per word. We solicit three translations per Urdu sentence (from three distinct translators). we instead split the data set into groups of 10 sentences per HIT. We keep some of the strategies used in other crowdsourcing systems in designing interfaces. For instance, we converted the Urdu sentences into images so that Turkers cannot cheat by copying-and-pasting the Urdu text into an online commercial MT system such as Google translation.
 
