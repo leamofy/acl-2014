@@ -1,63 +1,34 @@
 package MT;
 
+/**
+ * 
+ *@author Mingkun Gao, <gmingkun@seas.upenn.edu>
+ *@version $LastChangedDate$
+ *
+ */
+/*
+ * In this file, we implement class Pair and class GetPair with methods to get the 
+ * working pairs(translator-editor) in the corpus, and get the Turkers Matrix under the definition
+ * of collaboration as pairs with the same translators or post-editors
+ *  
+ *  
+ */
+
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
+//import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-/*class Pair{
-	String Trans; //translator
-	String Edit;  //Editor
-	double times;
-	Pair(String t, String e,double time){
-		Trans = t;
-		Edit = e;
-		times = time;
-	}
-	public void SetTrans(String s){
-		Trans = s;
-		
-	}
-	public void SetEdit(String s){
-		Edit = s;
-		
-	}
-	public String getTrans(){
-		return Trans;
-	}
-	public String getEdit(){
-		return Edit;
-	}
-	public void Set(String t, String e){
-		Trans = t;
-		Edit = e;
-	}
-	public void SetTimes(double t){
-		times = t;
-	}
-	public double getTimes(){
-		return times;
-	}
-	public boolean Same(String t, String e){
-		if(Trans.equals(t) == true && Edit.equals(e) == true)
-			return true;
-		else
-			return false;
-	}
-	public boolean CoLab(Pair p){
-		if (Trans.equals(p.getTrans()) == true ||Edit.equals(p.getEdit()) == true||Trans.equals(p.getEdit()) == true ||Edit.equals(p.getTrans()) == true)
-			return true;
-		else
-			return false;
-	}
-	
-}*/
 
+/*
+ * class GetPairEditor
+ */
 public class GetPairEditor {
     ArrayList<Pair> PairArray = new ArrayList<Pair> ();
+  //get size of pair arrays
     public int getSize(){
     	return PairArray.size();
     }
@@ -68,6 +39,7 @@ public class GetPairEditor {
 		}
 		return count;
 	}
+  //find pair with the same translator name and editor name
     public int Find(String t, String e){
     	for(int i = 0; i < PairArray.size();i++){
     		if(PairArray.get(i).Same(t, e) == true){
@@ -77,6 +49,7 @@ public class GetPairEditor {
     	}
     	return -1;
     }
+ // Add the working pair in i'th sentence's data set to pair list s
     public void AddPair(int dataid ) throws NumberFormatException, IOException{
     	String filename = "F:/ACL/NLP/TFIDFDATA/text"+dataid+".txt";
 		BufferedReader in = new BufferedReader(new FileReader(filename));
@@ -161,7 +134,7 @@ public class GetPairEditor {
 			 }
 		 }
     }
-    
+ // Construct Pair Lists
     public void getpairlist() throws IOException{
 		int i = 1;
 		while( i < 1684  ){  
@@ -169,6 +142,7 @@ public class GetPairEditor {
 		      i++;
 		}
     }
+  //find the position of a pair
     public int findposition(Pair p){
     	for(int i = 0; i < PairArray.size();i++){
     		if(PairArray.get(i).Same(p.getTrans(), p.getEdit()) == true)
@@ -176,6 +150,8 @@ public class GetPairEditor {
     	}
     	return -1;
     }
+  //for the i'th sentence's data set, scan the co-working relation, and count 
+    //the times of co-working at the corresponding position 
     public void Scan(int dataid,double[][] CLab) throws NumberFormatException, IOException{
     	String filename = "F:/ACL/NLP/TFIDFDATA/text"+dataid+".txt";
 		BufferedReader in = new BufferedReader(new FileReader(filename));
@@ -371,6 +347,7 @@ public class GetPairEditor {
     	
     	
     }
+  //Construct Turkers Matrix
     public double [][] GetColabMatrix() throws NumberFormatException, IOException{
     	double[][] CoLab = new double[PairArray.size()][PairArray.size()];
     		

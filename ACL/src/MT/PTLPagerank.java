@@ -13,13 +13,18 @@ import Jama.*;
  * @version $LastChangedDate$
  */
 
+/*
+ * Two Layer (MTurkers layer and Sentences layer)Page Rank 
+ */
 public class PTLPagerank extends constructM{
+	/*
 	public static final boolean TER_NORMALIZED = true;
 	public static final boolean TER_CASE_ON = true;
 	public static final boolean TER_IGNORE_PUNCT = false;
 	public static final int TER_BEAM_WIDTH = 20;
 	public static final int TER_SHIFT_DIST = 50;
 	private static final TERcost TER_COST = new TERcost();
+	*/
 	ArrayList<IDnode> nodelist = new ArrayList<IDnode>();
 	
 	public int IsExist(String nodeid){
@@ -37,36 +42,32 @@ public class PTLPagerank extends constructM{
 			return -1;
 		
 	}
+	//judge whether the translator is in PairArray[i]
 	public boolean FindTranslator(String t, ArrayList<Pair> PairArray,int i ){
-    	//for(int i = 0; i < PairArray.size();i++){
     		if(PairArray.get(i).getTrans().equals(t) == true) return true;
     		else return false;
-    			//{
-    			//PairArray.get(i).SetTimes(PairArray.get(i).getTimes()+1);
-    	//		return i;
     	
-    	//}
     	
     }
+	//judge whether the translator-editor pair is in PairArray[i]
+	public boolean FindColab(String t, String e, ArrayList<Pair> PairArray,int i ){
+    		if(PairArray.get(i).getTrans().equals(t)==true && PairArray.get(i).getEdit().equals(e) == true) return true;
+    		else return false;
+    }
+	//judge whether the editor is in PairArray[i]
 	public boolean FindEditor(String e, ArrayList<Pair> PairArray,int i ){
-    	//for(int i = 0; i < PairArray.size();i++){
     		if(PairArray.get(i).getEdit().equals(e) == true) return true;
     		else return false;
-    			//{
-    			//PairArray.get(i).SetTimes(PairArray.get(i).getTimes()+1);
-    	//		return i;
-    	
-    	//}
-    	
     }
+	//Two Layer Rank on one sentence set
 	public void Rank(int dataid,ArrayList<PrintWriter> outputlist,double lambda) throws NumberFormatException, IOException{
 		
-		TERcalc.setNormalize(TER_NORMALIZED);
+		/*TERcalc.setNormalize(TER_NORMALIZED);
 		TERcalc.setCase(TER_CASE_ON);
 		TERcalc.setPunct(TER_IGNORE_PUNCT);
 		TERcalc.setBeamWidth(TER_BEAM_WIDTH);
 		TERcalc.setShiftDist(TER_SHIFT_DIST);
-		
+		*/
 		String filename = "F:/NLP/TFIDFDATA/text"+dataid+".txt";
 		BufferedReader in = new BufferedReader(new FileReader(filename));
 		String ss = "";
@@ -172,12 +173,34 @@ public class PTLPagerank extends constructM{
     			 }
     		 }
     		 if(i >= 4){
-    			 String e = IDs.get(i);
+    			 String t = "";
+    			 String e;
+    			 if(i<=6)
+    			  t = IDs.get(0);
+    			 else if(i>=7 && i <= 9)
+    			  t = IDs.get(1);
+    			 else if(i>=10 && i <= 12)
+    			  t = IDs.get(2);
+    			 else if(i == 13)
+    			  t = IDs.get(3);
+    			 
+    			 e = IDs.get(i);
+    			 for(int j = 0; j < PairArray.size();j++){
+    				 if(FindColab(t,e, PairArray,j) == true){
+    					 A[i][j] = 1;
+    				 }
+    			 }
+    			 for(int j = 0; j < PairArray.size();j++){
+    				 if(FindTranslator(t, PairArray,j) == true){
+    					 A[i][j] = 1;
+    				 }
+    			 }
     			 for(int j = 0; j < PairArray.size();j++){
     				 if(FindEditor(e, PairArray,j) == true){
     					 A[i][j] = 1;
     				 }
     			 }
+    			 
     		 }
     	 }
     	 
@@ -246,11 +269,11 @@ public class PTLPagerank extends constructM{
     	 
     	 TwoLayerRank pr = new TwoLayerRank();
     	 Matrix result = pr.getfirstpage(M,N,W_ba,W_hat,lambda, 0.01);
-    	 //System.out.println("Rank");
-    	//for(int i = 0; i < result.getRowDimension();i++){
-			// System.out.println(result.get(i, 0));
+    	 /*System.out.println("Rank");
+    	for(int i = 0; i < result.getRowDimension();i++){
+			 System.out.println(result.get(i, 0));
 			 
-		 //}
+		 }*/
     	 int maxindex = 0;
     	 double max = 0.0;
     	 for(int k = 0; k < lengthM;k++){
@@ -259,7 +282,7 @@ public class PTLPagerank extends constructM{
     			 maxindex = k;
     		 }
     	 }
-    	 maxindex = maxindex;
+    	// maxindex = maxindex;
     	 
     	 String Trans = sentences.get(maxindex+4);
     	 String Ref1 = sentences.get(0);
@@ -280,6 +303,7 @@ public class PTLPagerank extends constructM{
 		 
 		 outputlist.get(4).println(Trans);
 	}
+	// Two Layer Rank on the corpus
 	public void TotalRank(double lambda) throws IOException{
 		int i = 1;
 		
@@ -325,13 +349,14 @@ public class PTLPagerank extends constructM{
 		outputlist.get(3).close();
 		outputlist.get(4).close();
 	}
+	//Get the curve of BLEU vs.lambda
 	public void Curve() throws IOException{
 
-		String writefile = "F:/ACL/NLP/Evaluate/PlainText/CURVE/0.01twolayerrank.txt";
+		String writefile = "F:/ACL/NLP/Evaluate/PlainText/CURVE/TwoLayer/all_0.01_1_0.04.txt";
 		File file = new File(writefile);
 		PrintWriter outwriter = new PrintWriter(file);
-		double delta = 0.0;
-		while(delta <= 1.0){
+		double delta = 0.0; // delta is set to be 0.04, every time lambda increase by 0.04
+		while(delta <=1.01){
 		 TotalRank(delta);
 			computeDocBleu bleu = new computeDocBleu(); 
 			String ref1 = "F:/ACL/NLP/Evaluate/PlainText/TEMP/Ref1.txt";
@@ -342,7 +367,7 @@ public class PTLPagerank extends constructM{
 			String res = "F:/ACL/NLP/Evaluate/PlainText/TEMP/result.txt";
 			System.out.println(delta+" "+bleu.computeBleu(ref1, ref2, ref3, ref4, trans,res));
 			outwriter.println(delta+" "+bleu.computeBleu(ref1, ref2, ref3, ref4, trans,res));
-			delta += 0.05;
+			delta += 0.04;
 		 }
 		
 		outwriter.close();

@@ -1,5 +1,13 @@
 package MT;
-
+/**
+ * @author Mingkun Gao <gmingkun@seas.upenn.edu>
+ */
+/*
+ * Implement Raw Translation method on four translations:
+ * For every translation, compute the average cosine similarity against other 3 translation,
+ * select the translation with the highest average cosine similarity
+ */
+ 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -7,24 +15,24 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import Jama.Matrix;
+//import Jama.Matrix;
 
 
 public class OracleRawTrans extends constructM{
-	public static final boolean TER_NORMALIZED = true;
+	/*public static final boolean TER_NORMALIZED = true;
 	public static final boolean TER_CASE_ON = true;
 	public static final boolean TER_IGNORE_PUNCT = false;
 	public static final int TER_BEAM_WIDTH = 20;
-	public static final int TER_SHIFT_DIST = 50;
-	private static final TERcost TER_COST = new TERcost();
+	public static final int TER_SHIFT_DIST = 50;*/
+	//private static final TERcost TER_COST = new TERcost();
 public void Rank(int dataid,ArrayList<PrintWriter> outputlist) throws NumberFormatException, IOException{
 	
-		TERcalc.setNormalize(TER_NORMALIZED);
+		/*TERcalc.setNormalize(TER_NORMALIZED);
 		TERcalc.setCase(TER_CASE_ON);
 		TERcalc.setPunct(TER_IGNORE_PUNCT);
 		TERcalc.setBeamWidth(TER_BEAM_WIDTH);
 		TERcalc.setShiftDist(TER_SHIFT_DIST);
-		
+		*/
 		String filename = "F:/ACL/NLP/TFIDFDATA/text"+dataid+".txt";
 		BufferedReader in = new BufferedReader(new FileReader(filename));
 		String ss = "";

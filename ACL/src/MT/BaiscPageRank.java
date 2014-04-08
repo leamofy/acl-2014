@@ -81,12 +81,14 @@ public class BaiscPageRank extends constructM{
     			 maxindex = k;
     		 }
     	 }
-    	 maxindex = maxindex;
+    	 //maxindex = maxindex;
+    	 
+    	 /*
     	 double ref1 = cosine(tfidfwordbag.get(maxindex),tfidfwordbag.get(0));
     	 double ref2 = cosine(tfidfwordbag.get(maxindex),tfidfwordbag.get(1));
     	 double ref3 = cosine(tfidfwordbag.get(maxindex),tfidfwordbag.get(2));
     	 double ref4 = cosine(tfidfwordbag.get(maxindex),tfidfwordbag.get(3));
-    	 
+    	 */
     	 String Trans = sentences.get(maxindex);
     	 String Ref1 = sentences.get(0);
     	 String Ref2 = sentences.get(1);

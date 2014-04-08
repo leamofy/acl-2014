@@ -1,5 +1,16 @@
 package MT;
 
+/**
+ * @author Mingkun Gao <gmingkun@seas.upenn.edu>
+ */
+/*
+ * Implement Oracle MTurker method on translations and editions:
+ * For every translation, get the averaged TER score of its translator, use it as its TER score;
+ * For every edition, get the averaged TER improved score of its editor
+ * and the averaged TER score of its editor's co-working translator, and use the difference of 
+ * the two values as the edition's TER score. 
+ * Finally, select the translation or edition with the lowest TER score 
+ */
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;

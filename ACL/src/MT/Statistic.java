@@ -11,6 +11,9 @@ import Jama.*;
  * @author Mingkun Gao, <gmingkun@seas.upenn.edu>
  * @version $LastChangedDate$
  */
+/*
+ * Get required Statistics for construction of TFIDF bag of word model 
+ */
 public class Statistic {
 	public ArrayList<String> wholewords = new ArrayList<String>();
 	public ArrayList<Integer> wholestatic = new ArrayList<Integer>();
@@ -55,6 +58,9 @@ public class Statistic {
 	    	//output2.print(s.charAt(i));
 	    	i++;
 	    }
+	    
+        
+	    
 	    int rear;
 	    ArrayList<String> temp = new ArrayList<String>();
 	    while(i < length){
@@ -137,67 +143,8 @@ public class Statistic {
 		
 		temp = new ArrayList<String>();
 		}
-	   }
+}
 	    
-	   /* System.out.println(sentences.size());
-	    for(int j = 0;j < sentences.size();j++){
-	    	ArrayList<String> as = sentences.get(j);
-	    	System.out.println();
-	    	for(int k = 0; k < as.size();k++){
-	    		System.out.print(as.get(k)+" ");
-	    	}
-	    }
-	    System.out.println();*/
-	    
-	    	//String as = wordlist.get(j);
-	   
-	    /*************************************TFIDF******************************/
-	   
-	    	
-	   /*************************Out Put**************************/
-	    /*	String filename = "F:/NLP/Data/text"+dataid+".txt";
-		    File file1 = new File(filename);*/
-		  /*  if(file1.exists()){
-		    	System.out.println("File already exits");
-		    	System.exit(0);
-		    }
-		    */
-		   /* PrintWriter output = new PrintWriter(file1);*/
-		    /*for(int j = 0;j < wordlist.size();j++){
-		    	String as = wordlist.get(j);
-		    	
-		    	output.print(as+" ");
-		    	
-		    }*/
-		    
-	    	 /*for(int j = 0;j < tfidfwordbag.size();j++){
-	 	    	ArrayList<Double> as = tfidfwordbag.get(j);
-	 	    	System.out.println();
-	 	    	for(int k = 0; k < as.size();k++){
-	 	    		System.out.print(as.get(k)+" ");
-	 	    	}
-	 	    }*/
-	    	/* output.close();
-	    	 */
-	    	
-	    	
-	    	 
-	    	/*for(int l = 0; l < lengthM;l++){
-	    		 System.out.println();
-	    		 for(int j = 0; j < lengthM;j++){
-	    			 
-	    			  System.out.print(M.get(l,j)+" ");
-	    			 
-	    		 }
-	    			 
-	    	 }*/
-	    	 
-	    
-	    	 
-	  
-		
-	
-	
 	public void getM(String filename) throws IOException{
 		File file = new File(filename);
 		Scanner input =  new Scanner(file);

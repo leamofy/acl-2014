@@ -2,13 +2,18 @@ package MT;
 import java.io.*;
 import java.util.*;
 
-import Jama.*;
+//import Jama.*;
 
 /**
  * 
  * 
  * @author Mingkun Gao, <gmingkun@seas.upenn.edu>
  * @version $LastChangedDate$
+ */
+/*
+ * Get Base Line
+ * Randomly select a translation
+ * Get PlainText result for BLEU score computation 
  */
 public class PBaseLine extends constructM{
 	private Random generator;

@@ -6,7 +6,8 @@ import Jama.*;
  * @author Mingkun Gao, <gmingkun@seas.upenn.edu>
  * @version $LastChangedDate$
  */
-public class pagerank extends Statistic{
+public class pagerank //extends Statistic
+{
 	private static final double POSITIVE_INFINITY = 10000;
 
 	public Matrix getfirstpage(Matrix Mt, double d, double v_quadratic_error){

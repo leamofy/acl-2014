@@ -1,11 +1,13 @@
 package MT;
+
+
 /**
  * @author Mingkun Gao <gmingkun@seas.upenn.edu>
  */
 /*
- * Implement Lowest TER method on four translations:
- * For every translation, compute the average TER against other 3 translation,
- * select the translation with the lowest average TER
+ * Implement Oracle Segment method on translations and editions:
+ * For every translation or edition, compute the average TER  against 4 references,
+ * select the translation or edition with the lowest average TER
  */
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,8 +18,7 @@ import java.util.ArrayList;
 
 //import Jama.Matrix;
 
-
-public class OracleLowestTER extends constructM{
+public class OracleSegmentTransEdit {
 	public static final boolean TER_NORMALIZED = true;
 	public static final boolean TER_CASE_ON = true;
 	public static final boolean TER_IGNORE_PUNCT = false;
@@ -69,12 +70,12 @@ public void Rank(int dataid,ArrayList<PrintWriter> outputlist) throws NumberForm
 		}
 		 in.close();
 		 
-		 int lengthM = 4;
+		 int lengthM = 14;
 		 double[] score = new double[lengthM];
 		 for(int i = 0; i < lengthM;i++)
 			 score[i] = 0.0;
 		 
-		 /*for(int i = 0; i < lengthM;i++){
+		 for(int i = 0; i < lengthM;i++){
 			 String hyp = sentences.get(i+4);
 			 String ref0 = sentences.get(0);
 			 String ref1 = sentences.get(1);
@@ -94,25 +95,10 @@ public void Rank(int dataid,ArrayList<PrintWriter> outputlist) throws NumberForm
 			 double t3 = ter3.numEdits/ter3.numWords;
 			 
 			 score[i] = (t0 + t1 + t2 + t3)/4;
-		 }*/
-		 //System.out.println("I am here");
-		 for(int i = 0; i < lengthM;i++){
-			 String hyp = sentences.get(i+4);
-			 double tmp = 0.0;
-			 for(int j = 0;j < lengthM;j++){
-				 if(i != j){
-					 String ref = sentences.get(j+4);
-					 TERalignment ter = TERcalc.TER(hyp,ref,TER_COST);
-					 double t = ter.numEdits/ter.numWords;
-					 tmp += t;
-				 }
-				 
-			 }
-			 score[i] = (double)tmp/3;
 		 }
 		 
 		 int minindex = 0;
-    	 double min = 10000.0;
+    	 double min = 100000.0;
     	 for(int k = 0; k < lengthM;k++){
     		 if(score[k] < min){
     			 min = score[k]; 
@@ -147,22 +133,22 @@ public void TotalRank() throws IOException{
 	int i = 1;
 	
 	ArrayList<PrintWriter> outputlist = new ArrayList<PrintWriter> (); 
-	 String filename2 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleLTERTrans/Ref1.txt";
+	 String filename2 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleSegTransEditor/Ref1.txt";
 	 File file2 = new File(filename2);
 	 PrintWriter output2 = new PrintWriter(file2);
-	 String filename3 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleLTERTrans/Ref2.txt";
+	 String filename3 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleSegTransEditor/Ref2.txt";
 	 File file3 = new File(filename3);
 	 PrintWriter output3 = new PrintWriter(file3);
 	 
-	 String filename4 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleLTERTrans/Ref3.txt";
+	 String filename4 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleSegTransEditor/Ref3.txt";
 	 File file4 = new File(filename4);
 	 PrintWriter output4 = new PrintWriter(file4);
 	 
-	 String filename5 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleLTERTrans/Ref4.txt";
+	 String filename5 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleSegTransEditor/Ref4.txt";
 	 File file5 = new File(filename5);
 	 PrintWriter output5 = new PrintWriter(file5);
 	 
-	 String filename6 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleLTERTrans/Trans.txt";
+	 String filename6 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleSegTransEditor/Trans.txt";
 	 File file6 = new File(filename6);
 	 PrintWriter output6 = new PrintWriter(file6);
 	 

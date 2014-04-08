@@ -1,5 +1,14 @@
 package MT;
 
+
+/**
+ * @author Mingkun Gao <gmingkun@seas.upenn.edu>
+ */
+/*
+ * Implement Oracle Segment method on translations:
+ * For every translation, compute the average TER  against 4 references,
+ * select the translation with the lowest average TER
+ */
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -7,7 +16,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import Jama.Matrix;
+//import Jama.Matrix;
 
 public class OracleSegmentTrans {
 	public static final boolean TER_NORMALIZED = true;
@@ -61,7 +70,7 @@ public void Rank(int dataid,ArrayList<PrintWriter> outputlist) throws NumberForm
 		}
 		 in.close();
 		 
-		 int lengthM = 14;
+		 int lengthM = 4;
 		 double[] score = new double[lengthM];
 		 for(int i = 0; i < lengthM;i++)
 			 score[i] = 0.0;
@@ -124,22 +133,22 @@ public void TotalRank() throws IOException{
 	int i = 1;
 	
 	ArrayList<PrintWriter> outputlist = new ArrayList<PrintWriter> (); 
-	 String filename2 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleSegTransEditor/Ref1.txt";
+	 String filename2 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleSegTrans/Ref1.txt";
 	 File file2 = new File(filename2);
 	 PrintWriter output2 = new PrintWriter(file2);
-	 String filename3 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleSegTransEditor/Ref2.txt";
+	 String filename3 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleSegTrans/Ref2.txt";
 	 File file3 = new File(filename3);
 	 PrintWriter output3 = new PrintWriter(file3);
 	 
-	 String filename4 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleSegTransEditor/Ref3.txt";
+	 String filename4 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleSegTrans/Ref3.txt";
 	 File file4 = new File(filename4);
 	 PrintWriter output4 = new PrintWriter(file4);
 	 
-	 String filename5 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleSegTransEditor/Ref4.txt";
+	 String filename5 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleSegTrans/Ref4.txt";
 	 File file5 = new File(filename5);
 	 PrintWriter output5 = new PrintWriter(file5);
 	 
-	 String filename6 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleSegTransEditor/Trans.txt";
+	 String filename6 = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleSegTrans/Trans.txt";
 	 File file6 = new File(filename6);
 	 PrintWriter output6 = new PrintWriter(file6);
 	 

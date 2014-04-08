@@ -3,7 +3,7 @@ package MT;
 import java.io.*;
 import java.util.*;
 
-import Jama.*;
+//import Jama.*;
 
 /**
  * 
@@ -43,6 +43,11 @@ import Jama.*;
 		Rank = rank;
 	}
 }*/
+/*
+ * class GetTERStandardTranslatorIDOrder:
+ * Get the standard ranking of translators compared with
+ * four references using TER
+ */
 public class GetTERStandardTranslatorIDOrder extends constructM{
 	public static final boolean TER_NORMALIZED = true;
 	public static final boolean TER_CASE_ON = true;
@@ -52,6 +57,7 @@ public class GetTERStandardTranslatorIDOrder extends constructM{
 	private static final TERcost TER_COST = new TERcost();
 	ArrayList<IDnode> nodelist = new ArrayList<IDnode>();
 	
+	// Is the node already in the node list
 	public int IsExist(String nodeid){
 		int length = nodelist.size();
 		int i;
@@ -67,7 +73,8 @@ public class GetTERStandardTranslatorIDOrder extends constructM{
 			return -1;
 		
 	}
-	
+	// On the i'th data set, get the TER of every translation and add it to the corresponding translator node 
+	// in the list
 	public void Rank(int dataid ) throws NumberFormatException, IOException{
 		
 		TERcalc.setNormalize(TER_NORMALIZED);
@@ -171,6 +178,8 @@ public class GetTERStandardTranslatorIDOrder extends constructM{
     		 }
     	 }			
 	}
+	
+	// Get the whole node list with every translator's TER score
 	public void getTotalRank() throws IOException{
 		int i = 1;
 		while( i < 1684  ){  
@@ -184,6 +193,7 @@ public class GetTERStandardTranslatorIDOrder extends constructM{
 		}
 		System.out.println(transcount);
 	}
+	// Rank the translator's node list according to the average TER score of each translator node
 	public void Sort(){
 		int max;
 		for(int i = 0; i < nodelist.size()-1;i++){
@@ -199,6 +209,7 @@ public class GetTERStandardTranslatorIDOrder extends constructM{
 			nodelist.set(max, tmp);
 		}
 	}
+	// print result
 	public void PrintID() throws FileNotFoundException{
 		String filename = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleRankTrans/OracleTERStandardTranslatorIDrank.txt";
 		File file = new File(filename);

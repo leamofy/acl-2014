@@ -10,8 +10,12 @@ import Jama.*;
  * @author Mingkun Gao, <gmingkun@seas.upenn.edu>
  * @version $LastChangedDate$
  */
+/*
+ * Implement page rank on single-layer sentences graph
+ * Get PlainText Result for BLEU score computation
+ */
 public class PBaiscPageRank extends constructM{
-	
+	//page rank on a single file
 	public void Rank(int dataid,ArrayList<PrintWriter> outputlist) throws NumberFormatException, IOException{
 		
 		String filename = "F:/ACL/NLP/TFIDFDATA/text"+dataid+".txt";
@@ -51,7 +55,7 @@ public class PBaiscPageRank extends constructM{
 		}
 		 in.close();
 		 
-		 int lengthM = 14;
+		 int lengthM = 4; // length=14: select from translations and editions  length=4: select from translations
     	 Matrix M = new Matrix(lengthM,lengthM,0);
     	 for(int l = 0; l < lengthM;l++){
     		 for(int j = 0; j < lengthM;j++){
@@ -82,11 +86,11 @@ public class PBaiscPageRank extends constructM{
     		 }
     	 }
     	 maxindex = maxindex+4;
-    	 double ref1 = cosine(tfidfwordbag.get(maxindex),tfidfwordbag.get(0));
+    	 /*double ref1 = cosine(tfidfwordbag.get(maxindex),tfidfwordbag.get(0));
     	 double ref2 = cosine(tfidfwordbag.get(maxindex),tfidfwordbag.get(1));
     	 double ref3 = cosine(tfidfwordbag.get(maxindex),tfidfwordbag.get(2));
     	 double ref4 = cosine(tfidfwordbag.get(maxindex),tfidfwordbag.get(3));
-    	 
+    	 */
     	 String Trans = sentences.get(maxindex);
     	 String Ref1 = sentences.get(0);
     	 String Ref2 = sentences.get(1);
@@ -108,7 +112,7 @@ public class PBaiscPageRank extends constructM{
 		 
 		
 	}
-	
+	//page rank on the corpus
 	public void TotalRank() throws IOException{
 		int i = 1;
 		

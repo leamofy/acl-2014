@@ -8,6 +8,7 @@ import Jama.*;
  * 
  * @author Mingkun Gao, <gmingkun@seas.upenn.edu>
  * @version $LastChangedDate$
+ * In the class constructM, the method consine(...) is used to calculate the cosine value of 2 vectors
  */
 public class constructM extends pagerank {
 	public int getWord(String s, int startindex){
@@ -94,7 +95,7 @@ public class constructM extends pagerank {
 	    	realrear = getWord(s_real,i_real);
 	    	
 	    	String tmpword = s_real.substring(i_real, realrear);
-	    	int wlen = tmpword.length();
+	    	//int wlen = tmpword.length();
 	    	//System.out.println(tmpword);
 	    	/*if (tmpword.length() > 1 &&(tmpword.substring(tmpword.length()-2)==".\""||tmpword.substring(tmpword.length()-2)==".\'"||
 	    		tmpword.substring(tmpword.length()-2)=="?\""||tmpword.substring(tmpword.length()-2)=="?\'"||tmpword.substring(tmpword.length()-2)==".)"))
@@ -185,7 +186,7 @@ public class constructM extends pagerank {
 	    	rear = getWord(s,i);
 	    	
 	    	String tmpword = s.substring(i, rear);
-	    	int wlen = tmpword.length();
+	    	//int wlen = tmpword.length();
 	    	//
 	    	if (tmpword.length() > 1 &&(tmpword.substring(tmpword.length()-2).equals(".\"")==true||tmpword.substring(tmpword.length()-2).equals(".\'")==true||
 	    		tmpword.substring(tmpword.length()-2).equals("?\"")==true||tmpword.substring(tmpword.length()-2).equals("?\'")==true||
@@ -403,13 +404,13 @@ public class constructM extends pagerank {
 	    		 }
 	    	 }
 	    	 maxindex = maxindex + 4;
-	    	 double ref1 = cosine(tfidfwordbag.get(maxindex),tfidfwordbag.get(0));
+	    	 /*double ref1 = cosine(tfidfwordbag.get(maxindex),tfidfwordbag.get(0));
 	    	 //System.out.println(tfidfwordbag.get(maxindex));
 	    	 //System.out.println(tfidfwordbag.get(0));
 	    	 double ref2 = cosine(tfidfwordbag.get(maxindex),tfidfwordbag.get(1));
 	    	 double ref3 = cosine(tfidfwordbag.get(maxindex),tfidfwordbag.get(2));
 	    	 double ref4 = cosine(tfidfwordbag.get(maxindex),tfidfwordbag.get(3));
-	    	 
+	    	 */
 	    	 ArrayList<String> res = sentences.get(maxindex);
 	    	 ArrayList<String> sref1 = sentences.get(0);
 	    	 ArrayList<String> sref2 = sentences.get(1);
@@ -622,12 +623,7 @@ public class constructM extends pagerank {
 		 outputlist.add(output6);
 		BufferedReader br = new BufferedReader(new FileReader(filename));  
 		String data = br.readLine();//一次读入一行，直到读入null为文件结束  
-		//data = br.readLine();
 		
-		/*while( data!=null  && i < 1556){
-			data = br.readLine(); 
-				i++;
-		}*/
 		double totalsum = 0.0; 
 		while( data!=null  ){  
 			//System.out.println(data);
@@ -732,24 +728,7 @@ public class constructM extends pagerank {
 		
 		int i = 1;
 		
-	/* String filename2 = "F:/NLP/newdata.txt";
-		 File file2 = new File(filename2);
-		 PrintWriter output2 = new PrintWriter(file2);
-		BufferedReader br = new BufferedReader(new FileReader(filename));  
-		String data = br.readLine();//一次读入一行，直到读入null为文件结束  
-		data = br.readLine();
-		
-		
-		while( data!=null  ){
-			
-		  if (data.indexOf("N/A") == -1)
-				output2.println(data);
-		      i++;
-		      
-		      data = br.readLine(); //接着读下一行
-		      
-		}  
-		output2.close();*/
+	
 		
 		String filename2 = "F:/NLP/newdata.txt";
 		 File file2 = new File(filename2);

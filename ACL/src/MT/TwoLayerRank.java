@@ -6,7 +6,11 @@ import Jama.*;
  * @author Mingkun Gao, <gmingkun@seas.upenn.edu>
  * @version $LastChangedDate$
  */
-public class TwoLayerRank extends Statistic{
+/*
+ * Implement the Two Layer Page rank
+ */
+public class TwoLayerRank// extends Statistic
+{
 	private static final double POSITIVE_INFINITY = 10000;
 
 	public Matrix getfirstpage(Matrix Mt, Matrix Nt, Matrix W_ba,Matrix W_hat, double d, double v_quadratic_error){

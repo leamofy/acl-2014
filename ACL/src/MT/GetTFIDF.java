@@ -3,7 +3,7 @@ package MT;
 import java.io.*;
 import java.util.*;
 
-import Jama.*; 
+//import Jama.*; 
 
 
 /**
@@ -11,6 +11,62 @@ import Jama.*;
  * 
  * @author Mingkun Gao, <gmingkun@seas.upenn.edu>
  * @version $LastChangedDate$
+ */
+/*
+ * Get Structured Data Set
+ * 
+ * Each data set file is in the following format:
+ * Line1: vocabulary list for one source's references,translations and editions
+ * Line2: ref1
+ * Line3: TFIDF bag of word models of ref1
+ * Line4: ref2
+ * Line5: TFIDF bag of word models of ref2
+ * Line6: ref3
+ * Line7: TFIDF bag of word models of ref3
+ * Line8: ref4
+ * Line9: TFIDF bag of word models of ref4
+ * Line10: TransID_1
+ * Line11: trans_1
+ * Line12: TFIDF bag of word models of trans_1
+ * Line13: TransID_2
+ * Line14: trans_2
+ * Line15: TFIDF bag of word models of trans_2
+ * Line16: TransID_13
+ * Line17: trans_3
+ * Line18: TFIDF bag of word models of trans_3
+ * Line19: TransID_4
+ * Line20: trans_4
+ * Line21: TFIDF bag of word models of trans_4
+ * Line22: EditID_1_1
+ * Line23: edit_1_1
+ * Line24: TFIDF bag of word models of edit_1_1
+ * Line25: EditID_1_2
+ * Line26: edit_1_2
+ * Line27: TFIDF bag of word models of edit_1_2
+ * Line28: EditID_1_3
+ * Line29: edit_1_3
+ * Line30: TFIDF bag of word models of edit_1_3
+ * Line31: EditID_2_1
+ * Line32: edit_2_1
+ * Line33: TFIDF bag of word models of edit_2_1
+ * Line34: EditID_2_2
+ * Line35: edit_2_2
+ * Line36: TFIDF bag of word models of edit_2_2
+ * Line37: EditID_2_3
+ * Line38: edit_2_3
+ * Line39: TFIDF bag of word models of edit_2_3
+ * Line40: EditID_3_1
+ * Line41: edit_3_1
+ * Line42: TFIDF bag of word models of edit_3_1
+ * Line43: EditID_3_2
+ * Line44: edit_3_2
+ * Line45: TFIDF bag of word models of edit_3_2
+ * Line46: EditID_3_3
+ * Line47: edit_3_3
+ * Line48: TFIDF bag of word models of edit_3_3
+ * Line49: EditID_4_1
+ * Line50: edit_4_1
+ * Line51: TFIDF bag of word models of edit_4_1
  */
 public class GetTFIDF extends pagerank {
 	public int getWord(String s, int startindex){
@@ -61,6 +117,7 @@ public class GetTFIDF extends pagerank {
 		}
 		return sum/(Math.sqrt(sumA)*Math.sqrt(sumB));
 	}
+	// Get structured data of a file
 	public void worddivider(String s,int dataid,ArrayList<String> wholewords,ArrayList<Integer> wholestatic,int totalcount) throws FileNotFoundException{
 		ArrayList<ArrayList<String>> sentences = new ArrayList<ArrayList<String>>();
 		
@@ -272,7 +329,7 @@ public class GetTFIDF extends pagerank {
 	    }
 		
 	
-	
+	// Get the whole structured data sets for all files
 	public void getTFIDF(String filename,ArrayList<String> wholewords,ArrayList<Integer> wholestatic,int totalcount) throws IOException{
 		int i = 1;
 		/*while(i < 1000000){
@@ -347,6 +404,7 @@ public class GetTFIDF extends pagerank {
 		return res;
 		
 	}
+	//Clean Data:remove sentence with N/A
 	public void dataclean(String filename) throws IOException{
 		
 		int i = 1;

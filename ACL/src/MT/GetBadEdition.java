@@ -11,7 +11,9 @@ import java.util.*;
  * @author Mingkun Gao, <gmingkun@seas.upenn.edu>
  * @version $LastChangedDate$
  */
-
+/*
+ * Find Bad Edition
+ */
 /*class IDnode{
 	String ID;
 	double Rank;
@@ -45,39 +47,19 @@ import java.util.*;
 }*/
 
 /*
- * class GetTERStandardTranslatorIDOrder:
- * Get the standard ranking of editors compared with
- * four references using TER and ranking is based on 
- * TER delta(improvement TER score an editor made)
+ * class GetBadEdition:
+ * 
  */
-public class GetTERStandardEditorIDOrder extends constructM{
+public class GetBadEdition extends constructM{
 	public static final boolean TER_NORMALIZED = true;
 	public static final boolean TER_CASE_ON = true;
 	public static final boolean TER_IGNORE_PUNCT = false;
 	public static final int TER_BEAM_WIDTH = 20;
 	public static final int TER_SHIFT_DIST = 50;
 	private static final TERcost TER_COST = new TERcost();
-	ArrayList<IDnode> nodelist = new ArrayList<IDnode>();
+	//ArrayList<IDnode> nodelist = new ArrayList<IDnode>();
 	
-	// Is the node already in the node list
-	public int IsExist(String nodeid){
-		int length = nodelist.size();
-		int i;
-		for(i = 0; i < length;i++){
-			IDnode tmpnode = nodelist.get(i);
-			if(tmpnode.getID().equals(nodeid) == true)
-				break;
-		}
-		if(i < length){
-			return i;
-		}
-		else
-			return -1;
-		
-	}
-	// On the i'th data set, get the TER of every edition and its corresponding translation and 
-	//add the delta between these two values to the corresponding editor node  in the list
-	public void Rank(int dataid ) throws NumberFormatException, IOException{
+	public void FindBadEdition(int dataid,PrintWriter output ) throws NumberFormatException, IOException{
 		
 		TERcalc.setNormalize(TER_NORMALIZED);
 		TERcalc.setCase(TER_CASE_ON);
@@ -132,6 +114,7 @@ public class GetTERStandardEditorIDOrder extends constructM{
 		 }*/
     	 String hyp = "";
     	 String ref = "";
+    	 String translator = "";
     	 double [] result = new double[lengthM -8];
     	 for(int i = 8; i < lengthM;i++){
     		 hyp = sentences.get(i);
@@ -154,6 +137,7 @@ public class GetTERStandardEditorIDOrder extends constructM{
 			 double tertrans = 0.0;
 			 if(8<=i && i<=10){
 				 hyp = sentences.get(4);
+				 translator = IDs.get(0);
 	    		 ref = sentences.get(0);
 	    		 ter1 = TERcalc.TER(hyp,ref,TER_COST);
 				 t1 = ter1.numEdits/ter1.numWords;
@@ -174,6 +158,7 @@ public class GetTERStandardEditorIDOrder extends constructM{
 			 }
 			 if(11<=i && i<=13){
 				 hyp = sentences.get(5);
+				 translator = IDs.get(1);
 	    		 ref = sentences.get(0);
 	    		 ter1 = TERcalc.TER(hyp,ref,TER_COST);
 				 t1 = ter1.numEdits/ter1.numWords;
@@ -194,6 +179,7 @@ public class GetTERStandardEditorIDOrder extends constructM{
 			 }
 			 if(14<=i && i<=16){
 				 hyp = sentences.get(6);
+				 translator = IDs.get(2);
 	    		 ref = sentences.get(0);
 	    		 ter1 = TERcalc.TER(hyp,ref,TER_COST);
 				 t1 = ter1.numEdits/ter1.numWords;
@@ -214,6 +200,7 @@ public class GetTERStandardEditorIDOrder extends constructM{
 			 }
 			 if(i==17){
 				 hyp = sentences.get(7);
+				 translator = IDs.get(3);
 	    		 ref = sentences.get(0);
 	    		 ter1 = TERcalc.TER(hyp,ref,TER_COST);
 				 t1 = ter1.numEdits/ter1.numWords;
@@ -234,6 +221,12 @@ public class GetTERStandardEditorIDOrder extends constructM{
 			 }
 			 
 			 result[i-8] = tertrans - teredit;
+			 if((tertrans - teredit)<0 ){
+				 output.println("Translator: " + translator.toUpperCase());
+				 output.println("Editor: "+ IDs.get(i-4).toUpperCase());
+				 output.println("Tran:"+ hyp);
+				 output.println("Edit:"+sentences.get(i));
+			 }
     		 
     	 }
     	 /*for(int l = 0; l < lengthM;l++){
@@ -243,65 +236,23 @@ public class GetTERStandardEditorIDOrder extends constructM{
     		 System.out.println();
     	 }*/
     	 
-    	 for(int k = 4; k < lengthM-4;k++){
-    		 String id = IDs.get(k);
-    		 int index = IsExist(id);
-    		 if(index == -1){
-    			 IDnode tmp = new IDnode(id,result[k-4],1);
-    			 nodelist.add(tmp);
-    		 }
-    		 else {
-    		 double currentrank = nodelist.get(index).getRank();
-    		 double newrank = currentrank+result[k-4];
-    		 int newcount = 1 + nodelist.get(index).getCount();
-    		 nodelist.get(index).setRank(newrank);
-    		 nodelist.get(index).setCount(newcount);
-    		 	/*if(nodelist.get(index).getID().equals("a353ocl6lm6m4o")){
-    		 		System.out.println(currentrank +" "+result.get(k, 0)+" "+dataid);
-    		 	}*/
-    		 }
-    	 }			
+    				
 	}
 	// Get the whole node list with every editor's delta TER score
-	public void getTotalRank() throws IOException{
-		int i = 1;
-		while( i < 1684  ){  
-		      Rank(i);
-		      i++;
-		}
-		int transcount = 0;
-		for(int j = 0; j < nodelist.size();j++){
-			transcount += nodelist.get(j).getCount();
-		System.out.println(nodelist.get(j).getID() + " "+ nodelist.get(j).getRank()+" "+ nodelist.get(j).getCount() +" "+nodelist.get(j).getRank()/nodelist.get(j).getCount());
-		}
-		System.out.println(transcount);
-	}
-	// Rank the editor's node list according to the average TER score of each editor node
-	public void Sort(){
-		int max;
-		for(int i = 0; i < nodelist.size()-1;i++){
-			max = i;
-			for(int j = i+1;j < nodelist.size();j++){
-				if(nodelist.get(j).getRank()/nodelist.get(j).getCount() > nodelist.get(max).getRank()/nodelist.get(max).getCount()){
-					max = j;
-				}
-				
-			}
-			IDnode tmp = nodelist.get(i);
-			nodelist.set(i, nodelist.get(max));
-			nodelist.set(max, tmp);
-		}
-	}
-	// print result
-	public void PrintID() throws FileNotFoundException{
-		String filename = "F:/ACL/NLP/Evaluate/PlainText/Oracle/OracleRankTransEdit/OracleTERStandardEditorIDrank.txt";
+	public void GetBadEditions() throws IOException{
+		String filename = "F:/ACL/NLP/Evaluate/PlainText/Oracle/BadEdition/BadEdition.txt";
 		File file = new File(filename);
 		PrintWriter output = new PrintWriter(file);
-		for(int i = 0; i < nodelist.size();i++){
-			output.println(nodelist.get(i).getID()+" "+nodelist.get(i).getRank()/nodelist.get(i).getCount());
+		int i = 1;
+		while( i < 1684  ){  
+			FindBadEdition(i,output);
+		      i++;
 		}
 		output.close();
+		
 	}
+	// Rank the editor's node list according to the average TER score of each editor node
+	
 }
 
 	

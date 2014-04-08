@@ -11,6 +11,9 @@ import Jama.*;
  * @author Mingkun Gao, <gmingkun@seas.upenn.edu>
  * @version $LastChangedDate$
  */
+/*
+ * Get required Statistics for construction of TFIDF bag of word model 
+ */
 public class TFIDFStat {
 
 
