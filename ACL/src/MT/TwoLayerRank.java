@@ -33,6 +33,7 @@ public class TwoLayerRank// extends Statistic
 		
 		Matrix v = new Matrix(init,Nh);
 		Matrix t = new Matrix(Tinit,Nr);
+		//System.out.println((double)1/v.norm1() + " "+(double)1/t.norm1());
 		v = v.timesEquals((double)1/v.norm1());
 		t = t.timesEquals((double)1/t.norm1());
 		Matrix last_v = new Matrix(last_init,Nh);

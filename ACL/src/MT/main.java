@@ -68,7 +68,23 @@ public class Main extends pagerank{
 		outwriter.close();
 		GPE.GetColabMatrix();
 		*/
+		/*
+		 * Get  MTurker Matrix using co-editor 
+		 */
+		/*GetPairOnlyEditor GPOE = new GetPairOnlyEditor();
+		GPOE.getpairlist();
+		String filename = "F:/ACL/NLP/CoLab/onlyeditorcolabor.txt";
+		File file = new File(filename);
+		PrintWriter outwriter = new PrintWriter(file);
 		
+		for(int i = 0; i < GPOE.PairArray.size();i++){
+			outwriter.println(GPOE.PairArray.get(i).getTrans() + " " + GPOE.PairArray.get(i).getEdit()+" "+GPOE.PairArray.get(i).getTimes());
+		}
+		System.out.println(GPOE.Count());
+		System.out.println(GPOE.getSize());
+		outwriter.close();
+		GPOE.GetColabMatrix();
+		*/
 		
 		/*
 		 *  Get  MTurker Matrix using co-translator and/or co-editor
@@ -92,8 +108,8 @@ public class Main extends pagerank{
 		/*
 		 * Two Layer Page Rank, get curve
 		 */
-		//PTLPagerank  ptlp = new PTLPagerank(); 
-		//ptlp.Curve();
+		PTLPagerank  ptlp = new PTLPagerank(); 
+		ptlp.Curve();
 		
 		
 		/*GetTERStandardTranslatorIDOrder getterorder = new GetTERStandardTranslatorIDOrder();

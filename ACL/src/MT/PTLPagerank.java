@@ -352,7 +352,7 @@ public class PTLPagerank extends constructM{
 	//Get the curve of BLEU vs.lambda
 	public void Curve() throws IOException{
 
-		String writefile = "F:/ACL/NLP/Evaluate/PlainText/CURVE/TwoLayer/all_0.01_1_0.04.txt";
+		String writefile = "F:/ACL/NLP/Evaluate/PlainText/CURVE/TwoLayer/result_0.01_0.1_0.01.txt"; //Record the curve(you can change the file name as you like)
 		File file = new File(writefile);
 		PrintWriter outwriter = new PrintWriter(file);
 		double delta = 0.0; // delta is set to be 0.04, every time lambda increase by 0.04
