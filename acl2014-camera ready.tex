@@ -314,12 +314,12 @@ The HIT collection can be modeled as a weighted undirected graph. Nodes in the g
 \end{aligned}
 \end{equation} where $\mathcal{F}(.)$ is the cosine similarity and $h$ is a term vector corresponding to an HIT. We treat an HIT as a short document and weight each term with \textit{tf.idf} \cite{a16}, where \textit{tf} is the term frequency and \textit{idf} is the inverse document frequency.
 
-The Turker graph is an undirected graph based on the collaboration linkage. When $t_i$ and $t_j$ have a shared ``collaboration'', we add an edge between $t_i$ and $t_j$. There are 3 different schema to define collaborations, e.g., pairs with the same translator and/or post-editor, which will be discussed in details in the experiment section. Let the function $\mathcal{I}(t_i,t_j)$ denote the times of shared ``collaborations'' (\#c) when there is an edge between $t_i$ and $t_j$. The adjacency matrix N is then defined as:
+The Turker graph is an undirected graph based on the collaboration linkage. When $t_i$ and $t_j$ have a shared ``collaboration'', we add an edge between $t_i$ and $t_j$. There are 3 different schema to define collaborations, e.g., pairs with the same translator and/or post-editor, which will be discussed in details in the experiment section. Let the function $\mathcal{I}(t_i,t_j)$ denote the times of shared ``collaborations'' (\#col) when there is an edge between $t_i$ and $t_j$. The adjacency matrix N is then defined as:
 \begin{equation}
 \begin{aligned}
 \mathcal{I}(t_i,t_j)&=
 \begin{cases}
-\#c &(e_{ij} \in E_T) \\
+\#col &(e_{ij} \in E_T) \\
 0 &\text{otherwise}
 \end{cases}, \\
 N_{ij}&=\frac{\mathcal{I}(t_i,t_j)}{\sum_k \mathcal{I}(t_i,t_k)}
@@ -356,11 +356,23 @@ To measure the quality of the translations, we make use of the existing professi
 
 %We also evaluate translation quality by using reference sets to score various submissions to the NIST MT evaluation. Specifically, we measure the correlation (using Pearson r) between BLEU scores of MT systems measured against non-professional translations, and BLEU scores measured against professional translations. Since the main purpose of the NIST dataset was to compare MT systems against each other, this is a more direct fitness-for-task measure. We chose the middle 6 systems (in terms of performance) submitted to the NIST evaluation, out of 12, as those systems were fairly close to each other, with less than 2 BLEU points separating them.
 
-\begin{figure*}[t]
-  \centering
-  \includegraphics[width=0.95\textwidth]{result}
-  \caption{Overall BLEU performance for all methods. The highlighted yellow bars indicate methods based on both HIT and Turker information, with and without post-editing. We directly report the results of the Linear Feature Crowdsourcing in this figure.}
-\end{figure*}
+
+
+\begin{table}[t]
+\centering
+\begin{tabular}{|c||c|} \hline
+Reference (Avg.)   &42.51        \\   \hline 
+Oracle (Seg-Trans)  &44.92	          \\  \hline
+Oracle (Seg-Tran+Edit)  &48.44	          \\  \hline
+Oracle (Turker-Trans)    &38.66 \\ \hline
+Oracle (Turker-Tran+Edit)    &39.16 \\ \hline \hline
+Random &30.52  	           \\ \hline 
+Lowest TER   &35.78  \\  \hline
+Graph Ranking (Trans)   &38.88  \\  \hline
+Graph Ranking (Tran+Edit)   &\textbf{41.43}  \\  \hline
+\end{tabular}
+\caption{Overall BLEU performance for all methods. The highlighted yellow bars indicate methods based on both HIT and Turker information, with and without post-editing.}
+\end{table}
 
 \subsection{Comparison Methods}
 We first include an intuitive method of random selection, picking HIT out of all generations at random, which could be estimated as a lower bound. As mentioned, we evaluate the reference sets against each other, in order to quantify the concept of ``professional quality''. We establish the performance of professional translators, calculate the upper bounds for Turkers' translation quality, and then carry out a set of experiments that demonstrate the effectiveness of our model. Each number reported in the experimental results is an average of four numbers, corresponding to the four possible ways of choosing 3 of the 4 reference sets.
@@ -387,15 +399,7 @@ Besides, we evaluated the selection methods by measuring correlation with the re
 
 
 \subsection{Analysis}
-\subsubsection{Cost Reduction}
-The most prominent advantage of crowdsoucing translation would be the low cost to spend. We paid a reward of \$0.10 to translate a sentence, \$0.25 to edit a set of ten sentences. Therefore, we had the following costs:
 
-$\bullet$ Translation cost: \$716.80
-
-$\bullet$ Editing cost: \$447.50
-
-(If not done redundantly, those values would be \$179.20, \$44.75, respectively.)
-Adding Amazon's 10\% fee, this brings the grand total to under \$1,500, spent to collect 7,000+ translations, 17,000+ edited translations. While the combined cost of our data collection effort is quite low considering the amount of collected data, it is more attractive when the cost could be reduced further without losing much in translation quality by finding more professional non-experts in the Turker graph, and decreasing the amount of translated/edited translations. We indeed improved the performance over the linear combination (regression) based method and reduce costs by ranking Turker graph and HIT graph correspondingly.
 
 
 
