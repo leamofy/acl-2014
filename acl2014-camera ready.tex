@@ -147,7 +147,7 @@ LDC professional:\\ \hline
 \section{Crowdsourcing Translation}
 
 
-\subsection{Setup}
+\paragraph{Setup}
 
 We conduct our experiments using the data collected by \newcite{zaidan-callisonburch:2011:ACL-HLT2011a}. This data set consists 1,792 Urdu sentences from a variety of news and online sources, each paired with English translations provided by non-professional translators on Mechanical Turk. 
 
@@ -174,7 +174,7 @@ Table \ref{translations} gives an example of an unedited translation, an edited 
 %\end{table}
 
 
-\subsection{Analysis}
+\paragraph{Analysis}
 
 We know from inspection that translations seem to improve with editing (Table \ref{translations}). Given the data from MTurk, we explore whether this is the case in general: Do all translations improve with editing? To what extent does the individual translator and the individual editor effect the quality of the final sentence?
 
@@ -229,7 +229,7 @@ Let $G$ denote the heterogeneous graph with nodes $V$ and edges $E$. Let $G$ = (
 \begin{figure*}[t]
   \centering
   \includegraphics[width=0.68\textwidth]{framework}
-  \caption{2-step collaborative crowdsourcing translation model based on graph ranking framework including three sub-networks. The undirected links between users denotes \textit{translation-editing} collaboration. The undirected links between candidate translations indicate semantic similarity among HITs. A bipartite graph ties HIT and Turker networks together by authorship (to make the figure clearer, some linkage is omitted). A dashed circle indicates the group of candidate translations for a single source sentence to translate.}
+  \caption{2-step collaborative crowdsourcing translation model based on graph ranking framework including three sub-networks. The undirected links between users denotes \textit{translation-editing} collaboration. The undirected links between candidate translations indicate lexical similarity between candidates. A bipartite graph ties candidate and Turker networks together by authorship (to make the figure clearer, some linkage is omitted). A dashed circle indicates the group of candidate translations for a single source sentence to translate.}
   \label{frame}
 \end{figure*}
 
@@ -378,7 +378,7 @@ Lowest TER   &35.78  \\  \hline
 Graph Ranking (Trans)   &38.88  \\  \hline
 Graph Ranking (Tran+Edit)   &\textbf{41.43}  \\  \hline
 \end{tabular}
-\caption{Overall BLEU performance for all methods. The highlighted yellow bars indicate methods based on both HIT and Turker information, with and without post-editing.}
+\caption{Overall BLEU performance for all methods. The highlighted yellow bars indicate methods based on both candidate and Turker information, with and without post-editing.}
 \label{summary-results}
 \end{table}
 
