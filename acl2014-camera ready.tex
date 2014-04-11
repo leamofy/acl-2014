@@ -51,7 +51,7 @@ University of Pennsylvania, Philadelphia, PA, U.S.A.\\
 \begin{document}
 \maketitle
 \begin{abstract}
-  Crowdsourcing is a viable mechanism for creating training data for machine translation.  It provides a low cost, fast turn-around way of processing large volumes of data. However, when compared professional translation, naive collection of translations from non-professionals yields low-quality results. Careful quality control is necessary for crowdsourcing to work well. In this paper, we examine the challenges of a two-step collaboration process with translation and post-editing by non-professionals.  We develop graph-based ranking models that automatically select the best output from multiple redundant versions of translations and edits, and improves translation quality closer to professionals.
+  Crowdsourcing is a viable mechanism for creating training data for machine translation.  It provides a low cost, fast turn-around way of processing large volumes of data. However, when compared to professional translation, naive collection of translations from non-professionals yields low-quality results. Careful quality control is necessary for crowdsourcing to work well. In this paper, we examine the challenges of a two-step collaboration process with translation and post-editing by non-professionals.  We develop graph-based ranking models that automatically select the best output from multiple redundant versions of translations and edits, and improves translation quality closer to professionals.
 \end{abstract}
 
 \section{Introduction}
@@ -115,22 +115,6 @@ Although hiring professional translators to create bilingual training data for m
 This paper is most closely related to previous work by \newcite{zaidan-callisonburch:2011:ACL-HLT2011a}, who showed that non-professional translators could approach the level of professional translators.  They solicited multiple redundant translations from different Turkers for a collection of Urdu sentences that had been previously professionally translated by the Linguistics Data Consortium.  They built a model to try to predict on a sentence-by-sentence and Turker-by-Turker which was the best translation or translator.  They also hired US-based Turkers to edit the translations, since the translators were largely based in Pakistan and exhibited errors that are characteristic of speakers of English as a language. \newcite{zaidan-callisonburch:2011:ACL-HLT2011a} observed only modest improvements when incorporating these edited translation into their model.  We attempt to analyze why this is, and we proposed a new model to try to better leverage their data.
 
 
-
-
-
-%{\sc todo - cite past work on crowdsourcing translation \nocite{*}}
-\nocite{*}
-
-
-\section{Crowdsourcing Translation}
-
-
-\subsection{Setup}
-We use the data collected by \newcite{zaidan-callisonburch:2011:ACL-HLT2011a}. To collect this data, translators were shown 10 Urdu sentences in sequence and asked to provide and English translation of each. The reward was set at \$0.10 per translation, or roughly \$0.005 per word, and each Urdu sentence was translated by three distinct translators. 
-
-%\subsection{One-Step Model}
-%\subsection{Two-Step Collaboration Model}
-
 \begin{table}[t]
 \centering
 \begin{tabular}{|l|} \hline
@@ -155,6 +139,26 @@ LDC professional:\\ \hline
 \label{translations}
 \end{table}
 
+
+%{\sc todo - cite past work on crowdsourcing translation \nocite{*}}
+\nocite{*}
+
+
+\section{Crowdsourcing Translation}
+
+
+\subsection{Setup}
+
+We conduct our experiments using the data collected by \newcite{zaidan-callisonburch:2011:ACL-HLT2011a}. This data set consists 1,792 Urdu sentences from a variety of news and online sources, each paired with English translations provided by non-professional translators on Mechanical Turk. 
+
+Each Urdu sentence was translated redundantly by 3 distinct translators, and each translation was edited by 3 separate (native English-speaking) editors to correct for grammatical and stylistic errors. In total, this gives us 12 non-professional English candidate sentences (3 unedited, 9 edited) per original Urdu sentence. 52 different Turkers took part in the translation task, each translating 138 sentences on average. In the editing task, 320 Turkers participated, averaging 56 sentences each. For comparison, the data also includes 4 different reference translations for each source sentence, produced by professional translators. 
+
+Table \ref{translations} gives an example of an unedited translation, an edited translation, and a professional translation for the same sentence. The translations provided by translators on MTurk are generally done conscientiously, preserving the meaning of the source sentence, but typically contain simple mistakes like misspellings, typos, and awkward word choice. English-speaking editors, despite having no knowledge of the source language, are able to fix these errors. In this work, we show that the collaboration design of two heads-- non-professional Urdu translators and non-professional English editors-- yields better translated output than would either one working in isolation, and can better approximate the quality of professional translators. 
+
+
+%\subsection{One-Step Model}
+%\subsection{Two-Step Collaboration Model}
+
 %\begin{table}[t]
 %\centering
 %\begin{tabular}{|p{\linewidth}|} \hline
@@ -169,13 +173,6 @@ LDC professional:\\ \hline
 %\label{translations}
 %\end{table}
 
-On Mechanical Turk, it is likely that many translators are native Urdu speakers who can understand the source sentences but may not be able to express the original meanings in well-formed English. To improve the quality of the resulting translations, native English speakers were asked to post-edit the translated English sentences to produce more fluent ones, i.e., professional English. We aim to show that the collaboration design of two heads, non-professional Urdu speakers and non-professional English speakers, yields better output than either one working in isolation, and can better approximate the results from professional trained translators. Table 1 gives an example of the whole process of translation: the unedited translations collected in the translation pass typically contain many simple mistakes like mis-spellings, typos, and awkward word choices. The translations often reflect non-native English, but are generally done conscientiously (in spite of the relatively small payment).
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% table goes HERE!!
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-In total, our data contains 3 different translations per Urdu sentence, and have each translation edited by 3 editors. This gives 12 sentences (3 unedited, 9 edited) per original Urdu sentence.  For comparison, we have 4 professional translations for each source sentence.
 
 \subsection{Analysis}
 
@@ -187,6 +184,14 @@ We know from inspection that translations seem to improve with editing (Table \r
   \caption{Relationship between editor aggressiveness and effectiveness. Each point represents an editor/translation pair. Aggressiveness (x-axis) is measured as the TER between the pre-edit and post-edit version of the translation, and effectiveness (y-axis) is measured as the average amount by which the editing reduces the translation's TER$_{gold}$. While many editors make only a few changes, those who make many changes can bring the translation substantially closer to professional quality.}
     \label{editor-scatter}
 \end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{editor-bins}
+  \caption{Effect of editing on translations of varying quality. Rows reflect bins of editors, with the worse editors (those whose changes result in increased TER$_{gold}$) on the top and the most effective editors (those whose changes result in the largest reduction in TER$_{gold}$) on the bottom. Bars reflect bins of translations, with the highest TER$_{gold}$ translations on the left, and the lowest on the right. We can see from the consistently negative $\Delta$ TER$_{gold}$ in the bottom row that good editors are able to improve both good and bad translations.}
+    \label{editor-bins}
+\end{figure}
+
 
 We use \textit{translation edit rate} (TER) as a measure of translation similarity. TER represents the amount of change necessary to transform one sentence into another, so a low TER means the two sentences are very similar. To capture the quality (``professionalness'') of a translation, we take the average TER of the translation against each of our gold translations. That is, we define TER$_{gold}$ of translation $t$ as
 
@@ -202,13 +207,6 @@ We first look at editors along two dimensions: their aggressiveness and their ef
 
 Figure \ref{editor-scatter} shows the relationship between these two qualities for individual editor/translation pairs. We see that while most translations require only a few edits, there are a large number of translations which improve substantially after heavy editing. This trend conforms to our intuition that editing is most useful when the translation has much room for improvement, and opens the question of whether good editors can offer improvements to translations of all qualities.
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\linewidth]{editor-bins}
-  \caption{Effect of editing on translations of varying quality. Rows reflect bins of editors, with the worse editors (those whose changes result in increased TER$_{gold}$) on the top and the most effective editors (those whose changes result in the largest reduction in TER$_{gold}$) on the bottom. Bars reflect bins of translations, with the highest TER$_{gold}$ translations on the left, and the lowest on the right. We can see from the consistently negative $\Delta$ TER$_{gold}$ in the bottom row that good editors are able to improve both good and bad translations.}
-    \label{editor-bins}
-\end{figure}
-
 \begin{figure*}[ht!]
   \centering
   \includegraphics[width=\linewidth]{ter-rerank}
@@ -222,9 +220,11 @@ To address this question, we split our translations into 5 bins, based on their 
 %Figure 1 gives more typical translation examples.
 
 \section{Problem Formulation}
-The problem definition of the crowdsourcing translation task is quite obvious: given the source sentences to translate and the Turkers (i.e., translators and post-editors) on MTurk, we want to choose the best translated and post-edited sentence as output.
+The problem definition of the crowdsourcing translation task is straightforward: given a set of candidate translations for a source sentence, we want to choose the best output translation. 
 
-Our method operates over a heterogeneous network that includes translators, post-editors and translated sentences. We frame both components of HIT and Turkers into graphs, using relationships (i.e., semantic similarity, Turker collaboration and authorship correspondingly) to connect these parts as a co-ranking paradigm \cite{a28,a30}. Let $G$ denote the heterogeneous graph with nodes $V$ and edges $E$, and $G$ = ($V$,$E$) = ($V_T, V_H, E_T, E_H, E_{TH})$. $G$ is divided into three subgraphs, $G_T$, $G_H$, and $G_{TH}$. $G_H$ = ($V_H,E_H$) is a weighted undirected graph representing the HIT and their relationships. Let $V_H$ = $\{h_i|h_i \in V_H\}$ denote a collection of $|V_H|$ translated and edited sentences, and $E_H$ the set of edges representing affinity between them, established by textual similarity between the translated sentences (see Section 3.4 for details). $G_T$ = ($V_T,E_T$) is a weighted undirected graph representing the collaborative ties among Turkers. $V_T$ = $\{t_i|t_i \in V_T\}$ is the set of working pairs with size $|V_T|$. Links $E_T$ among Turkers are established by their shared \textit{translation} and \textit{post-editing} collaborations. Each collaboration would produce an output HIT. $G_{TH} = (V_{TH},E_{TH})$ is an unweighted bipartite graph that ties $G_T$ and $G_H$ together and represents ``authorship''. The graph $G$ consists of nodes $V_{TH}$ = $V_T \cup V_H$ and edges $E_{TH}$ connecting each HIT with its generators. Typically, an HIT is generated by the collaboration of a translator and a post-editor. The three sub-networks are illustrated in Figure \ref{frame}.
+This output translation is the result of the combined translation and editing stages. Therefore, our method operates over a heterogeneous network that includes translators and post-editors as well as the translated sentences that they produce. We frame the problem as follows. We form two graphs: the first graph ($G_T$) represents Turkers (translator/editor pairs) as nodes; the second graph ($G_C$) represents candidate translated and post-edited sentences (henceforth ``candidates'') as nodes. These two graphs, $G_T$ and $G_C$ are combined as subgraphs of a third graph ($G_{TC}$). Edges in $G_{TC}$ connect author pairs (nodes in $G_T$) to the candidate that they produced (nodes in $G_C$). Together,  $G_T$, $G_C$, and $G_{TC}$ define a co-ranking problem \cite{a28,a30}, which we define formally as follows.
+
+Let $G$ denote the heterogeneous graph with nodes $V$ and edges $E$. Let $G$ = ($V$,$E$) = ($V_T, V_C, E_T, E_C, E_{TC})$. $G$ is divided into three subgraphs, $G_T$, $G_C$, and $G_{TC}$. $G_C$ = ($V_C,E_C$) is a weighted undirected graph representing the candidates and their lexical relationships to one another. Let $V_C$ denote a collection of translated and edited candidates, and $E_C$ the lexical similarity between the candidates (see Section \ref{affinity} for details). $G_T$ = ($V_T,E_T$) is a weighted undirected graph representing collaborations between Turkers. $V_T$ is the set of translator/editor pairs. Edges $E_T$ connect translator/editor pairs in $V_T$ which share a translator and/or editor. Each collaboration (i.e. each node in $V_T$) produces a candidate (i.e. a node in $V_C$). $G_{TC} = (V_{TC},E_{TC})$ is an unweighted bipartite graph that ties $G_T$ and $G_C$ together and represents ``authorship''. The graph $G$ consists of nodes $V_{TC}$ = $V_T \cup V_C$ and edges $E_{TC}$ connecting each candidate with its authoring translator/post-editor pair. The three sub-networks ($G_T$, $G_C$, and $G_{TC}$) are illustrated in Figure \ref{frame}.
 
 \begin{figure*}[t]
   \centering
@@ -235,42 +235,47 @@ Our method operates over a heterogeneous network that includes translators, post
 
 \subsection{Inter-Graph Ranking}
 
-The framework includes three random walks, one on $G_T$, one on $G_H$ and the other one on $G_{TH}$. A random walk on a graph is a Markov chain, its states being the vertices of the graph. It can be described by a square matrix, where the dimension is the number of vertices in the graph. The stochastic matrix prescribing the transition probabilities from one vertex to the next. The mutual reinforcement framework couples the two random walks on $G_T$ and $G_H$ that rank HIT and Turkers in isolation. The ranking method allows to obtain a more global ranking by taking into account the intra-/inter-component dependencies. In the following sections we first describe how we obtain the rankings on $G_T$ and $G_H$, and then move on to discuss how the two are coupled.
+The framework includes three random walks, one on $G_T$, one on $G_C$ and one on $G_{TC}$. A random walk on a graph is a Markov chain, its states being the vertices of the graph. It can be described by a stochastic square matrix, where the dimension is the number of vertices in the graph, and the entries describe the transition probabilities from one vertex to the next. The mutual reinforcement framework couples the two random walks on $G_T$ and $G_C$ that rank candidates and Turkers in isolation. The ranking method allows us to obtain a global ranking by taking into account the intra-/inter-component dependencies. In the following sections, we describe how we obtain the rankings on $G_T$ and $G_C$, and then move on to discuss how the two are coupled.
 
-The ranking chain shown in Figure \ref{frame} captures the following intuitions behind. An HIT is important if 1) it is correlated with many of the other generated HIT; 2) it is authored by better qualified translators and/or post-editors. Analogously, a Turker pair is believed to be better qualified if 1) the editor is collaborating with a good translator and vice versa; 2) the working pair has authored highly voted HIT. This ranking schema is actually a reinforced process across the heterogeneous graphs. We use two vectors $\textbf{h}=[\pi(h)]_{|h| \times 1}$ and $\textbf{t}=[\pi(t)]_{|t| \times 1}$ to denote the saliency scores $\pi(.)$ of HIT and Turkers. The mentioned two intuitions could be formulated as follows:
+Our algorithm aims to capture the following intuitions. A candidate is important if 1) it is similar to many of the other proposed candidates and 2) it is authored by better qualified translators and/or post-editors. Analogously, a translator/editor pair is believed to be better qualified if 1) the editor is collaborating with a good translator and vice versa and 2) the pair has authored important candidates. This ranking schema is actually a reinforced process across the heterogeneous graphs. We use two vectors $\textbf{c}=[\pi(c)]_{|c| \times 1}$ and $\textbf{t}=[\pi(t)]_{|t| \times 1}$ to denote the saliency scores $\pi(.)$ of candidates and Turker pairs. The above-mentioned intuitions can be formulated as follows:
 
-$\bullet$ \textbf{Homogeneity.} We use an adjacency matrix $[M]_{|\textbf{h}|\times |\textbf{h}|}$ to describe the homogeneous affinity between HIT, and use $[N]_{|\textbf{t}| \times |\textbf{t}|}$ between Turkers.
+$\bullet$ \textbf{Homogeneity.} We use adjacency matrix $[M]_{|\textbf{c}|\times |\textbf{c}|}$ to describe the homogeneous affinity between candidates and $[N]_{|\textbf{t}| \times |\textbf{t}|}$ to describe the affinity between Turkers.
 \begin{equation}
-\textbf{h} \propto {M}^{T} \textbf{h}, \qquad \textbf{t} \propto {N}^{T} \textbf{t}
+\textbf{c} \propto {M}^{T} \textbf{c}, \qquad \textbf{t} \propto {N}^{T} \textbf{t}
 \end{equation}
 
-where $h=|V_H|$ is the number of vertices in the HIT graph and $t=|V_T|$ is the number of vertices in the Turker graph. The adjacency matrix $[M]$ denotes the transition probabilities among HIT, and analogously matrix $[N]$ to describe the affinity between Turker collaboration pairs.
+where $c=|V_C|$ is the number of vertices in the candidate graph and $t=|V_T|$ is the number of vertices in the Turker graph. The adjacency matrix $[M]$ denotes the transition probabilities between candidates, and analogously matrix $[N]$ denotes the affinity between Turker collaboration pairs.
 
-$\bullet$ \textbf{Heterogeneity.} We use an adjacency matrix $[\hat{W}]_{|\textbf{h}| \times |\textbf{t}|}$ and $[\bar{W}]_{|\textbf{t}|\times |\textbf{h}|}$ to describe the authorship between the output HIT and the producer Turker pairs from both of the HIT-to-Turker and Turker-to-HIT perspectives.
+$\bullet$ \textbf{Heterogeneity.} We use an adjacency matrix $[\hat{W}]_{|\textbf{c}| \times |\textbf{t}|}$ and $[\bar{W}]_{|\textbf{t}|\times |\textbf{c}|}$ to describe the authorship between the output candidate and the producer Turker pair from both of the candidate-to-Turker and Turker-to-candidate perspectives.
 \begin{equation}
-\textbf{h} \propto \hat{W}^{T} \textbf{t}, \qquad \textbf{t} \propto \bar{W}^{T} \textbf{h}
+\textbf{c} \propto \hat{W}^{T} \textbf{t}, \qquad \textbf{t} \propto \bar{W}^{T} \textbf{c}
 \end{equation}
 
-All affinity matrices will be defined in the next section. By fusing the above equations, we can have the following iterative calculation in matrix forms. For numerical computation of the saliency scores, the initial scores of all sentences and images are set to 1 and the following two steps are alternated until convergence to select the best HIT. The ranking is formulated as:
+All affinity matrices will be defined in the next section. By fusing the above equations, we can have the following iterative calculation in matrix forms. For numerical computation of the saliency scores, the initial scores of all sentences and Turkers are set to 1 and the following two steps are alternated until convergence to select the best candidate. 
 
-\textbf{Step 1}: compute the saliency scores of HIT, and then normalize using $\ell$-1 norm.
+\textbf{Step 1}: compute the saliency scores of candidates, and then normalize using $\ell$-1 norm.
 \begin{equation}
 \begin{aligned}
-\textbf{h}^{(n)}&=(1-\lambda) {M}^{T}\textbf{h}^{(n-1)}+\lambda \hat{W}\textbf{t}^{(n-1)}\\
-\textbf{h}^{(n)}&=\textbf{h}^{(n)}/||\textbf{h}^{(n)}||_1
+\textbf{c}^{(n)}&=(1-\lambda) {M}^{T}\textbf{c}^{(n-1)}+\lambda \hat{W}\textbf{t}^{(n-1)}\\
+\textbf{c}^{(n)}&=\textbf{c}^{(n)}/||\textbf{c}^{(n)}||_1
 \end{aligned}
 \end{equation}
 
-\textbf{Step 2}: compute the saliency scores of Turker pairs, and then normalize in $\ell$-1 norm.
+\textbf{Step 2}: compute the saliency scores of Turker pairs, and then normalize using $\ell$-1 norm.
 \begin{equation}
 \begin{aligned}
-\textbf{t}^{(n)}&=(1-\lambda) {N}^{T}\textbf{t}^{(n-1)}+\lambda \bar{W}\textbf{h}^{(n-1)}\\
+\textbf{t}^{(n)}&=(1-\lambda) {N}^{T}\textbf{t}^{(n-1)}+\lambda \bar{W}\textbf{c}^{(n-1)}\\
 \textbf{t}^{(n)}&=\textbf{t}^{(n)}/||\textbf{t}^{(n)}||_1
 \end{aligned}
-\end{equation} where $\lambda$ specify the relative contributions to the saliency scores trade-off from the homogeneous affinity and the heterogeneous affinity. In order to guarantee the convergence of the iterative form, we must force the transition matrix to be stochastic and irreducible. To this end, we must make the \textbf{h} and \textbf{t} \textit{column stochastic} to force transition matrix stochastic \cite{a20}. \textbf{h} and \textbf{t} are therefore normalized after each iteration in Equation (3) and (4).
+\end{equation} where $\lambda$ specifies the relative contributions to the saliency score trade-off between the homogeneous affinity and the heterogeneous affinity. In order to guarantee the convergence of the iterative form, we must force the transition matrix to be stochastic and irreducible. To this end, we must make the \textbf{c} and \textbf{t} \textit{column stochastic} \cite{a20}. \textbf{c} and \textbf{t} are therefore normalized after each iteration of Equation (4) and (5).
 
 \subsection{Intra-Graph Ranking}
-The standard PageRank algorithm starts from any node, then randomly selects a link from that node to follow considering the weighted transition matrix, or jumps to a random node with equal probability. Note that the generated HIT could be pre-judged to be of different linguistics qualities \cite{a14,zaidan-callisonburch:2011:ACL-HLT2011a}, we can incorporate textual quality as the transitional prior. However, since linguistics quality is not the focus of this work, we simplify the study by starting with the standard ranking. %the general textual quality judgement described in \cite{zaidan-callisonburch:2011:ACL-HLT2011a}. We use the following criteria as indicators of the quality of the generations:
+The standard PageRank algorithm starts from an arbitrary node and randomly selects to either follow a random out-going edge (considering the weighted transition matrix) or to jump to a random node (treating all nodes with equal probability). 
+
+%From Ellie - I am not sure what this sentence is referring to, or why it is included ??
+%Note that the generated candidate could be pre-judged to be of different linguistics qualities \cite{a14,zaidan-callisonburch:2011:ACL-HLT2011a}, we can incorporate textual quality as the transitional prior. However, since linguistics quality is not the focus of this work, we simplify the study by starting with the standard ranking. 
+
+%the general textual quality judgement described in \cite{zaidan-callisonburch:2011:ACL-HLT2011a}. We use the following criteria as indicators of the quality of the generations:
 %
 %\textbf{Sentence-Level}. The first set of features attempt to discriminate good English sentences from bad ones before the graph ranking process.
 %
@@ -292,28 +297,29 @@ The standard PageRank algorithm starts from any node, then randomly selects a li
 %
 %After calculation of all features, we sort out an overall score to measure the linguistics and Turker quality based on regression when apply the linear combination measurement in \cite{zaidan-callisonburch:2011:ACL-HLT2011a}, the quality scores are denoted as $\textbf{h}_0$ for HIT and $\textbf{t}_0$ for Turker pairs.
 
-In a simple random walk, it is assumed that all nodes in the transitional matrix are equi-probable before the walk starts. Then \textbf{h} and \textbf{t} should be calculated as:
+In a simple random walk, it is assumed that all nodes in the transitional matrix are equi-probable before the walk starts. Then \textbf{c} and \textbf{t} are calculated as:
 \begin{equation}
-\textbf{h}=\mu M^{T}\textbf{h} + (1-\mu) \frac{\textbf{1}}{|V_H|}
+\textbf{c}=\mu M^{T}\textbf{c} + (1-\mu) \frac{\textbf{1}}{|V_C|}
 \end{equation}
 
 and
 \begin{equation}
 \textbf{t}=\mu N^{T}\textbf{t} + (1-\mu) \frac{\textbf{1}}{|V_T|}
-\end{equation} where \textbf{1} is a vector with all elements equaling to 1 and the size is correspondent to the size of $V_H$ or $V_T$. $\mu$ is the damping factor usually set to 0.85, as in the PageRank algorithm.
+\end{equation} where \textbf{1} is a vector with all elements equaling to 1 and the size is correspondent to the size of $V_C$ or $V_T$. $\mu$ is the damping factor usually set to 0.85, as in the PageRank algorithm.
 
 \subsection{Affinity Matrix Establishment}
+\label{affinity}
 We introduce the affinity matrix calculation, including homogeneous affinity (i.e., ${M},{N}$) and heterogeneous affinity (i.e., $\hat{W},\bar{W}$).
 
-The HIT collection can be modeled as a weighted undirected graph. Nodes in the graph represent sentences, edges represent inter-sentential relatedness, and their weights are computed via cosine similarity. The adjacency matrix M describes such a graph with each entry corresponding to the weight of an edge.
+As discussed, we model the collection of candidates as a weighted undirected graph, $G_C$, in which nodes in the graph represent candidate sentences and edges represent lexical relatedness. We define an edge's weight to be the cosine similarity between the candidates represented by the nodes that it connects. The adjacency matrix M describes such a graph, with each entry corresponding to the weight of an edge.
 \begin{equation}
 \begin{aligned}
-\mathcal{F}&(h_i,h_j)=\frac{h_i \cdot h_j}{||h_i||||h_j||}\\
-&M_{ij}=\frac{\mathcal{F}(h_i,h_j)}{\sum_k \mathcal{F}(h_i,h_k)}
+\mathcal{F}&(c_i,c_j)=\frac{c_i \cdot c_j}{||c_i||||c_j||}\\
+&M_{ij}=\frac{\mathcal{F}(c_i,c_j)}{\sum_k \mathcal{F}(c_i,c_k)}
 \end{aligned}
-\end{equation} where $\mathcal{F}(.)$ is the cosine similarity and $h$ is a term vector corresponding to an HIT. We treat an HIT as a short document and weight each term with \textit{tf.idf} \cite{a16}, where \textit{tf} is the term frequency and \textit{idf} is the inverse document frequency.
+\end{equation} where $\mathcal{F}(.)$ is the cosine similarity and $c$ is a term vector corresponding to a candidate. We treat a candidate as a short document and weight each term with \textit{tf.idf} \cite{a16}, where \textit{tf} is the term frequency and \textit{idf} is the inverse document frequency.
 
-The Turker graph is an undirected graph based on the collaboration linkage. When $t_i$ and $t_j$ have a shared ``collaboration'', we add an edge between $t_i$ and $t_j$. There are 3 different schema to define collaborations, e.g., pairs with the same translator and/or post-editor, which will be discussed in details in the experiment section. Let the function $\mathcal{I}(t_i,t_j)$ denote the times of shared ``collaborations'' (\#col) when there is an edge between $t_i$ and $t_j$. The adjacency matrix N is then defined as:
+The Turker graph, $G_T$, is an undirected graph whose edges represent ``collaboration.'' Formally, let $t_i$ and $t_j$ be two translator/editor pairs; we say that pair $t_i$ ``collaborates with'' pair $t_j$ (and therefore, there is an edge between $t_i$ and $t_j$) if $t_i$ and $t_j$ share either a translator or an editor (or share both a translator and an editor). Let the function $\mathcal{I}(t_i,t_j)$ denote the number of ``collaborations'' ($\#col$) between $t_i$ and $t_j$. 
 \begin{equation}
 \begin{aligned}
 \mathcal{I}(t_i,t_j)&=
@@ -321,37 +327,39 @@ The Turker graph is an undirected graph based on the collaboration linkage. When
 \#col &(e_{ij} \in E_T) \\
 0 &\text{otherwise}
 \end{cases}, \\
+\end{aligned}
+\end{equation}
+
+Then the adjacency matrix N is then defined as
+
+\begin{equation}
+\begin{aligned}
 N_{ij}&=\frac{\mathcal{I}(t_i,t_j)}{\sum_k \mathcal{I}(t_i,t_k)}
 \end{aligned}
 \end{equation}
 
-In the bipartite HIT-Turker graph $G_{TH}$, the entry $E_{TH}(i, j)$ is an indicator function denoting whether the HIT $h_i$ is generated by $t_j$:
+In the bipartite candidate-Turker graph $G_{TC}$, the entry $E_{TC}(i, j)$ is an indicator function denoting whether the candidate $c_i$ is generated by $t_j$:
 \begin{equation}
-\mathcal{A}(h_i,t_j)=
+\mathcal{A}(c_i,t_j)=
 \begin{cases}
-1 &(e_{ij} \in E_{TH}) \\
+1 &(e_{ij} \in E_{TC}) \\
 0 &\text{otherwise}
 \end{cases}
 \end{equation}
 
-Through $E_{TH}$ we define the weight matrices $\bar{W}_{ij}$ and $\hat{W}_{ij}$, containing the conditional probabilities of transitions from $h_i$ to $t_j$ and vice versa:
+Through $E_{TC}$ we define the weight matrices $\bar{W}_{ij}$ and $\hat{W}_{ij}$, containing the conditional probabilities of transitions from $c_i$ to $t_j$ and vice versa:
 \begin{equation}
 \begin{aligned}
-&\bar{W}_{ij}=\frac{\mathcal{A}(h_i,t_j)}{\sum_k \mathcal{A}(h_i,t_k)},\\
-&\hat{W}_{ij}=\frac{\mathcal{A}(h_i,t_j)}{\sum_k \mathcal{A}(h_k,t_j)}
+&\bar{W}_{ij}=\frac{\mathcal{A}(c_i,t_j)}{\sum_k \mathcal{A}(c_i,t_k)},\\
+&\hat{W}_{ij}=\frac{\mathcal{A}(c_i,t_j)}{\sum_k \mathcal{A}(c_k,t_j)}
 \end{aligned}
 \end{equation}
 
-\section{Experiments and Evaluation}
-\subsection{Data}
-We use \newcite{zaidan-callisonburch:2011:ACL-HLT2011a}'s data, which consists of MTurk translations of the Urdu side of the Urdu-English test set, taken from the 2009 NIST MT Evaluation Workshop. The set contains 1,792 Urdu sentences from a variety of news and online sources. The set includes four different reference translations for each source sentence, produced by professional translation agencies. NIST contracted the LDC to oversee the translation process and perform quality control.
+\section{Evaluation}
 
-This particular dataset, with its multiple reference translations, is very useful because we can measure the quality range for professional translators, which gives us an idea of whether the crowdsourced translations could better approach to the quality of a professional translator.
+We are interested in testing our random walk method, which incorporates information from both the candidate translations and from the Turkers. We want to test two versions of our proposed collaborative co-ranking method: 1) based on the unedited translations only and 2) based on the edited sentences after translator/editor collaborations. 
 
-52 different Turkers took part in the translation task, each translating 138 sentences on average. In the editing task, 320 Turkers participated, averaging 56 sentences each.
-
-\subsection{Evaluation}
-To measure the quality of the translations, we make use of the existing professional translations. Since we have four professional translation sets, we can calculate the Bilingual Evaluation Understudy (BLEU) score \cite{a17} for one professional translator P1 using the other three P2,3,4 as a reference set. We repeat the process four times, scoring each professional translator against the others, to calculate the expected range of professional quality translation. We can examine the results from different translation methods compared to this range by calculating the BLEU scores against the same four sets of three reference translations. We use this methods to evaluate different strategies for selecting translation sets, comparing how much each improves the BLEU score. %, compared to randomly picking from among the Turker translations.
+\paragraph{Metric} Since we have four professional translation sets, we can calculate the Bilingual Evaluation Understudy (BLEU) score \cite{a17} for one professional translator (P1) using the other three (P2,3,4) as a reference set. We repeat the process four times, scoring each professional translator against the others, to calculate the expected range of professional quality translation. In the following sections, we evaluate each of our methods by calculating BLEU scores against the same four sets of three reference translations. Therefore, each number reported in our experimental results is an average of four numbers, corresponding to the four possible ways of choosing 3 of the 4 reference sets. This allows us to compare the BLEU score achieved by our methods against the BLEU scores achievable by professional translators.
 
 %We also evaluate translation quality by using reference sets to score various submissions to the NIST MT evaluation. Specifically, we measure the correlation (using Pearson r) between BLEU scores of MT systems measured against non-professional translations, and BLEU scores measured against professional translations. Since the main purpose of the NIST dataset was to compare MT systems against each other, this is a more direct fitness-for-task measure. We chose the middle 6 systems (in terms of performance) submitted to the NIST evaluation, out of 12, as those systems were fairly close to each other, with less than 2 BLEU points separating them.
 
@@ -371,54 +379,36 @@ Graph Ranking (Trans)   &38.88  \\  \hline
 Graph Ranking (Tran+Edit)   &\textbf{41.43}  \\  \hline
 \end{tabular}
 \caption{Overall BLEU performance for all methods. The highlighted yellow bars indicate methods based on both HIT and Turker information, with and without post-editing.}
+\label{summary-results}
 \end{table}
 
-\subsection{Comparison Methods}
-As a baseline method, we choose our translation set by picking HITs out of all generations at random. As mentioned, we evaluate the reference sets against each other, in order to quantify the concept of ``professional quality''. We establish the performance of professional translators, calculate the upper bounds for Turkers' translation quality, and then carry out a set of experiments that demonstrate the effectiveness of our model. Each number reported in the experimental results is an average of four numbers, corresponding to the four possible ways of choosing 3 of the 4 reference sets.
+\paragraph{Baselines}
 
-For the second group, we perform four oracle experiments to determine if there exist high-quality Turker translations in the first place. The first oracle operates on the segment level on the sentences produced by translators only: for each source segment, choose from the translations the one that scores highest against the reference sentence. The second oracle is applied on the segment level as well but on the productions from the collaboration of translators and post-editors. The third oracle operates on the worker level: for each source segment, choose from the translations the one provided by the worker whose translations (over all sentences) score the highest. Analogously, the fourth oracle is selected from the sentences from the collaboration of translators and post-editors, based on the worker level. Note that oracle methods are the most ideal possible solutions under our scenario.
-
-We also examine other two voting-inspired methods, since the majority vote usually works well in real world NLP problems. The first selects the translation with the minimum average TER \cite{a18} against the other translations, since that would be a ``consensus'' translation. The second method selects the translation generated by the Turkers who provide translations with the minimum average TER.
-
-The last group of methods are based on the utilization of both HIT and Turker information, either based on linear combination or on the graph based random walking. We directly report the results from the previous crowdsourcing translation system using raw translations and edited translation with all kinds of additional features \cite{zaidan-callisonburch:2011:ACL-HLT2011a}\footnote{Note that the data we used in our experiments are slightly different, by discarding nearly 100 NULL sentences in the raw data. We do not re-implement this baseline but report the results from the paper directly. According to our experiments, most of the results generated by baselines and oracles are very close to the previously reported values.}. Also, we include our proposed collaborative crowdsourcing translation method, based on the co-ranking of HIT and Turker collaboration pairs, using 1) unedited translations only and 2) the edited sentences after translator-editor collaborations. For a full comparison, we also include variations of different ranking modelings based on raw translations and edited translations in further discussions.
-
-\subsection{Results and Analysis}
-
-We establish the performance of professional translators, calculate oracle upper bounds on Turker translation quality, and carry out a set of experiments that demonstrate the effectiveness of our model compared with other baselines. Each number reported in this section is an average of four numbers, corresponding to the four possible ways of choosing 3 of the 4 reference sets.
-
-As expected, random selection yields bad performance with a BLEU score of 30.52.
-
-The oracles indicate that there is usually an acceptable translation from the Turkers for any given sentence. Since the oracles select from a small group of only 4 translations per source segment, they are not overly optimistic, and rather reflect the true potential of the collected translations. On average, evaluating one reference set against the other three gives a BLEU score of 42.38. To make the gap clearer, the output of a state-of-the-art machine translation system (the syntax-based variant of Joshua) achieves a score of 26.91, which is reported in \cite{zaidan-callisonburch:2011:ACL-HLT2011a}. The LowestTER selects the translation with the minimum average TER \cite{a18} against the other three translations, since that would be a ``consensus'' translation. This approach achieves BLEU scores of 35.78. %The second method selects the translation from the Turkers with the minimum average TER based on all their translations. These approaches achieve BLEU scores of 34.41 and 33.28, respectively.
-
-A raw set of translations without post-editing scores 28.13 on average based on linear-based combination and 38.89 from on the graph-based ranking, which highlights the loss in quality when collecting translations from amateurs. The linear combination of all features for the crowdsourcing translation achieves a score of 39.06. While the structure information is incorporated into the graph-based ranking framework, the performance achieves a score of 41.43, which verifies the hidden collaboration networks between HIT and Turkers are indeed useful.
-
-Besides, we evaluated the selection methods by measuring correlation with the references, in terms of BLEU scores assigned to outputs of MT systems. The results, in Table 2, tell a fairly similar story as evaluating with BLEU: references and oracles naturally perform very well, and the loss in quality when selecting arbitrary Turker translations is largely eliminated using our selection strategy.
+As a naive baseline, we choose one candidate translation at random for each input Urdu sentence. To establish an upper bound for our methods, and to determine if there exist high-quality Turker translations at all, we compute four oracle scores. The first oracle operates at the segment level on the sentences produced by translators only: for each source segment, we choose from the translations the one that scores highest (in terms of BLEU) against the reference sentences. The second oracle is applied similarly, but chooses from the candidates produced by the collaboration of translator/post-editor pairs. The third oracle operates at the worker level: for each source segment, we choose from the translations the one provided by the worker whose translations (over all sentences) score the highest on average. The fourth oracle also operates at the worker level, but selects from sentences produced by translator/post-editor collaborations. These oracle methods represent ideal solutions under our scenario. We also examine two voting-inspired methods. The first method selects the translation with the minimum average TER \cite{a18} against the other translations; intuitively, this would represent the ``consensus'' translation. The second method selects the translation generated by the Turker who, on average, provides translations with the minimum average TER.
 
 
 
+\paragraph{Results}
 
-\subsection{Analysis}
+A summary of our results in given in Table \ref{summary-results}. As expected, random selection yields bad performance, with a BLEU score of 30.52. The oracles indicate that there is usually an acceptable translation from the Turkers for any given sentence. Since the oracles select from a small group of only 4 translations per source segment, they are not overly optimistic, and rather reflect the true potential of the collected translations. On average, the reference translations give a score of 42.38. To put this in perspective, the output of a state-of-the-art machine translation system (the syntax-based variant of Joshua) achieves a score of 26.91, which is reported in \cite{zaidan-callisonburch:2011:ACL-HLT2011a}. The approach which selects the translations with the minimum average TER \cite{a18} against the other three translations (the ``consensus'' translation) achieves BLEU scores of 35.78. %The second method selects the translation from the Turkers with the minimum average TER based on all their translations. These approaches achieve BLEU scores of 34.41 and 33.28, respectively.
 
+Using the raw translations without post-editing, our graph-based ranking method achieves a BLEU score of  38.89, compared to \newcite{zaidan-callisonburch:2011:ACL-HLT2011a}' s reported score of 28.13, which they achieved using a linear feature-based classification. Their linear classifier achieved a reported score of 39.06\footnote{Note that the data we used in our experiments are slightly different, by discarding nearly 100 NULL sentences in the raw data. We do not re-implement this baseline but report the results from the paper directly. According to our experiments, most of the results generated by baselines and oracles are very close to the previously reported values.} when combining information from both translators and editors. In contrast, our proposed graph-based ranking framework achieves a score of 41.43 when using the same information. This boost in BLEU score confirms our intuition that the hidden collaboration networks between candidate translations and transltor/editor pairs are indeed useful.
 
+\paragraph{Parameter Tuning}
 
-
-\subsubsection{Parameter Tuning}
 \begin{figure}[t]
   \centering
   \includegraphics[width=0.48\textwidth]{parameters}
-  \caption{Effect of HIT-Turker coupling by $\lambda$.}
+  \caption{Effect of candidate-Turker coupling ($\lambda$) on BLEU score.}
+  \label{lambda}
 \end{figure}
 
-The professional translations are used in our approach for measuring the performance against the ground truth and for tuning the weights of the parameters.
+There are two parameters in our experimental setups: $\mu$ controls the probability of starting a new random walk and $\lambda$ controls the coupling between the candidate and Turker sub-graphs. We set the damping factor $\mu$ to 0.85, following the standard PageRank paradigm. In order to determine a value for $\lambda$, we used the average BLEU, computed against the professional reference translations, as a tuning metric. We experimented with values of $\lambda$ ranging from 0 to 1, with a step size of 0.05 (Figure \ref{lambda}). Small $\lambda$ values place little emphasis on the candidate/Turker coupling, whereas larger values rely more heavily on the co-ranking. Overall, we observed better performance with values within the range of 0.05-0.15. This suggests that both sources of information-- the candidate itself and its authors-- are important for the crowdsourcing translation task. In all of our reported results, we used the $\lambda$ = 0.1.
 
-There are two parameters in our experimental setups: $\mu$ controls the probability to start a new random walk and $\lambda$ deals with coupling between the HIT and Turker sub-graphs. We set the damping factor $\mu$ to 0.85 following the standard PageRank paradigm. We opted for more or less generic parameter values as we did not want to tune our framework to the specific dataset at hand. We examined
-the parameter $\lambda$ which controls the balance of the HIT-Turker graph in more detail. We experimented with values ranging from 0 to 1, with a step size of 0.05. Small $\lambda$ values place little emphasis on the coupling part, whereas larger values rely more heavily
-on the co-ranking. Overall, we observed better performance with values within the range of 0.05-0.15. This suggests that both sources of information for HIT and their authors are important for the crowdsourcing translation task. All our experiments used the same $\lambda$ value which was set to 0.1.
+\paragraph{Analysis}
+We examine the relative contribution of each component of our approach on the overall performance. We first examine the centroid-based ranking on the candidate sub-graph ($G_C$) alone to see the effect of voting among translated sentences; we denote this strategy as \textit{plain ranking}. Then we incorporate the standard random walk on the Turker graph ($G_T$) to include the structural information but without yet including any collaboration information; that is, we incorporate information from $G_T$ and $G_C$ without including edges linking the two together. The co-ranking paradigm is exactly the same as the framework described in Section 3.2, but with simplified structures.
 
-\subsubsection{Component Strategy}
-We next examine the relative contribution of different strategies when modeling our proposed ranking framework. Specifically, we first examine the centroid based ranking on the HITs sub-graph to see the effect of voting among translated sentences, denoted as \textit{plain ranking}. Then we incorporate the standard random walk the Turker graph to make utilization of the structural information but without any collaboration included, i.e., on the sentence graph only while no edges between Turkers in the Turker graph is included. The co-ranking paradigm is exactly the same with the framework mentioned in Section 3.2 with simplified structures.
-
-In the following steps, we examine the two-step collaboration based HIT-Turker graph with several variations of edge establishment: the nodes are the translator/post-editor working pairs. The edges are connected when 1) two nodes share a translator only, 2) two nodes share a post-editor only, and 3) two nodes share either a translator or a post-editor. %For all of the ranking paradigm, we include the comparison of two versions with and without linguistics quality prior.
+Finally, we examine the two-step collaboration based candidate-Turker graph using several variations on edge establishment. As before, the nodes are the translator/post-editor working pairs. We investigate three settings in which 1) edges connect two nodes when they share only a translator, 2) edges connect two nodes when they share only a post-editor, and 3) edges connect two nodes when they share either a translator or a post-editor. These results are summarized in Table \ref{component-variation}. 
 
 \begin{table}[t]
 \centering
@@ -430,9 +420,10 @@ Shared post-editor    &41.29 \\ \hline
 Shared Turker   &\textbf{41.43}  \\  \hline
 \end{tabular}
 \caption{Variations of all component settings.}
+\label{component-variation}
 \end{table}
 
-An interesting observation is that when modeling the linkage between the collaboration pairs, we note that to establish linkage when the Turker pairs share either translator or the post-editor will achieve the best performance, while to establish linkage when they share only post-editors or translators will lead to worse results. It is intuitive to understand that a denser collaboration matrix will help propagate saliency to good translators/post-editors and hence in return get a good selection.
+Interestingly, we observe that when modeling the linkage between the collaboration pairs, connecting Turker pairs which share either a translator or the post-editor achieves better performance than connecting pairs that share only translators or connecting pairs which share only editors. This result supports the intuition that a denser collaboration matrix will help propagate saliency to good translators/post-editors and hence provides better predictions for candidate quality.
 
 %\section{Related Work}
 %Extraneous data source could always be a supplement to improve MT models so that they are better suited to the low resource setting \cite{a21,a22}. Transfer learning based models, or designing models that are capable of learning translations from monolingual corpora \cite{a23,a24}.
@@ -448,9 +439,9 @@ An interesting observation is that when modeling the linkage between the collabo
 %Resnik et al. \shortcite{a9} explore a very interesting way of creating translations on MTurk, relying only on monolingual speakers. Speakers of the target language iteratively identified problems in machine translation output, and speakers of the source language paraphrased the corresponding source portion. The paraphrased source would then be retranslated to produce a different translation, hopefully more coherent than the original.
 
 \section{Conclusion}
-We have proposed a two-step non-professional collaboration based co-ranking model to select the best crowdsourced translation on the heterogeneous HIT-Turker graph, and we have demonstrated that compared with a series of MT methods, it is possible to obtain improved performance near professional quality and even less costs from non-professional collaborations.
+We have proposed an algorithm for using a two-step collaboration between non-professional translators and post-editors to obtain professional-quality translations. Our method, based on a co-ranking model,  selects the best crowdsourced translation from a set of candidates, and is capable of selecting translations which near professional quality.
 
-We believe that crowdsourcing can play a pivotal role in future efforts to create parallel translation datasets. Beyond the cost and scalability, crowdsourcing provides access to languages that currently fall outside the scope of statistical machine translation research. There are possible ways to further improve the crowdsourcing translation and reduce costs by: 1) build ground truth against good Turkers only, instead of professionals, once they have been identified and 2) predict when it is unnecessary to solicit more translations after a certain threshold.
+Crowdsourcing can play a pivotal role in future efforts to create parallel translation datasets. In addition to its benefits of cost and scalability, crowdsourcing provides access to languages that currently fall outside the scope of statistical machine translation research. In future work on crowdsourced translation, further benefits in quality improvement and cost reduction could stem from 1) building ground truth data sets based on high-quality Turkers' translations and 2) identifying when sufficient data has been collected for a given input, to avoid soliciting unnecessary redundant translations.
 
 \section*{Acknowledgements}
 This material is based on research sponsored by a DARPA Computer Science Study Panel phase 3 award entitled ``Crowdsourcing Translation'' (contract D12PC00368). The views and conclusions contained in this publication are those of the authors and should not be interpreted as representing official policies or endorsements by DARPA or the U.S. Government. This research was supported by the Johns Hopkins University Human Language Technology Center of Excellence and through gifts from Microsoft, Google and Facebook.
